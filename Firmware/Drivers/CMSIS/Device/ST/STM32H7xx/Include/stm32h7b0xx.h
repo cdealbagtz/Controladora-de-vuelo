@@ -1,8 +1,8 @@
 /**
   ******************************************************************************
-  * @file    stm32h7b3xx.h
+  * @file    stm32h7b0xx.h
   * @author  MCD Application Team
-  * @brief   CMSIS STM32H7B3xx Device Peripheral Access Layer Header File.
+  * @brief   CMSIS STM32H7B0xx Device Peripheral Access Layer Header File.
   *
   *          This file contains:
   *           - Data structures and the address mapping for all peripherals
@@ -26,12 +26,12 @@
   * @{
   */
 
-/** @addtogroup stm32h7b3xx
+/** @addtogroup stm32h7b0xx
   * @{
   */
 
-#ifndef STM32H7B3xx_H
-#define STM32H7B3xx_H
+#ifndef STM32H7B0xx_H
+#define STM32H7B0xx_H
 
 #ifdef __cplusplus
  extern "C" {
@@ -2068,9 +2068,9 @@ typedef struct
 #define OCTOSPI1_BASE             (0x90000000UL) /*!< Base address of : OCTOSPI1 memories  accessible over AXI                                 */
 #define OCTOSPI2_BASE             (0x70000000UL) /*!< Base address of : OCTOSPI2 memories  accessible over AXI                                 */
 
-#define FLASH_BANK1_BASE          (0x08000000UL) /*!< Base address of : (up to 1 MB) Flash Bank1 accessible over AXI                          */
-#define FLASH_BANK2_BASE          (0x08100000UL) /*!< Base address of : (up to 1 MB) Flash Bank2 accessible over AXI                          */
-#define FLASH_END                 (0x081FFFFFUL) /*!< FLASH end address                                                                       */
+#define FLASH_BANK1_BASE          (0x08000000UL) /*!< Base address of : (up to 128 KB) Flash Bank1 accessible over AXI                         */
+#define FLASH_BANK2_BASE          (0x08100000UL) /*!< For legacy only , Flash bank 2 not available on STM32H7B0xx value line                   */
+#define FLASH_END                 (0x0801FFFFUL) /*!< FLASH end address                                                                        */
 
 /* Legacy define */
 #define FLASH_BASE                FLASH_BANK1_BASE
@@ -8871,15 +8871,14 @@ typedef struct
 * @brief FLASH Global Defines
 */
 #define FLASH_SIZE_DATA_REGISTER             0x08FFF80CU
-#define FLASH_SECTOR_TOTAL                   128U                  /* 128 sectors */
-#define FLASH_SIZE                           ((((*((uint16_t *)FLASH_SIZE_DATA_REGISTER)) == 0xFFFFU)) ? 0x200000U : \
-                                             ((((*((uint16_t *)FLASH_SIZE_DATA_REGISTER)) == 0x0000U)) ? 0x200000U : \
-                                             (((uint32_t)(*((uint16_t *)FLASH_SIZE_DATA_REGISTER)) & (0x0FFFU)) << 10U)))  /* 2 MB   */
-#define FLASH_BANK_SIZE                      (FLASH_SIZE >> 1)     /* 1 MB   */
-#define FLASH_SECTOR_SIZE                    0x00002000UL          /* 8 KB   */
+#define FLASH_SECTOR_TOTAL                   16U                   /* 16 sectors */
+#define FLASH_SECTOR_SIZE                    0x00002000UL          /* 8 KB       */
+#define FLASH_SIZE                           ((((*((uint16_t *)FLASH_SIZE_DATA_REGISTER)) == 0xFFFFU)) ? 0x20000U : \
+                                             ((((*((uint16_t *)FLASH_SIZE_DATA_REGISTER)) == 0x0000U)) ? 0x20000U : \
+                                             (((uint32_t)(*((uint16_t *)FLASH_SIZE_DATA_REGISTER)) & (0x0FFFU)) << 10U)))  /* 128 KB     */
+#define FLASH_BANK_SIZE                      FLASH_SIZE            /* 128 KB     */
 #define FLASH_LATENCY_DEFAULT                FLASH_ACR_LATENCY_3WS /* FLASH Three Latency cycles */
 #define FLASH_NB_32BITWORD_IN_FLASHWORD      4U                    /* 128 bits */
-#define DUAL_BANK                                                  /* Dual-bank Flash */
 
 /*******************  Bits definition for FLASH_ACR register  **********************/
 #define FLASH_ACR_LATENCY_Pos                (0U)
@@ -9073,9 +9072,6 @@ typedef struct
 #define FLASH_OPTCR_OPTCHANGEERRIE_Pos       (30U)
 #define FLASH_OPTCR_OPTCHANGEERRIE_Msk       (0x1UL << FLASH_OPTCR_OPTCHANGEERRIE_Pos) /*!< 0x40000000 */
 #define FLASH_OPTCR_OPTCHANGEERRIE           FLASH_OPTCR_OPTCHANGEERRIE_Msk            /*!< Option byte change error interrupt enable bit */
-#define FLASH_OPTCR_SWAP_BANK_Pos            (31U)
-#define FLASH_OPTCR_SWAP_BANK_Msk            (0x1UL << FLASH_OPTCR_SWAP_BANK_Pos) /*!< 0x80000000 */
-#define FLASH_OPTCR_SWAP_BANK                FLASH_OPTCR_SWAP_BANK_Msk            /*!< Bank swapping option configuration bit */
 
 /*******************  Bits definition for FLASH_OPTSR register  ***************/
 #define FLASH_OPTSR_OPT_BUSY_Pos             (0U)
@@ -9121,9 +9117,6 @@ typedef struct
 #define FLASH_OPTSR_OPTCHANGEERR_Pos         (30U)
 #define FLASH_OPTSR_OPTCHANGEERR_Msk         (0x1UL << FLASH_OPTSR_OPTCHANGEERR_Pos) /*!< 0x40000000 */
 #define FLASH_OPTSR_OPTCHANGEERR             FLASH_OPTSR_OPTCHANGEERR_Msk            /*!< Option byte change error flag */
-#define FLASH_OPTSR_SWAP_BANK_OPT_Pos        (31U)
-#define FLASH_OPTSR_SWAP_BANK_OPT_Msk        (0x1UL << FLASH_OPTSR_SWAP_BANK_OPT_Pos) /*!< 0x80000000 */
-#define FLASH_OPTSR_SWAP_BANK_OPT            FLASH_OPTSR_SWAP_BANK_OPT_Msk            /*!< Bank swapping option status bit */
 
 /*******************  Bits definition for FLASH_OPTCCR register  *******************/
 #define FLASH_OPTCCR_CLR_OPTCHANGEERR_Pos    (30U)
@@ -23064,5 +23057,5 @@ typedef struct
 }
 #endif /* __cplusplus */
 
-#endif /* STM32H7B3xx_H */
+#endif /* STM32H7B0xx_H */
 

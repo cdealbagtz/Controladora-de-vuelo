@@ -1,8 +1,8 @@
 /**
   ******************************************************************************
-  * @file      startup_stm32h7b3xx.s
+  * @file      startup_stm32h7b0xx.s
   * @author    MCD Application Team
-  * @brief     STM32H7B3xx Devices vector table for GCC based toolchain. 
+  * @brief     STM32H7B0xx Devices vector table for GCC based toolchain. 
   *            This module performs:
   *                - Set the initial SP
   *                - Set the initial PC == Reset_Handler,
@@ -59,7 +59,7 @@ defined in linker script */
   .type  Reset_Handler, %function
 Reset_Handler:  
   ldr   sp, =_estack      /* set stack pointer */
-
+  
 /* Call the clock system initialization function.*/
   bl  SystemInit
   

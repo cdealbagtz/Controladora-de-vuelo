@@ -49,6 +49,8 @@ extern "C" {
 
 /* USER CODE END EM */
 
+void HAL_TIM_MspPostInit(TIM_HandleTypeDef *htim);
+
 /* Exported functions prototypes ---------------------------------------------*/
 void Error_Handler(void);
 
@@ -57,6 +59,40 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define LED_1_Pin GPIO_PIN_13
+#define LED_1_GPIO_Port GPIOC
+#define LED_2_Pin GPIO_PIN_0
+#define LED_2_GPIO_Port GPIOC
+#define LED_3_Pin GPIO_PIN_1
+#define LED_3_GPIO_Port GPIOC
+#define LED_4_Pin GPIO_PIN_2
+#define LED_4_GPIO_Port GPIOC
+#define LED_5_Pin GPIO_PIN_3
+#define LED_5_GPIO_Port GPIOC
+#define SD_NSS_Pin GPIO_PIN_4
+#define SD_NSS_GPIO_Port GPIOA
+#define SD_SCK_Pin GPIO_PIN_5
+#define SD_SCK_GPIO_Port GPIOA
+#define SD_MISO_Pin GPIO_PIN_6
+#define SD_MISO_GPIO_Port GPIOA
+#define SD_MOSI_Pin GPIO_PIN_7
+#define SD_MOSI_GPIO_Port GPIOA
+#define BMP280_NSS_Pin GPIO_PIN_12
+#define BMP280_NSS_GPIO_Port GPIOB
+#define BMP_SCK_Pin GPIO_PIN_13
+#define BMP_SCK_GPIO_Port GPIOB
+#define BMP_MISO_Pin GPIO_PIN_14
+#define BMP_MISO_GPIO_Port GPIOB
+#define BMP_MOSI_Pin GPIO_PIN_15
+#define BMP_MOSI_GPIO_Port GPIOB
+#define IMU_SCK_Pin GPIO_PIN_10
+#define IMU_SCK_GPIO_Port GPIOC
+#define IMU_MISO_Pin GPIO_PIN_11
+#define IMU_MISO_GPIO_Port GPIOC
+#define IMU_MOSI_Pin GPIO_PIN_12
+#define IMU_MOSI_GPIO_Port GPIOC
+#define IMU_INT_Pin GPIO_PIN_2
+#define IMU_INT_GPIO_Port GPIOD
 
 /* USER CODE BEGIN Private defines */
 
