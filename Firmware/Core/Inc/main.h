@@ -83,6 +83,8 @@ void Error_Handler(void);
 #define BMP_MISO_GPIO_Port GPIOB
 #define BMP_MOSI_Pin GPIO_PIN_15
 #define BMP_MOSI_GPIO_Port GPIOB
+#define SBUS_RX_Pin GPIO_PIN_10
+#define SBUS_RX_GPIO_Port GPIOA
 #define IMU_SCK_Pin GPIO_PIN_10
 #define IMU_SCK_GPIO_Port GPIOC
 #define IMU_MISO_Pin GPIO_PIN_11
