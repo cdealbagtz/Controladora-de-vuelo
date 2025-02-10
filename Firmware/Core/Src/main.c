@@ -119,6 +119,12 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
+	  HAL_GPIO_TogglePin(LED_1_GPIO_Port, LED_1_Pin);
+	  HAL_GPIO_TogglePin(LED_2_GPIO_Port, LED_2_Pin);
+	  HAL_GPIO_TogglePin(LED_3_GPIO_Port, LED_3_Pin);
+	  HAL_GPIO_TogglePin(LED_3_GPIO_Port, LED_4_Pin);
+	  HAL_GPIO_TogglePin(LED_3_GPIO_Port, LED_5_Pin);
+	  HAL_Delay(500);
   }
   /* USER CODE END 3 */
 }
