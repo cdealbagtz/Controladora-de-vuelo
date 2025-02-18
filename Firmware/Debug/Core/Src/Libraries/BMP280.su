@@ -1,0 +1,11 @@
+../Core/Src/Libraries/BMP280.c:18:6:BMP280_write	16	static
+../Core/Src/Libraries/BMP280.c:27:9:BMP280_read	24	static
+../Core/Src/Libraries/BMP280.c:37:6:BMP280_config	8	static
+../Core/Src/Libraries/BMP280.c:42:6:BMP280_reset	8	static
+../Core/Src/Libraries/BMP280.c:46:6:BMP280_calibrationData	40	static
+../Core/Src/Libraries/BMP280.c:69:6:BMP280_readRawValues	16	static
+../Core/Src/Libraries/BMP280.c:81:9:BMP280_measureT	32	static
+../Core/Src/Libraries/BMP280.c:90:10:BMP280_measureP	328	static
+../Core/Src/Libraries/BMP280.c:110:10:BMP280_measureH	40	static
+../Core/Src/Libraries/BMP280.c:122:6:BMP280_init	8	static
+../Core/Src/Libraries/BMP280.c:131:6:BMP280_calculate	8	static

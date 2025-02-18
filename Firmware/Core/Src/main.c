@@ -28,7 +28,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "Libraries/BMP280.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -109,7 +109,7 @@ int main(void)
   MX_USART6_UART_Init();
   MX_TIM13_Init();
   /* USER CODE BEGIN 2 */
-
+  BMP280_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -119,12 +119,10 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  HAL_GPIO_TogglePin(LED_1_GPIO_Port, LED_1_Pin);
-	  HAL_GPIO_TogglePin(LED_2_GPIO_Port, LED_2_Pin);
-	  HAL_GPIO_TogglePin(LED_3_GPIO_Port, LED_3_Pin);
-	  HAL_GPIO_TogglePin(LED_3_GPIO_Port, LED_4_Pin);
-	  HAL_GPIO_TogglePin(LED_3_GPIO_Port, LED_5_Pin);
-	  HAL_Delay(500);
+	  BMP280_calculate();
+
+
+	  HAL_Delay(50);
   }
   /* USER CODE END 3 */
 }

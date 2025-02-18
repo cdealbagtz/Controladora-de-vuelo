@@ -2,4 +2,4 @@
 ../Core/Src/spi.c:74:6:MX_SPI2_Init	8	static
 ../Core/Src/spi.c:116:6:MX_SPI3_Init	8	static
 ../Core/Src/spi.c:158:6:HAL_SPI_MspInit	256	static
-../Core/Src/spi.c:272:6:HAL_SPI_MspDeInit	16	static
+../Core/Src/spi.c:271:6:HAL_SPI_MspDeInit	16	static

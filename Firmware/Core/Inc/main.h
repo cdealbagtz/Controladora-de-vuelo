@@ -75,8 +75,8 @@ void Error_Handler(void);
 #define SD_MISO_GPIO_Port GPIOA
 #define SD_MOSI_Pin GPIO_PIN_7
 #define SD_MOSI_GPIO_Port GPIOA
-#define BMP280_NSS_Pin GPIO_PIN_12
-#define BMP280_NSS_GPIO_Port GPIOB
+#define BME_NSS_Pin GPIO_PIN_12
+#define BME_NSS_GPIO_Port GPIOB
 #define BMP_SCK_Pin GPIO_PIN_13
 #define BMP_SCK_GPIO_Port GPIOB
 #define BMP_MISO_Pin GPIO_PIN_14
