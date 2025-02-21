@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "fatfs.h"
 #include "fdcan.h"
 #include "i2c.h"
 #include "memorymap.h"
@@ -28,6 +29,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "Libraries/SD.h"
 #include "Libraries/BMP280.h"
 /* USER CODE END Includes */
 
@@ -108,8 +110,10 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART6_UART_Init();
   MX_TIM13_Init();
+  MX_FATFS_Init();
   /* USER CODE BEGIN 2 */
   BMP280_init();
+  SD_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
