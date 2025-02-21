@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "dma.h"
 #include "fatfs.h"
 #include "fdcan.h"
 #include "i2c.h"
@@ -31,6 +32,7 @@
 /* USER CODE BEGIN Includes */
 #include "Libraries/SD.h"
 #include "Libraries/BMP280.h"
+#include "Libraries/SBUS.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -51,7 +53,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
-
+extern uint8_t SBUS_RxBuffer;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -98,6 +100,7 @@ int main(void)
 
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
+  MX_DMA_Init();
   MX_FDCAN1_Init();
   MX_I2C3_Init();
   MX_SPI1_Init();
@@ -114,6 +117,7 @@ int main(void)
   /* USER CODE BEGIN 2 */
   BMP280_init();
   SD_init();
+  SBUS_init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -194,7 +198,15 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	if (huart -> Instance == USART1){
+		SBUS_Receive(SBUS_RxBuffer);
+		HAL_UART_Receive_DMA(&huart1, SBUS_RxBuffer, 1);
+	}
 
+
+}
 /* USER CODE END 4 */
 
  /* MPU Configuration */
