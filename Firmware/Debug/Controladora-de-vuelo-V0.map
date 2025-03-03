@@ -141,6 +141,157 @@ Discarded input sections
  .bss           0x00000000        0x0 ./Core/Src/Libraries/BMP280.o
  .text.BMP280_reset
                 0x00000000       0x10 ./Core/Src/Libraries/BMP280.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .group         0x00000000        0xc ./Core/Src/Libraries/LED.o
+ .text          0x00000000        0x0 ./Core/Src/Libraries/LED.o
+ .data          0x00000000        0x0 ./Core/Src/Libraries/LED.o
+ .bss           0x00000000        0x0 ./Core/Src/Libraries/LED.o
+ .bss.LED_Info  0x00000000       0x14 ./Core/Src/Libraries/LED.o
+ .text.LED_Tasks
+                0x00000000       0x5c ./Core/Src/Libraries/LED.o
+ .debug_info    0x00000000      0x2d9 ./Core/Src/Libraries/LED.o
+ .debug_abbrev  0x00000000      0x162 ./Core/Src/Libraries/LED.o
+ .debug_aranges
+                0x00000000       0x20 ./Core/Src/Libraries/LED.o
+ .debug_rnglists
+                0x00000000       0x13 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x2e5 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0xacc ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x244 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x2e ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x3b ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x22 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x8e ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x51 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x103 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x6a ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x1df ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x1c ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x22 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0xfb ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000     0x1305 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x11f ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x27 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000    0x1f2aa ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x6d ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000     0x3d80 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x189 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x61 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x29 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x43 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x34 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x16 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x43 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x34 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x10 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x58 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x8e ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x1c ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x177 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x369 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x19b ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x5d ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000     0x2606 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000     0x103a ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x154 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x114 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x3d5 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0xac ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x70a ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x20c ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x66 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x3c9 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x3eb ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x275 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0xe42 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x380 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x44e ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x43 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x4a ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x22c ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x67 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0xa5 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x1bd ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x2ab ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0x35 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x5e4 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0xc1 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0xb24 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x29f ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x693 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0xa6 ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000      0x5be ./Core/Src/Libraries/LED.o
+ .debug_macro   0x00000000       0xdc ./Core/Src/Libraries/LED.o
+ .debug_line    0x00000000      0x960 ./Core/Src/Libraries/LED.o
+ .debug_str     0x00000000   0x1480a1 ./Core/Src/Libraries/LED.o
+ .comment       0x00000000       0x44 ./Core/Src/Libraries/LED.o
+ .debug_frame   0x00000000       0x2c ./Core/Src/Libraries/LED.o
+ .ARM.attributes
+                0x00000000       0x32 ./Core/Src/Libraries/LED.o
  .group         0x00000000        0xc ./Core/Src/Libraries/PWM.o
  .group         0x00000000        0xc ./Core/Src/Libraries/PWM.o
  .group         0x00000000        0xc ./Core/Src/Libraries/PWM.o
@@ -8541,6 +8692,7 @@ LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.ext
 LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/thumb/v7e-m+dp/hard/crtbegin.o
 LOAD C:/ST/STM32CubeIDE_1.16.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.200.202406191623/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/lib/thumb/v7e-m+dp/hard/crt0.o
 LOAD ./Core/Src/Libraries/BMP280.o
+LOAD ./Core/Src/Libraries/LED.o
 LOAD ./Core/Src/Libraries/PWM.o
 LOAD ./Core/Src/Libraries/SBUS.o
 LOAD ./Core/Src/Libraries/SD.o
