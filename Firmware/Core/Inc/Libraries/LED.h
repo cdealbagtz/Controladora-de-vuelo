@@ -39,7 +39,6 @@ typedef struct LED_Info{
 	LED_config_t G_LED;
 }LED_Info_t;
 
-void LED_Init(void);
 void LED_Tasks(void);
 
 #endif /* INC_LIBRARIES_LED_H_ */

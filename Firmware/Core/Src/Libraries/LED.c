@@ -8,24 +8,22 @@
 
 #include "Libraries/LED.h"
 
-LED_Info_t LED_Info;
+LED_Info_t LED_Info = {
+		.R_LED.LED_GPIO_GPIOx = LED_1_GPIO_Port,
+		.R_LED.LED_GPIO_Pin   = LED_1_Pin,
 
-void LED_Init(void){
-	LED_Info.R_LED.LED_GPIO_GPIOx = LED_1_GPIO_Port;
-	LED_Info.R_LED.LED_GPIO_Pin   = LED_1_Pin;
+		.B_LED1.LED_GPIO_GPIOx = LED_2_GPIO_Port,
+		.B_LED1.LED_GPIO_Pin   = LED_2_Pin,
 
-	LED_Info.B_LED1.LED_GPIO_GPIOx = LED_2_GPIO_Port;
-	LED_Info.B_LED1.LED_GPIO_Pin   = LED_2_Pin;
+		.B_LED2.LED_GPIO_GPIOx = LED_3_GPIO_Port,
+		.B_LED2.LED_GPIO_Pin   = LED_3_Pin,
 
-	LED_Info.B_LED2.LED_GPIO_GPIOx = LED_3_GPIO_Port;
-	LED_Info.B_LED2.LED_GPIO_Pin   = LED_3_Pin;
+		.B_LED3.LED_GPIO_GPIOx = LED_4_GPIO_Port,
+		.B_LED3.LED_GPIO_Pin   = LED_4_Pin,
 
-	LED_Info.B_LED3.LED_GPIO_GPIOx = LED_4_GPIO_Port;
-	LED_Info.B_LED3.LED_GPIO_Pin   = LED_4_Pin;
-
-	LED_Info.G_LED.LED_GPIO_GPIOx = LED_5_GPIO_Port;
-	LED_Info.G_LED.LED_GPIO_Pin   = LED_5_Pin;
-}
+		.G_LED.LED_GPIO_GPIOx = LED_5_GPIO_Port,
+		.G_LED.LED_GPIO_Pin   = LED_5_Pin
+};
 
 LED_config_t LED_blink(LED_config_t LED){
 

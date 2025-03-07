@@ -120,7 +120,6 @@ int main(void)
   BMP280_init();
   SD_init();
   SBUS_init();
-  LED_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
