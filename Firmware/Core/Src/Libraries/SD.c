@@ -21,7 +21,7 @@ void SD_init(void){
 	  //Get_NewDir();
 	  f_open(&fil, fileName, FA_OPEN_ALWAYS | FA_READ | FA_WRITE);
 	  fresult = f_lseek(&fil , f_size(&fil));
-	  f_printf(&fil,"Nmsg,AccX,AccY,AccZ,GyroX,GyroY,GyroZ,AngX,AngY,Alt,Pressure,Temp,Parachute,Peripheral\n");
+	  f_printf(&fil,"Nmsg,AccX,AccY,AccZ,GyroX,GyroY,GyroZ,Pitch,Roll,Yaw,Alt,Pressure,Temp\n");
 	  f_close(&fil);
 
 	  if(fresult == FR_OK){

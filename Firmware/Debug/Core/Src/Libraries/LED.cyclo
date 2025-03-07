@@ -1,1 +1,4 @@
-../Core/Src/Libraries/LED.c:13:6:LED_Tasks	4
+../Core/Src/Libraries/LED.c:13:6:LED_Init	1
+../Core/Src/Libraries/LED.c:30:14:LED_blink	5
+../Core/Src/Libraries/LED.c:56:14:LED_Rutine	4
+../Core/Src/Libraries/LED.c:76:6:LED_Tasks	1

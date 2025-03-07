@@ -33,6 +33,7 @@
 #include "Libraries/SD.h"
 #include "Libraries/BMP280.h"
 #include "Libraries/SBUS.h"
+#include "Libraries/LED.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -114,10 +115,12 @@ int main(void)
   MX_USART6_UART_Init();
   MX_TIM13_Init();
   MX_FATFS_Init();
+  MX_TIM6_Init();
   /* USER CODE BEGIN 2 */
   BMP280_init();
   SD_init();
   SBUS_init();
+  LED_Init();
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -128,7 +131,6 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  BMP280_calculate();
-
 
 	  HAL_Delay(50);
   }
@@ -202,9 +204,18 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	if (huart -> Instance == USART1){
 		SBUS_Receive(SBUS_RxBuffer);
-		HAL_UART_Receive_DMA(&huart1, SBUS_RxBuffer, 1);
+		HAL_UART_Receive_DMA(&huart1, &SBUS_RxBuffer, 1);
 	}
 
+
+}
+
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
+{
+	//Interrupción cada 1 ms
+	if (htim -> Instance == TIM6){
+		LED_Tasks();
+	}
 
 }
 /* USER CODE END 4 */

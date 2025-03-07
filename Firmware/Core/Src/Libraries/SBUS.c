@@ -80,15 +80,15 @@ void SBUS_Receive(uint8_t SBUS_RxBuffer){
 }
 
 void Temp_BypassFunct (void){
-	PWM_Output.Canal_1 = Radio_input.Canal_1;
-	PWM_Output.Canal_2 = Radio_input.Canal_2;
-	PWM_Output.Canal_3 = Radio_input.Canal_3;
-	PWM_Output.Canal_4 = Radio_input.Canal_4;
-	PWM_Output.Canal_5 = Radio_input.Canal_5;
-	PWM_Output.Canal_6 = Radio_input.Canal_6;
-	PWM_Output.Canal_7 = Radio_input.Canal_7;
-	PWM_Output.Canal_8 = Radio_input.Canal_8;
-	PWM_Output.Canal_9 = Radio_input.Canal_9;
+	PWM_Output.Canal_1  = Radio_input.Canal_1;
+	PWM_Output.Canal_2  = Radio_input.Canal_2;
+	PWM_Output.Canal_3  = Radio_input.Canal_3;
+	PWM_Output.Canal_4  = Radio_input.Canal_4;
+	PWM_Output.Canal_5  = Radio_input.Canal_5;
+	PWM_Output.Canal_6  = Radio_input.Canal_6;
+	PWM_Output.Canal_7  = Radio_input.Canal_7;
+	PWM_Output.Canal_8  = Radio_input.Canal_8;
+	PWM_Output.Canal_9  = Radio_input.Canal_9;
 	PWM_Output.Canal_10 = Radio_input.Canal_10;
 
 	PWM_Assing();

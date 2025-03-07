@@ -18,11 +18,17 @@ typedef enum LED_sequence{
 }LED_sequence_e;
 
 typedef struct LED_config{
+	GPIO_TypeDef *LED_GPIO_GPIOx;
+	uint16_t LED_GPIO_Pin;
 	uint8_t LED_status;	//ON == 0x01 Off == 0x00
 	LED_sequence_e Sequence;   //Static == 0x00 Blink == 0x01
 
-	uint8_t Time_On;	//Time on in milisecons
-	uint8_t Time_Off;   //Time off in milisecons
+	uint16_t Time_On;	//Time on in milisecons
+	uint16_t Time_Off;   //Time off in milisecons
+
+	uint16_t count;
+
+	uint8_t Blink_status;
 }LED_config_t;
 
 typedef struct LED_Info{
@@ -33,6 +39,7 @@ typedef struct LED_Info{
 	LED_config_t G_LED;
 }LED_Info_t;
 
-
+void LED_Init(void);
+void LED_Tasks(void);
 
 #endif /* INC_LIBRARIES_LED_H_ */
