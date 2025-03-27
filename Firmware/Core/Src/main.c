@@ -199,6 +199,10 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+
+uint64_t TimeOn_Counter = 0x00;
+
+
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	if (huart -> Instance == USART1){
@@ -213,9 +217,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
 	//Interrupción cada 1 ms
 	if (htim -> Instance == TIM6){
+		TimeOn_Counter++;
 		LED_Tasks();
+		SBUS_IntegrityVerification();
 	}
-
 }
 /* USER CODE END 4 */
 

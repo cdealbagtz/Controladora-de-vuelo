@@ -11,6 +11,15 @@
 #include "stm32h7xx.h"
 #include "usart.h"
 
+typedef enum RC_Status{
+	OFF = 0x00,
+	ON  = 0xFF,
+	Ok = 0xAA,
+	Pkg_Lost = 0x10,
+	Uart_Error = 0x20,
+	FailSafe = 0x35
+}RC_Status_e;
+
 typedef struct Radio_input{
 	uint16_t Canal_1; // 1000 a 2000
 	uint16_t Canal_2; // 1000 a 2000
@@ -29,12 +38,18 @@ typedef struct Radio_input{
 	uint16_t Canal_15;// 1000 a 2000
 	uint16_t Canal_16;// 1000 a 2000
 
-	uint8_t Interruptor_1; // 0 a 1
-	uint8_t Interruptor_2; // 0 a 1
+	RC_Status_e Interruptor_1;
+	RC_Status_e Interruptor_2;
 
-	uint8_t pkg_lost;
-	uint8_t fail_safe;
+	RC_Status_e pkg_lost;
+	RC_Status_e fail_safe;
+	RC_Status_e uart_error;
+
+	uint8_t  Uart_Counter;
 }Radio_input_t;
+
+void SBUS_IntegrityVerification(void);
+
 
 void SBUS_init(void);
 void SBUS_Receive(uint8_t SBUS_RxBuffer);

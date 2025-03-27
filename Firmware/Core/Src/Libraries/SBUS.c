@@ -32,10 +32,12 @@ Radio_input_t Radio_input = {
 		.Canal_15 = 1500,
 		.Canal_16 = 1500,
 
-		.Interruptor_1 = 0,
-		.Interruptor_2 = 0,
-		.pkg_lost = 1,
-		.fail_safe = 1
+		.Interruptor_1 = OFF,
+		.Interruptor_2 = OFF,
+
+		.pkg_lost = Pkg_Lost,
+		.fail_safe = FailSafe,
+		.uart_error = Uart_Error
 
 };
 
@@ -137,25 +139,37 @@ void SBUS_getData(void){
 	//el cuarto a la perdida de paquetes. Los 4 restantes no se utilizan.
 	if(SBUS_UART_Rx[23]>=8){
 		SBUS_UART_Rx[23]-=8;
-		Radio_input.fail_safe = 1;
-	}else Radio_input.fail_safe= 0;
+		Radio_input.fail_safe = FailSafe;
+	}else Radio_input.fail_safe= Ok;
 
 	if(SBUS_UART_Rx[23]>=4){
 		SBUS_UART_Rx[23]-=4;
-		Radio_input.pkg_lost = 1;
-	}else Radio_input.pkg_lost=0;
+		Radio_input.pkg_lost = Pkg_Lost;
+	}else Radio_input.pkg_lost=Ok;
 
 	if(SBUS_UART_Rx[23]>=2){
 		SBUS_UART_Rx[23]-=2;
-		Radio_input.Interruptor_2=1;
-	}else Radio_input.Interruptor_2=0;
+		Radio_input.Interruptor_2=ON;
+	}else Radio_input.Interruptor_2=OFF;
+
+	if(SBUS_UART_Rx[23]){
+		Radio_input.Interruptor_1=ON;
+	}else Radio_input.Interruptor_1=OFF;
 
 
-	Radio_input.Interruptor_1=SBUS_UART_Rx[23];
-
-
+	Radio_input.Uart_Counter = 0;
 	Temp_BypassFunct();
 
 }
 
+void SBUS_IntegrityVerification(void){
 
+	if(Radio_input.Uart_Counter != 255){
+		Radio_input.Uart_Counter++;
+		Radio_input.uart_error = Ok;
+	}
+	else{
+		Radio_input.uart_error = Uart_Error;
+		Radio_input.fail_safe = FailSafe;
+	}
+}
