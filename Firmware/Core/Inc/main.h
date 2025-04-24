@@ -75,6 +75,8 @@ void Error_Handler(void);
 #define SD_MISO_GPIO_Port GPIOA
 #define SD_MOSI_Pin GPIO_PIN_7
 #define SD_MOSI_GPIO_Port GPIOA
+#define IMU_BOOT_Pin GPIO_PIN_10
+#define IMU_BOOT_GPIO_Port GPIOB
 #define BME_NSS_Pin GPIO_PIN_12
 #define BME_NSS_GPIO_Port GPIOB
 #define BMP_SCK_Pin GPIO_PIN_13
@@ -85,14 +87,10 @@ void Error_Handler(void);
 #define BMP_MOSI_GPIO_Port GPIOB
 #define SBUS_RX_Pin GPIO_PIN_10
 #define SBUS_RX_GPIO_Port GPIOA
-#define IMU_SCK_Pin GPIO_PIN_10
-#define IMU_SCK_GPIO_Port GPIOC
-#define IMU_MISO_Pin GPIO_PIN_11
-#define IMU_MISO_GPIO_Port GPIOC
-#define IMU_MOSI_Pin GPIO_PIN_12
-#define IMU_MOSI_GPIO_Port GPIOC
-#define IMU_INT_Pin GPIO_PIN_2
-#define IMU_INT_GPIO_Port GPIOD
+#define IMU_INT_Pin GPIO_PIN_12
+#define IMU_INT_GPIO_Port GPIOC
+#define IMU_RST_Pin GPIO_PIN_2
+#define IMU_RST_GPIO_Port GPIOD
 
 /* USER CODE BEGIN Private defines */
 

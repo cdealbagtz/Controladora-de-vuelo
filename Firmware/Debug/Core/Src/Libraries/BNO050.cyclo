@@ -1,0 +1,2 @@
+../Core/Src/Libraries/BNO050.c:16:6:BNO_Read	1
+../Core/Src/Libraries/BNO050.c:21:6:BNO_Receive	10
