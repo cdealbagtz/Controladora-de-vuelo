@@ -8,15 +8,30 @@
 #include "Libraries/BNO050.h"
 
 uint8_t BNO_RxBuffer[255];
+uint8_t BNO_BufferByte = 0x00;
 BNO_Receive_Status_e BNO_Rx_Status;
 BNO_errorHandler_e BNO_ErrorHandler;
 BNO_bufffer_Status_e BNO_bufffer_Status;
 
 
-void BNO_Read(uint8_t Address,uint8_t Size){
 
+
+void BNO_Read(uint8_t Address,uint8_t Size){
+	uint8_t ReadCommand[4];
+	ReadCommand[0] = 0xAA;
+	ReadCommand[1] = 0x01;
+	ReadCommand[2] = Address;
+	ReadCommand[3] = Size;
+
+	HAL_UART_Transmit(&huart3, ReadCommand, 4,100);
 }
 
+void BNO_Init(void){
+	HAL_Delay(100);
+	HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
+	HAL_GPIO_WritePin(IMU_RST_GPIO_Port, IMU_RST_Pin, RESET);
+	BNO_Read(BNO055_CHIP_ID,1);
+}
 
 void BNO_Receive(uint8_t Buffer){
 	static uint8_t MsgSize = 0;

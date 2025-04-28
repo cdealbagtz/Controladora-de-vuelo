@@ -1,2 +1,3 @@
-../Core/Src/Libraries/BNO050.c:16:6:BNO_Read	1
-../Core/Src/Libraries/BNO050.c:21:6:BNO_Receive	10
+../Core/Src/Libraries/BNO050.c:19:6:BNO_Read	1
+../Core/Src/Libraries/BNO050.c:29:6:BNO_Init	1
+../Core/Src/Libraries/BNO050.c:36:6:BNO_Receive	10
