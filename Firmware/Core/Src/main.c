@@ -67,7 +67,7 @@ static void MPU_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-
+uint8_t TestPage;
 /* USER CODE END 0 */
 
 /**
@@ -132,7 +132,8 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  BMP280_calculate();
-	  HAL_Delay(50);
+	  BNO_SelectPage(TestPage);
+	  HAL_Delay(500);
   }
   /* USER CODE END 3 */
 }
@@ -210,10 +211,10 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		SBUS_Receive(SBUS_RxBuffer);
 		HAL_UART_Receive_DMA(&huart1, &SBUS_RxBuffer, 1);
 	}
-	else if (huart -> Instance == USART3){
-		BNO_Receive(BNO_BufferByte);
-		HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
-	}
+    else if (huart -> Instance == USART3){
+        BNO_Receive(BNO_BufferByte);
+        HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
+    }
 }
 
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
@@ -224,6 +225,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 		LED_Tasks();
 		SBUS_IntegrityVerification();
 	}
+
 }
 /* USER CODE END 4 */
 

@@ -10,6 +10,7 @@
 
 #include "stm32h7xx.h"
 #include "usart.h"
+#include "string.h"
 
 typedef enum{
 	AwaitingMsg = 0x00,
@@ -28,15 +29,37 @@ typedef enum{
 	BUS_OVER_RUN_ERROR = 0x07,
 	MAX_LENGTH_ERROR = 0x08,
 	MIN_LENGTH_ERROR = 0x09,
-	RECEIVE_CHARACTER_TIMEOUT = 0x0A
+	RECEIVE_CHARACTER_TIMEOUT = 0x0A,
+	ReadSucces = 0x0B
 
 }BNO_errorHandler_e;
 
 typedef enum{
 	Awaiting = 0x00,
-	Ready = 1,
+	Busy = 0x01,
+	Ready = 0x02
 
 }BNO_bufffer_Status_e;
+
+typedef struct{
+	uint8_t ID;
+}ACC_t;
+
+typedef struct{
+	uint8_t ID;
+}MAG_t;
+
+typedef struct{
+	uint8_t ID;
+}GYR_t;
+
+typedef struct{
+	uint8_t ID;
+	ACC_t ACC;
+	MAG_t MAG;
+	GYR_t GYR;
+	uint8_t Page;
+}IMU_t;
 
 #define REG_WRITE 0x00
 #define REG_READ 0x01
@@ -159,8 +182,11 @@ typedef enum{
 #define BNO055_GYR_AM_SET 0x1F
 
 extern uint8_t BNO_BufferByte;
+extern uint64_t TimeOn_Counter;
 
 void BNO_Init(void);
 void BNO_Receive(uint8_t Buffer);
+HAL_StatusTypeDef BNO_Read(uint8_t Address,uint8_t Size);
+void BNO_SelectPage(uint8_t Page);
 
 #endif /* INC_LIBRARIES_BNO050_H_ */
