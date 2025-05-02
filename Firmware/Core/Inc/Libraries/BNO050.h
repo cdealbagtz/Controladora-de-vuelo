@@ -53,12 +53,20 @@ typedef struct{
 	uint8_t ID;
 }GYR_t;
 
+
+
 typedef struct{
 	uint8_t ID;
+
 	ACC_t ACC;
 	MAG_t MAG;
 	GYR_t GYR;
+
 	uint8_t Page;
+	uint8_t Unit_Select;
+	uint8_t System_Status;
+	uint8_t Op_Mode;
+	uint8_t SysCalibration;
 }IMU_t;
 
 #define REG_WRITE 0x00
@@ -188,5 +196,6 @@ void BNO_Init(void);
 void BNO_Receive(uint8_t Buffer);
 HAL_StatusTypeDef BNO_Read(uint8_t Address,uint8_t Size);
 void BNO_SelectPage(uint8_t Page);
+void BNO_CalibrationStatus(void);
 
 #endif /* INC_LIBRARIES_BNO050_H_ */

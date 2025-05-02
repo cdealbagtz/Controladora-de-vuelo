@@ -132,7 +132,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  BMP280_calculate();
-	  BNO_SelectPage(TestPage);
+	  BNO_CalibrationStatus();
 	  HAL_Delay(500);
   }
   /* USER CODE END 3 */

@@ -6,13 +6,13 @@
  */
 
 #include "Libraries/BNO050.h"
+#include "Libraries/LED.h"
 
 uint8_t BNO_RxBuffer[255];
 uint8_t BNO_BufferByte = 0x00;
 BNO_Receive_Status_e BNO_Rx_Status;
 BNO_errorHandler_e BNO_ErrorHandler;
 BNO_bufffer_Status_e BNO_bufferStatus;
-
 
 IMU_t IMU;
 
@@ -29,6 +29,26 @@ void BNO_Page0Adress(void){
 			break;
 		case BNO055_PAGE_ID:
 			IMU.Page = BNO_RxBuffer[1];
+			BNO_bufferStatus = Awaiting;
+			BNO_ErrorHandler = ReadSucces;
+			break;
+		case BNO055_UNIT_SEL:
+			IMU.Unit_Select = BNO_RxBuffer[1];
+			BNO_bufferStatus = Awaiting;
+			BNO_ErrorHandler = ReadSucces;
+			break;
+		case BNO055_SYS_STATUS:
+			IMU.System_Status = BNO_RxBuffer[1];
+			BNO_bufferStatus = Awaiting;
+			BNO_ErrorHandler = ReadSucces;
+			break;
+		case BNO055_OPR_MODE:
+			IMU.Op_Mode = BNO_RxBuffer[1];
+			BNO_bufferStatus = Awaiting;
+			BNO_ErrorHandler = ReadSucces;
+			break;
+		case BNO055_CALIB_STAT:
+			IMU.SysCalibration = BNO_RxBuffer[1];
 			BNO_bufferStatus = Awaiting;
 			BNO_ErrorHandler = ReadSucces;
 			break;
@@ -78,15 +98,15 @@ void BNO_EmptyingBuffer(void){
 		BNO_ErrorHandler = READ_FAIL;
 		BusyFlag = 0;
 	}
-
 }
 
 HAL_StatusTypeDef BNO_Read(uint8_t Address,uint8_t Size){
 	uint8_t ReadCommand[4] = {0xAA, 0x01, Address, Size};
 	HAL_StatusTypeDef uartError;
 
-	BNO_EmptyingBuffer();
-
+	while(BNO_bufferStatus != Awaiting){
+		BNO_EmptyingBuffer();
+	}
 	if(BNO_bufferStatus == Awaiting){
 		BNO_RxBuffer[0] = Address;
 		BNO_bufferStatus = Busy;
@@ -130,7 +150,32 @@ void BNO_Init(void){
 	HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
 	HAL_GPIO_WritePin(IMU_BOOT_GPIO_Port, IMU_BOOT_Pin, SET);
 	BNO_Reset();
+	uint8_t Buffer = 0x0C;
+
+
+
+	BNO_Write(BNO055_OPR_MODE, 1, &Buffer);
+	BNO_Read(BNO055_OPR_MODE, 1);
+	HAL_Delay(10);
 	BNO_Read(BNO055_CHIP_ID,4);
+	BNO_Read(BNO055_UNIT_SEL, 1);
+	BNO_Read(BNO055_SYS_STATUS, 1);
+	BNO_Read(BNO055_CALIB_STAT,1);
+
+}
+
+void BNO_CalibrationStatus(void){
+	if(IMU.SysCalibration != 0xFF){
+		LED_Info.B_LED1.LED_status = SET;
+		LED_Info.B_LED1.Sequence = Blink;
+		LED_Info.B_LED1.Time_On = 200;
+		LED_Info.B_LED1.Time_Off = 200;
+
+		BNO_Read(BNO055_CALIB_STAT,1);
+	}
+	else{
+		LED_Info.B_LED1.LED_status = RESET;
+	}
 }
 
 void BNO_FaultHandler(void){

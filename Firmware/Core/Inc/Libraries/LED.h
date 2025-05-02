@@ -41,4 +41,6 @@ typedef struct LED_Info{
 
 void LED_Tasks(void);
 
+extern LED_Info_t LED_Info;
+
 #endif /* INC_LIBRARIES_LED_H_ */
