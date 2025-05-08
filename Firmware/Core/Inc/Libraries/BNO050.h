@@ -11,6 +11,16 @@
 #include "stm32h7xx.h"
 #include "usart.h"
 #include "string.h"
+#include <stdbool.h>
+
+
+#ifdef FREERTOS_ENABLED
+#include "FreeRTOS.h"
+#include "task.h"
+#include "cmsis_os.h"
+#endif
+
+
 
 typedef enum{
 	AwaitingMsg = 0x00,
@@ -43,17 +53,46 @@ typedef enum{
 
 typedef struct{
 	uint8_t ID;
+	double x;
+	double y;
+	double z;
 }ACC_t;
 
 typedef struct{
 	uint8_t ID;
+	double x;
+	double y;
+	double z;
 }MAG_t;
 
 typedef struct{
 	uint8_t ID;
+	double x;
+	double y;
+	double z;
 }GYR_t;
 
+typedef struct {
+  int16_t x;
+  int16_t y;
+  int16_t z;
+} bno055_vector_xyz_int16_t;
 
+typedef struct {
+  bno055_vector_xyz_int16_t gyro;
+  bno055_vector_xyz_int16_t mag;
+  bno055_vector_xyz_int16_t accel;
+} bno055_calibration_offset_t;
+
+typedef struct {
+  uint16_t mag;
+  uint16_t accel;
+} bno055_calibration_radius_t;
+
+typedef struct {
+  bno055_calibration_offset_t offset;
+  bno055_calibration_radius_t radius;
+} bno055_calibration_data_t;
 
 typedef struct{
 	uint8_t ID;
@@ -62,11 +101,17 @@ typedef struct{
 	MAG_t MAG;
 	GYR_t GYR;
 
+	double Heading;
+	double Pitch;
+	double Roll;
+
 	uint8_t Page;
 	uint8_t Unit_Select;
 	uint8_t System_Status;
 	uint8_t Op_Mode;
 	uint8_t SysCalibration;
+
+	bno055_calibration_data_t Calibration_Data;
 }IMU_t;
 
 #define REG_WRITE 0x00
@@ -189,6 +234,32 @@ typedef struct{
 #define BNO055_GYR_AM_THRESH 0x1E
 #define BNO055_GYR_AM_SET 0x1F
 
+typedef enum {  // BNO-55 operation modes
+  BNO055_OPERATION_MODE_CONFIG = 0x00,
+  // Sensor Mode
+  BNO055_OPERATION_MODE_ACCONLY,
+  BNO055_OPERATION_MODE_MAGONLY,
+  BNO055_OPERATION_MODE_GYRONLY,
+  BNO055_OPERATION_MODE_ACCMAG,
+  BNO055_OPERATION_MODE_ACCGYRO,
+  BNO055_OPERATION_MODE_MAGGYRO,
+  BNO055_OPERATION_MODE_AMG,  // 0x07
+                              // Fusion Mode
+  BNO055_OPERATION_MODE_IMU,
+  BNO055_OPERATION_MODE_COMPASS,
+  BNO055_OPERATION_MODE_M4G,
+  BNO055_OPERATION_MODE_NDOF_FMC_OFF,
+  BNO055_OPERATION_MODE_NDOF  // 0x0C
+} bno055_opmode_t;
+
+typedef struct {
+  double w;
+  double x;
+  double y;
+  double z;
+} bno055_vector_t;
+
+
 extern uint8_t BNO_BufferByte;
 extern uint64_t TimeOn_Counter;
 
@@ -197,5 +268,6 @@ void BNO_Receive(uint8_t Buffer);
 HAL_StatusTypeDef BNO_Read(uint8_t Address,uint8_t Size);
 void BNO_SelectPage(uint8_t Page);
 void BNO_CalibrationStatus(void);
+void BNO_GetAtt(void);
 
 #endif /* INC_LIBRARIES_BNO050_H_ */
