@@ -171,12 +171,12 @@ void BNO_HWReset(void){
 	HAL_GPIO_WritePin(IMU_RST_GPIO_Port, IMU_RST_Pin, RESET);
 	HAL_Delay(10);
 	HAL_GPIO_WritePin(IMU_RST_GPIO_Port, IMU_RST_Pin, SET);
-	HAL_Delay(700);
+	bno055_delay(700);
 }
 
 void BNO_SWReset(void){
 	BNO_Write(BNO055_SYS_TRIGGER,0x20);
-	HAL_Delay(700);
+	bno055_delay(700);
 }
 
 void bno055_setOperationMode(bno055_opmode_t mode) {
@@ -224,12 +224,12 @@ void BNO_Init(void){
 	BNO_Read(BNO055_CHIP_ID, 4);
 	BNO_Write(BNO055_SYS_TRIGGER, 0x00);
 
-	while(CalibrationFlag != 0x01){
-		BNO_CalibrationStatus();
-	}
+	//while(CalibrationFlag != 0x01){
+	//	BNO_CalibrationStatus();
+	//}
 
-	bno055_setOperationModeConfig();
-
+	bno055_setOperationModeNDOF();
+	BNO_Read(BNO055_OPR_MODE, 1);
 }
 
 void BNO_GetAtt(void){

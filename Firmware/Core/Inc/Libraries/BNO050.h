@@ -94,6 +94,31 @@ typedef struct {
   bno055_calibration_radius_t radius;
 } bno055_calibration_data_t;
 
+typedef enum {  // BNO-55 operation modes
+  BNO055_OPERATION_MODE_CONFIG = 0x00,
+  // Sensor Mode
+  BNO055_OPERATION_MODE_ACCONLY,
+  BNO055_OPERATION_MODE_MAGONLY,
+  BNO055_OPERATION_MODE_GYRONLY,
+  BNO055_OPERATION_MODE_ACCMAG,
+  BNO055_OPERATION_MODE_ACCGYRO,
+  BNO055_OPERATION_MODE_MAGGYRO,
+  BNO055_OPERATION_MODE_AMG,  // 0x07
+                              // Fusion Mode
+  BNO055_OPERATION_MODE_IMU,
+  BNO055_OPERATION_MODE_COMPASS,
+  BNO055_OPERATION_MODE_M4G,
+  BNO055_OPERATION_MODE_NDOF_FMC_OFF,
+  BNO055_OPERATION_MODE_NDOF  // 0x0C
+} bno055_opmode_t;
+
+typedef struct {
+  double w;
+  double x;
+  double y;
+  double z;
+} bno055_vector_t;
+
 typedef struct{
 	uint8_t ID;
 
@@ -108,7 +133,7 @@ typedef struct{
 	uint8_t Page;
 	uint8_t Unit_Select;
 	uint8_t System_Status;
-	uint8_t Op_Mode;
+	bno055_opmode_t Op_Mode;
 	uint8_t SysCalibration;
 
 	bno055_calibration_data_t Calibration_Data;
@@ -234,30 +259,7 @@ typedef struct{
 #define BNO055_GYR_AM_THRESH 0x1E
 #define BNO055_GYR_AM_SET 0x1F
 
-typedef enum {  // BNO-55 operation modes
-  BNO055_OPERATION_MODE_CONFIG = 0x00,
-  // Sensor Mode
-  BNO055_OPERATION_MODE_ACCONLY,
-  BNO055_OPERATION_MODE_MAGONLY,
-  BNO055_OPERATION_MODE_GYRONLY,
-  BNO055_OPERATION_MODE_ACCMAG,
-  BNO055_OPERATION_MODE_ACCGYRO,
-  BNO055_OPERATION_MODE_MAGGYRO,
-  BNO055_OPERATION_MODE_AMG,  // 0x07
-                              // Fusion Mode
-  BNO055_OPERATION_MODE_IMU,
-  BNO055_OPERATION_MODE_COMPASS,
-  BNO055_OPERATION_MODE_M4G,
-  BNO055_OPERATION_MODE_NDOF_FMC_OFF,
-  BNO055_OPERATION_MODE_NDOF  // 0x0C
-} bno055_opmode_t;
 
-typedef struct {
-  double w;
-  double x;
-  double y;
-  double z;
-} bno055_vector_t;
 
 
 extern uint8_t BNO_BufferByte;
