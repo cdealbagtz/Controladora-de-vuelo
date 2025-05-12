@@ -117,11 +117,12 @@ int main(void)
   MX_FATFS_Init();
   MX_TIM6_Init();
   MX_USART3_UART_Init();
+  MX_TIM7_Init();
   /* USER CODE BEGIN 2 */
   BMP280_init();
   SD_init();
-  SBUS_init();
-  BNO_Init();
+  HAL_TIM_Base_Start_IT(&htim6);
+  HAL_TIM_Base_Start_IT(&htim7);
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -132,7 +133,6 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  BMP280_calculate();
-	  BNO_GetAtt();
 	  HAL_Delay(10);
   }
   /* USER CODE END 3 */
@@ -225,7 +225,10 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 		LED_Tasks();
 		SBUS_IntegrityVerification();
 	}
-
+	//Interrupción cada 10 ms
+	if (htim -> Instance == TIM7){
+		BNO_Tasks();
+	}
 }
 /* USER CODE END 4 */
 

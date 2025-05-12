@@ -139,6 +139,13 @@ typedef struct{
 	bno055_calibration_data_t Calibration_Data;
 }IMU_t;
 
+typedef enum{
+	Init,
+	Config,
+	Calibration,
+	Operation
+}BNO_CurrentState_e;
+
 #define REG_WRITE 0x00
 #define REG_READ 0x01
 
@@ -260,8 +267,6 @@ typedef struct{
 #define BNO055_GYR_AM_SET 0x1F
 
 
-
-
 extern uint8_t BNO_BufferByte;
 extern uint64_t TimeOn_Counter;
 
@@ -271,5 +276,6 @@ HAL_StatusTypeDef BNO_Read(uint8_t Address,uint8_t Size);
 void BNO_SelectPage(uint8_t Page);
 void BNO_CalibrationStatus(void);
 void BNO_GetAtt(void);
+void BNO_Tasks(void);
 
 #endif /* INC_LIBRARIES_BNO050_H_ */
