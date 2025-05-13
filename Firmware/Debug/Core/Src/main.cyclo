@@ -2,5 +2,5 @@
 ../Core/Src/main.c:147:6:SystemClock_Config	4
 ../Core/Src/main.c:210:6:HAL_UART_RxCpltCallback	3
 ../Core/Src/main.c:222:6:HAL_TIM_PeriodElapsedCallback	3
-../Core/Src/main.c:241:6:MPU_Config	1
-../Core/Src/main.c:272:6:Error_Handler	1
+../Core/Src/main.c:240:6:MPU_Config	1
+../Core/Src/main.c:271:6:Error_Handler	1

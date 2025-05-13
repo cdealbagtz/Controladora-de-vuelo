@@ -68,6 +68,7 @@ HAL_StatusTypeDef BNO_Write_MB(uint8_t Address,uint8_t Size, uint8_t *pData){
 void BNO_Page0Adress(void){
 	switch (BNO_RxBuffer[0]) {
 		case BNO055_CHIP_ID:
+			if(BNO_RxBuffer[1] != 160) return;
 			IMU.ID = BNO_RxBuffer[1];
 			IMU.ACC.ID = BNO_RxBuffer[2];
 			IMU.MAG.ID = BNO_RxBuffer[3];
@@ -127,8 +128,8 @@ void BNO_Page0Adress(void){
 			IMU.MAG.z = ((double)((int16_t)((BNO_RxBuffer[12] << 8) | BNO_RxBuffer[11])))/16;
 
 			IMU.GYR.x = ((double)((int16_t)((BNO_RxBuffer[14] << 8) | BNO_RxBuffer[13])))/16;
-			IMU.GYR.y = ((double)((int16_t)((BNO_RxBuffer[16] << 8) | BNO_RxBuffer[15])))/16;
-			IMU.GYR.z = ((double)((int16_t)((BNO_RxBuffer[18] << 8) | BNO_RxBuffer[17])))/16;
+			IMU.GYR.y = -((double)((int16_t)((BNO_RxBuffer[16] << 8) | BNO_RxBuffer[15])))/16;
+			IMU.GYR.z = -((double)((int16_t)((BNO_RxBuffer[18] << 8) | BNO_RxBuffer[17])))/16;
 
 			IMU.Heading = ((double)((int16_t)((BNO_RxBuffer[20] << 8) | BNO_RxBuffer[19])))/16;
 			IMU.Pitch = ((double)((int16_t)((BNO_RxBuffer[22] << 8) | BNO_RxBuffer[21])))/16;
@@ -252,17 +253,21 @@ void BNO_Config(void){
 
 	switch (ConfigFlag) {
 		case 0:
-			bno055_setOperationModeConfig();
+			BNO_Write(BNO055_SYS_TRIGGER,0x00);
 			ConfigFlag = 1;
 			break;
 		case 1:
-			BNO_Read(BNO055_OPR_MODE, 1);
-			if(IMU.Op_Mode == BNO055_OPERATION_MODE_CONFIG){
-				ConfigFlag = 2;
-			}
-			else ConfigFlag = 0;
+			bno055_setOperationModeConfig();
+			ConfigFlag = 2;
 			break;
 		case 2:
+			BNO_Read(BNO055_OPR_MODE, 1);
+			if(IMU.Op_Mode == BNO055_OPERATION_MODE_CONFIG){
+				ConfigFlag = 3;
+			}
+			else ConfigFlag = 1;
+			break;
+		case 3:
 			BNO_Read(BNO055_CHIP_ID, 4);
 
 			if(IMU.ID == BNO055_ID){
@@ -376,6 +381,7 @@ void BNO_Receive(uint8_t Buffer){
 		case Header:
 			BNO_ErrorHandler = Buffer;
 			BNO_Rx_Status = AwaitingMsg;
+			memset(BNO_RxBuffer, 0, sizeof(BNO_RxBuffer));
 			break;
 		case Emptying_Buffer:
 
@@ -396,10 +402,12 @@ void BNO_Receive(uint8_t Buffer){
 }
 
 void BNO_FaultManager(void){
-	if(BNO_ComsCounter > 200){
-		BNO_CurrentState = Init;
+	if(BNO_ComsCounter > 3){
+		Reset_UART(&huart3);
 		BNO_ComsCounter = 0;
 		BNO_Rx_Status = AwaitingMsg;
+		HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
+		memset(BNO_RxBuffer, 0, sizeof(BNO_RxBuffer));
 	}
 }
 
@@ -410,7 +418,7 @@ void BNO_Tasks(void){
 				BNO_Init();
 				break;
 			case Reset:
-				BNO_HWReset();
+				BNO_SWReset();
 			break;
 			case Config:
 				BNO_Config();

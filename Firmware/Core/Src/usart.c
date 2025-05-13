@@ -482,5 +482,25 @@ void HAL_UART_MspDeInit(UART_HandleTypeDef* uartHandle)
 }
 
 /* USER CODE BEGIN 1 */
+void Reset_UART(UART_HandleTypeDef *huart) {
 
+      // Clear any pending error flags
+    __HAL_UART_CLEAR_FLAG(huart, UART_CLEAR_PEF | UART_CLEAR_FEF | UART_CLEAR_NEF | UART_CLEAR_OREF);
+
+    // Abort ongoing UART transfer
+    if (HAL_UART_Abort_IT(huart) != HAL_OK) {
+        // Abort Error
+        Error_Handler();
+    }
+/*
+    // Deinitialize the UART
+    if (HAL_UART_DeInit(huart) != HAL_OK) {
+        // Deinitialization Error
+        Error_Handler();
+    }
+     if(huart == &huart3){
+    	 MX_USART3_UART_Init();
+     }
+*/
+}
 /* USER CODE END 1 */

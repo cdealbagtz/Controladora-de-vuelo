@@ -66,8 +66,8 @@ all: main-build
 main-build: Controladora-de-vuelo-V0.elf secondary-outputs
 
 # Tool invocations
-Controladora-de-vuelo-V0.elf Controladora-de-vuelo-V0.map: $(OBJS) $(USER_OBJS) C:\Users\Chris\Documents\Controladora-de-vuelo\Firmware\STM32H7B0RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "Controladora-de-vuelo-V0.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\Chris\Documents\Controladora-de-vuelo\Firmware\STM32H7B0RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Controladora-de-vuelo-V0.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Controladora-de-vuelo-V0.elf Controladora-de-vuelo-V0.map: $(OBJS) $(USER_OBJS) C:\Users\cdealba\Documents\Controladora-de-vuelo\Firmware\STM32H7B0RBTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "Controladora-de-vuelo-V0.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\cdealba\Documents\Controladora-de-vuelo\Firmware\STM32H7B0RBTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Controladora-de-vuelo-V0.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

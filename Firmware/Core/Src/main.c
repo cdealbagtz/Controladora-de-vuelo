@@ -205,7 +205,7 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 
 uint64_t TimeOn_Counter = 0x00;
-uint64_t TimeOn_Counter10ms = 0x00;
+HAL_StatusTypeDef Reception_Info = 0x00;
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
@@ -215,7 +215,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 	}
     else if (huart -> Instance == USART3){
         BNO_Receive(BNO_BufferByte);
-        HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
+        Reception_Info =  HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
     }
 }
 
@@ -229,7 +229,6 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 	}
 	//Interrupción cada 10 ms
 	if (htim -> Instance == TIM7){
-		TimeOn_Counter10ms++;
 		BNO_Tasks();
 		BMP280_calculate();
 	}
