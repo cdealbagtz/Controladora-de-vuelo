@@ -120,11 +120,20 @@ typedef struct {
 } bno055_vector_t;
 
 typedef struct{
+	uint8_t Acc;
+	uint8_t Gyr;
+	uint8_t Mag;
+	uint8_t Sys;
+
+	uint8_t Full;
+}bno055_CalStatus_t;
+
+typedef struct{
 	uint8_t ID;
 
-	ACC_t ACC;
-	MAG_t MAG;
-	GYR_t GYR;
+	ACC_t ACC; //  m/s^2
+	MAG_t MAG; //  uT
+	GYR_t GYR; //  °/s
 
 	double Heading;
 	double Pitch;
@@ -132,9 +141,9 @@ typedef struct{
 
 	uint8_t Page;
 	uint8_t Unit_Select;
-	uint8_t System_Status;
+	bno055_CalStatus_t CalSatus;
 	bno055_opmode_t Op_Mode;
-	uint8_t SysCalibration;
+	uint8_t System_Status;
 
 	bno055_calibration_data_t Calibration_Data;
 }IMU_t;
