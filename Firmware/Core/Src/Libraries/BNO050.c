@@ -21,7 +21,7 @@ BNO_CurrentState_e BNO_CurrentState = Init;
 IMU_t IMU;
 
 void bno055_delay(uint8_t time) {
-	BNO_DelayCounter = time;
+	BNO_DelayCounter += time;
 }
 
 HAL_StatusTypeDef BNO_Read(uint8_t Address,uint8_t Size){
@@ -98,9 +98,9 @@ void BNO_Page0Adress(void){
 
 			IMU.Heading = ((double)((int16_t)((BNO_RxBuffer[2] << 8) | BNO_RxBuffer[1])))/16;
 
-			IMU.Roll = ((double)((int16_t)((BNO_RxBuffer[4] << 8) | BNO_RxBuffer[3])))/16;
+			IMU.Pitch = ((double)((int16_t)((BNO_RxBuffer[4] << 8) | BNO_RxBuffer[3])))/16;
 
-			IMU.Pitch = ((double)((int16_t)((BNO_RxBuffer[6] << 8) | BNO_RxBuffer[5])))/16;
+			IMU.Roll = ((double)((int16_t)((BNO_RxBuffer[6] << 8) | BNO_RxBuffer[5])))/16;
 
 			BNO_ErrorHandler = ReadSucces;
 			break;
@@ -168,14 +168,16 @@ void BNO_HWReset(void){
 void BNO_SWReset(void){
 	BNO_Write(BNO055_SYS_TRIGGER,0x20);
 	bno055_delay(70);
+	IMU.ID = 0x00;
+	BNO_CurrentState = Config;
 }
 
 void bno055_setOperationMode(bno055_opmode_t mode) {
   BNO_Write(BNO055_OPR_MODE, mode);
   if (mode == BNO055_OPERATION_MODE_CONFIG) {
-    bno055_delay(3);
+    bno055_delay(5);
   } else {
-    bno055_delay(1);
+    bno055_delay(3);
   }
 }
 
@@ -192,7 +194,37 @@ void BNO_GetCalibrationData(void){
 }
 
 void BNO_CalibrationStatus(void){
-	static uint8_t CalibrationFlag;
+	static uint8_t CalibrationFlag = 0;
+
+	switch (CalibrationFlag) {
+		case 0:
+			BNO_Write(BNO055_SYS_TRIGGER,0x00);
+			CalibrationFlag = 1;
+			break;
+		case 1:
+
+			CalibrationFlag = 2;
+			break;
+		case 2:
+
+			CalibrationFlag = 3;
+			break;
+		case 3:
+			bno055_setOperationModeNDOF();
+			CalibrationFlag = 4;
+			break;
+		case 4:
+			BNO_Read(BNO055_OPR_MODE, 1);
+			if(IMU.Op_Mode == BNO055_OPERATION_MODE_NDOF){
+				BNO_CurrentState = Operation;
+				CalibrationFlag = 0;
+			}
+			else CalibrationFlag = 3;
+			break;
+		default:
+			CalibrationFlag = 0;
+			break;
+	}
 	/*
 	if(IMU.SysCalibration != 0xFF){
 		LED_Info.B_LED1.LED_status = SET;
@@ -207,14 +239,14 @@ void BNO_CalibrationStatus(void){
 		BNO_GetCalibrationData();
 	}
 	 */
-	BNO_Read(BNO055_OPR_MODE, 1);
 
-
-
+	/*
     if(IMU.Op_Mode == BNO055_OPERATION_MODE_NDOF){
     	BNO_CurrentState = Operation;
     }
     else bno055_setOperationModeNDOF();
+    */
+
 }
 
 void BNO_Init(void){
@@ -228,13 +260,32 @@ void BNO_Init(void){
 }
 
 void BNO_Config(void){
-	BNO_Read(BNO055_CHIP_ID, 4);
+	static uint8_t ConfigFlag = 0;
 
-	if(IMU.ID == BNO055_ID){
-		BNO_Write(BNO055_SYS_TRIGGER, 0x00);
-		BNO_CurrentState = Calibration;
+	switch (ConfigFlag) {
+		case 0:
+			bno055_setOperationModeConfig();
+			ConfigFlag = 1;
+			break;
+		case 1:
+			BNO_Read(BNO055_OPR_MODE, 1);
+			if(IMU.Op_Mode == BNO055_OPERATION_MODE_CONFIG){
+				ConfigFlag = 2;
+			}
+			else ConfigFlag = 0;
+			break;
+		case 2:
+			BNO_Read(BNO055_CHIP_ID, 4);
+
+			if(IMU.ID == BNO055_ID){
+				BNO_CurrentState = Calibration;
+			}
+			ConfigFlag = 0;
+			break;
+		default:
+			break;
 	}
-	bno055_delay(3);
+
 }
 
 void BNO_GetAtt(void){
@@ -281,7 +332,6 @@ void BNO_FaultManager(void){
 	if(BNO_ComsCounter > 200){
 		BNO_CurrentState = Reset;
 		BNO_ComsCounter = 0;
-		HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
 	}
 }
 
