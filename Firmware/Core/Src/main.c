@@ -121,8 +121,10 @@ int main(void)
   /* USER CODE BEGIN 2 */
   BMP280_init();
   SD_init();
+  HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
   HAL_TIM_Base_Start_IT(&htim6);
   HAL_TIM_Base_Start_IT(&htim7);
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -132,8 +134,8 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  BMP280_calculate();
-	  HAL_Delay(10);
+
+
   }
   /* USER CODE END 3 */
 }
@@ -203,7 +205,7 @@ void SystemClock_Config(void)
 /* USER CODE BEGIN 4 */
 
 uint64_t TimeOn_Counter = 0x00;
-
+uint64_t TimeOn_Counter10ms = 0x00;
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
@@ -227,7 +229,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 	}
 	//Interrupción cada 10 ms
 	if (htim -> Instance == TIM7){
+		TimeOn_Counter10ms++;
 		BNO_Tasks();
+		BMP280_calculate();
 	}
 }
 /* USER CODE END 4 */

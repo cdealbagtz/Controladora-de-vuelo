@@ -143,7 +143,8 @@ typedef enum{
 	Init,
 	Config,
 	Calibration,
-	Operation
+	Operation,
+	Reset
 }BNO_CurrentState_e;
 
 #define REG_WRITE 0x00
