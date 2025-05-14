@@ -14,6 +14,11 @@
 #include <stdio.h>
 #include <string.h>
 
+//Direcciones de memoria en archivo de configuración
+
+#define Config_FWVersion 0x09
+#define Config_
+
 void SD_init(void);
 
 #endif /* INC_LIBRARIES_SD_H_ */

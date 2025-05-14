@@ -1,1 +1,5 @@
-../Core/Src/Libraries/SD.c:19:6:SD_init	8	static
+../Core/Src/Libraries/SD.c:28:9:ASCII2uint8	24	static
+../Core/Src/Libraries/SD.c:39:6:uint82ASCII	24	static
+../Core/Src/Libraries/SD.c:49:6:ConfigFile_Create	8	static
+../Core/Src/Libraries/SD.c:61:6:ConfigFile_Init	24	static
+../Core/Src/Libraries/SD.c:94:6:SD_init	8	static
