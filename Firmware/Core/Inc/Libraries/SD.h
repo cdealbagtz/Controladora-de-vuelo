@@ -19,6 +19,10 @@
 #define Config_FWVersion 0x09
 #define Config_
 
+extern uint32_t TimeOn_Counter;
+
+
 void SD_init(void);
+void SD_blackbox_write(void);
 
 #endif /* INC_LIBRARIES_SD_H_ */

@@ -1,5 +1,5 @@
-../Core/Src/Libraries/SBUS.c:49:6:SBUS_init	8	static
-../Core/Src/Libraries/SBUS.c:54:6:SBUS_Receive	16	static
-../Core/Src/Libraries/SBUS.c:84:6:Temp_BypassFunct	8	static
-../Core/Src/Libraries/SBUS.c:99:6:SBUS_getData	8	static
-../Core/Src/Libraries/SBUS.c:165:6:SBUS_IntegrityVerification	4	static
+../Core/Src/Libraries/SBUS.c:47:6:SBUS_init	8	static
+../Core/Src/Libraries/SBUS.c:52:6:SBUS_Receive	16	static
+../Core/Src/Libraries/SBUS.c:82:6:Temp_BypassFunct	4	static
+../Core/Src/Libraries/SBUS.c:95:6:SBUS_getData	8	static
+../Core/Src/Libraries/SBUS.c:163:6:SBUS_IntegrityVerification	4	static

@@ -57,4 +57,6 @@ typedef struct BMP280_Data{
 void BMP280_init(void);
 void BMP280_calculate(void);
 
+extern BMP280_t BMP280;
+
 #endif /* INC_PERIPHERAL_BMP280_H_ */
