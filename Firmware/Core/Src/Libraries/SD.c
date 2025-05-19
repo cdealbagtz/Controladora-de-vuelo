@@ -156,16 +156,13 @@ void SD_blackboxNewFile(void){
 	f_open(&BlackBox, BlackBoxFile, FA_OPEN_ALWAYS | FA_READ | FA_WRITE);
 }
 
-int Test;
-
 void SD_blackbox_write(void){
 	static uint32_t DataCount;
 	static uint16_t WriteCount;
-	Test = f_printf(&BlackBox, "%d,%d,%.2f,%.2f,%.2f,",DataCount,TimeOn_Counter,IMU.ACC.x,IMU.ACC.y,IMU.ACC.z);
-	Test = f_printf(&BlackBox, "%.2f,%.2f,%.2f,%.2f,%.2f,%.2f,",IMU.GYR.x,IMU.GYR.y,IMU.GYR.z,IMU.Roll,IMU.Pitch,IMU.Heading);
-	Test = f_printf(&BlackBox, "%d,NA,NA,NA,%d,%d,NA\n",BMP280.Barometric_Altitude,BMP280.Pressure,Radio_input.Banderas);
-	//f_printf(&BlackBox, "%d,NA,NA,NA,%d,%d,NA,",BMP280.Barometric_Altitude,BMP280.Pressure,Radio_input.Banderas);
-	/*
+
+	f_printf(&BlackBox, "%d,%d,%d,%d,%d,",DataCount,TimeOn_Counter,(int32_t)(IMU.ACC.x*100),(int32_t)(IMU.ACC.y*100),(int32_t)(IMU.ACC.z*100));
+	f_printf(&BlackBox, "%d,%d,%d,%d,%d,%d,",(int32_t)(IMU.GYR.x*100),(int32_t)(IMU.GYR.y*100),(int32_t)(IMU.GYR.z*100),(int32_t)(IMU.Roll*100),(int32_t)(IMU.Pitch*100),(int32_t)(IMU.Heading*100));
+	f_printf(&BlackBox, "%d,NA,NA,NA,%d,%d,NA,",BMP280.Barometric_Altitude,BMP280.Pressure,Radio_input.Banderas);
 	f_printf(&BlackBox, "%d,%d,%d,%d,",Radio_input.Canal_1,Radio_input.Canal_2,Radio_input.Canal_3,Radio_input.Canal_4);
 	f_printf(&BlackBox, "%d,%d,%d,%d,",Radio_input.Canal_5,Radio_input.Canal_6,Radio_input.Canal_7,Radio_input.Canal_8);
 	f_printf(&BlackBox, "%d,%d,%d,%d,",Radio_input.Canal_9,Radio_input.Canal_10,Radio_input.Canal_11,Radio_input.Canal_12);
@@ -173,8 +170,11 @@ void SD_blackbox_write(void){
 	f_printf(&BlackBox, "%d,%d,%d,%d,",Radio_input.Interruptor_1,Radio_input.Interruptor_2,PWM_Output.Canal_1,PWM_Output.Canal_2);
 	f_printf(&BlackBox, "%d,%d,%d,%d,",PWM_Output.Canal_3,PWM_Output.Canal_4,PWM_Output.Canal_5,PWM_Output.Canal_6);
 	f_printf(&BlackBox, "%d,%d,%d,%d\n",PWM_Output.Canal_7,PWM_Output.Canal_8,PWM_Output.Canal_9,PWM_Output.Canal_10);
-	*/
-	fresult = f_sync(&BlackBox);
+
+	if(WriteCount > 100){
+		fresult = f_sync(&BlackBox);
+		WriteCount = 0;
+	}
 
 	++WriteCount;
 	++DataCount;
