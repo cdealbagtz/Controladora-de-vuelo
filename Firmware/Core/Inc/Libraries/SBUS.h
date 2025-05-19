@@ -21,6 +21,10 @@ typedef enum RC_Status{
 }RC_Status_e;
 
 typedef struct Radio_input{
+
+
+	uint8_t Banderas;
+
 	uint16_t Canal_1; // 1000 a 2000
 	uint16_t Canal_2; // 1000 a 2000
 	uint16_t Canal_3; // 1000 a 2000
@@ -37,8 +41,6 @@ typedef struct Radio_input{
 	uint16_t Canal_14;// 1000 a 2000
 	uint16_t Canal_15;// 1000 a 2000
 	uint16_t Canal_16;// 1000 a 2000
-
-	uint8_t Banderas;
 
 	RC_Status_e Interruptor_1;
 	RC_Status_e Interruptor_2;
