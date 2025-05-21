@@ -25,7 +25,7 @@ UINT br, bw;  // File read/write count
 
 char FlightPaht[9] = "Flight000";
 
-char BlackBoxFile[9] = "FD000.txt";
+char BlackBoxFile[9] = "FD000.bin";
 char ConfigFile[10]  = "Config.txt";
 char GainsFile[9]    = "Gains.csv";
 
@@ -139,11 +139,6 @@ void SD_CreateFlightPath(void){
 void SD_blackbox_init(void){
 
 	f_open(&BlackBox, BlackBoxFile, FA_OPEN_ALWAYS | FA_READ | FA_WRITE);
-	f_printf(&BlackBox,"Nmsg,Time,Ax,Ay,Az,Gx,Gy,Gz,Gfx,Gfy,Gfz,Roll,Pitch,Heading,Alt,Lat,Lon,ARSP,Pressure,SBUS_Flags,FlightMode,");
-	f_printf(&BlackBox,"PWM1,PWM2,PWM3,PWM4,PWM5,PWM6,PWM7,PWM8,PWM9,PWM10,PWM11,PWM12,PWM13,PWM14,PWM15,PWM16,INT1,INT2,");
-	f_printf(&BlackBox,"OUT1,OUT2,OUT3,OUT4,OUT5,OUT6,OUT7,OUT8,OUT9,OUT10\n");
-	f_sync(&BlackBox);
-
 }
 
 void SD_blackbox_refresh(void){
@@ -207,10 +202,6 @@ void SD_blackbox_refresh(void){
 	blackbox_data.OUT8  = PWM_Output.Canal_8;
 	blackbox_data.OUT9  = PWM_Output.Canal_9;
 	blackbox_data.OUT10 = PWM_Output.Canal_10;
-
-	blackbox_data.EndValue = '\n';
-
-
 }
 
 void SD_blackboxNewFile(void){

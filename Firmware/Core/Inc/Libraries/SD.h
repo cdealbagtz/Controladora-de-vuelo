@@ -83,8 +83,6 @@ typedef struct{
 	uint16_t OUT9; // 1000 a 2000
 	uint16_t OUT10;// 1000 a 2000
 
-	char EndValue;
-
 }blackbox_data_t;
 
 void SD_init(void);
