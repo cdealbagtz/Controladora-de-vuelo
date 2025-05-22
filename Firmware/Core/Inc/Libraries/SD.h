@@ -22,66 +22,56 @@
 extern uint32_t TimeOn_Counter;
 
 typedef struct{
-	uint32_t Nmsg;
-	uint32_t Time;
+    // === 8-byte aligned (64 bits) ===
+    double Ax, Ay, Az;
+    double Gx, Gy, Gz;
+    double Gfx, Gfy, Gfz;
+    double Roll, Pitch, Heading;
 
-	double Ax;
-	double Ay;
-	double Az;
+    // === 4-byte aligned (32 bits) ===
+    uint32_t Nmsg;
+    uint32_t Time;
+    int32_t Latitude;
+    int32_t Longitude;
+    uint32_t Pressure;
 
-	double Gx;
-	double Gy;
-	double Gz;
+    // === 2-byte aligned (16 bits) ===
+    uint16_t Alt;
+    uint16_t ARSP;
 
-	double Gfx;
-	double Gfy;
-	double Gfz;
+    uint16_t Canal_1;
+    uint16_t Canal_2;
+    uint16_t Canal_3;
+    uint16_t Canal_4;
+    uint16_t Canal_5;
+    uint16_t Canal_6;
+    uint16_t Canal_7;
+    uint16_t Canal_8;
+    uint16_t Canal_9;
+    uint16_t Canal_10;
+    uint16_t Canal_11;
+    uint16_t Canal_12;
+    uint16_t Canal_13;
+    uint16_t Canal_14;
+    uint16_t Canal_15;
+    uint16_t Canal_16;
 
-	double Roll;
-	double Pitch;
-	double Heading;
+    uint16_t OUT1;
+    uint16_t OUT2;
+    uint16_t OUT3;
+    uint16_t OUT4;
+    uint16_t OUT5;
+    uint16_t OUT6;
+    uint16_t OUT7;
+    uint16_t OUT8;
+    uint16_t OUT9;
+    uint16_t OUT10;
 
-	uint16_t Alt;
-	int32_t Latitude;
-	int32_t Longitude;
-
-	uint16_t ARSP;
-
-	uint32_t Pressure;
-
-	uint8_t SBUS_Flags;
-	uint8_t Flight_Mode;
-
-	uint16_t Canal_1; // 1000 a 2000
-	uint16_t Canal_2; // 1000 a 2000
-	uint16_t Canal_3; // 1000 a 2000
-	uint16_t Canal_4; // 1000 a 2000
-	uint16_t Canal_5; // 1000 a 2000
-	uint16_t Canal_6; // 1000 a 2000
-	uint16_t Canal_7; // 1000 a 2000
-	uint16_t Canal_8; // 1000 a 2000
-	uint16_t Canal_9; // 1000 a 2000
-	uint16_t Canal_10;// 1000 a 2000
-	uint16_t Canal_11;// 1000 a 2000
-	uint16_t Canal_12;// 1000 a 2000
-	uint16_t Canal_13;// 1000 a 2000
-	uint16_t Canal_14;// 1000 a 2000
-	uint16_t Canal_15;// 1000 a 2000
-	uint16_t Canal_16;// 1000 a 2000
-
-	uint8_t Interruptor_1;
-	uint8_t Interruptor_2;
-
-	uint16_t OUT1; // 1000 a 2000
-	uint16_t OUT2; // 1000 a 2000
-	uint16_t OUT3; // 1000 a 2000
-	uint16_t OUT4; // 1000 a 2000
-	uint16_t OUT5; // 1000 a 2000
-	uint16_t OUT6; // 1000 a 2000
-	uint16_t OUT7; // 1000 a 2000
-	uint16_t OUT8; // 1000 a 2000
-	uint16_t OUT9; // 1000 a 2000
-	uint16_t OUT10;// 1000 a 2000
+    // === 1-byte aligned ===
+    uint8_t SBUS_Flags;
+    uint8_t Flight_Mode;
+    uint8_t Interruptor_1;
+    uint8_t Interruptor_2;
 
 }blackbox_data_t;
 
