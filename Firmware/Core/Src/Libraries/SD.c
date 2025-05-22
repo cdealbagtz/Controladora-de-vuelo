@@ -25,11 +25,15 @@ UINT br, bw;  // File read/write count
 
 char FlightPaht[9] = "Flight000";
 
-char BlackBoxFile[9] = "FD000.csv";
+char BlackBoxFile[9] = "FD000.bin";
 char ConfigFile[10]  = "Config.txt";
 char GainsFile[9]    = "Gains.csv";
 
 char NResetChar[3]  = {255};
+
+char BlackBoxBuffer[16][255];
+
+blackbox_data_t blackbox_data;
 
 uint8_t ASCII2uint8(char *buffer, uint8_t Size){
 	uint8_t inter = 0;
@@ -135,16 +139,75 @@ void SD_CreateFlightPath(void){
 void SD_blackbox_init(void){
 
 	f_open(&BlackBox, BlackBoxFile, FA_OPEN_ALWAYS | FA_READ | FA_WRITE);
-	f_printf(&BlackBox,"Nmsg,Time,Ax,Ay,Az,Gx,Gy,Gz,Roll,Pitch,Heading,Alt,Lat,Lon,ARSP,Pressure,SBUS_Flags,FlightMode,");
-	f_printf(&BlackBox,"PWM1,PWM2,PWM3,PWM4,PWM5,PWM6,PWM7,PWM8,PWM9,PWM10,PWM11,PWM12,PWM13,PWM14,PWM15,PWM16,INT1,INT2,");
-	f_printf(&BlackBox,"OUT1,OUT2,OUT3,OUT4,OUT5,OUT6,OUT7,OUT8,OUT9,OUT10\n");
-	f_sync(&BlackBox);
+}
 
+void SD_blackbox_refresh(void){
+
+	blackbox_data.Time = TimeOn_Counter;
+
+	blackbox_data.Ax = IMU.ACC.x;
+	blackbox_data.Ay = IMU.ACC.y;
+	blackbox_data.Az = IMU.ACC.z;
+
+	blackbox_data.Gx = IMU.GYR.x;
+	blackbox_data.Gy = IMU.GYR.y;
+	blackbox_data.Gz = IMU.GYR.z;
+
+	blackbox_data.Gfx = 0;
+	blackbox_data.Gfy = 0;
+	blackbox_data.Gfz = 0;
+
+	blackbox_data.Roll    = IMU.Roll;
+	blackbox_data.Pitch   = IMU.Pitch;
+	blackbox_data.Heading = IMU.Heading;
+
+	blackbox_data.Alt = BMP280.Barometric_Altitude;
+	blackbox_data.Latitude = 0;
+	blackbox_data.Longitude= 0;
+
+	blackbox_data.ARSP = 0;
+
+	blackbox_data.Pressure = BMP280.Pressure;
+
+	blackbox_data.SBUS_Flags = Radio_input.Banderas;
+	blackbox_data.Flight_Mode = 0;
+
+	blackbox_data.Canal_1 = Radio_input.Canal_1;
+	blackbox_data.Canal_2 = Radio_input.Canal_2;
+	blackbox_data.Canal_3 = Radio_input.Canal_3;
+	blackbox_data.Canal_4 = Radio_input.Canal_4;
+	blackbox_data.Canal_5 = Radio_input.Canal_5;
+	blackbox_data.Canal_6 = Radio_input.Canal_6;
+	blackbox_data.Canal_7 = Radio_input.Canal_7;
+	blackbox_data.Canal_8 = Radio_input.Canal_8;
+	blackbox_data.Canal_9 = Radio_input.Canal_9;
+	blackbox_data.Canal_10 = Radio_input.Canal_10;
+	blackbox_data.Canal_11 = Radio_input.Canal_11;
+	blackbox_data.Canal_12 = Radio_input.Canal_12;
+	blackbox_data.Canal_13 = Radio_input.Canal_13;
+	blackbox_data.Canal_14 = Radio_input.Canal_14;
+	blackbox_data.Canal_15 = Radio_input.Canal_15;
+	blackbox_data.Canal_16 = Radio_input.Canal_16;
+
+	blackbox_data.Interruptor_1 = Radio_input.Interruptor_1;
+	blackbox_data.Interruptor_2 = Radio_input.Interruptor_2;
+
+	blackbox_data.OUT1  = PWM_Output.Canal_1;
+	blackbox_data.OUT2  = PWM_Output.Canal_2;
+	blackbox_data.OUT3  = PWM_Output.Canal_3;
+	blackbox_data.OUT4  = PWM_Output.Canal_4;
+	blackbox_data.OUT5  = PWM_Output.Canal_5;
+	blackbox_data.OUT6  = PWM_Output.Canal_6;
+	blackbox_data.OUT7  = PWM_Output.Canal_7;
+	blackbox_data.OUT8  = PWM_Output.Canal_8;
+	blackbox_data.OUT9  = PWM_Output.Canal_9;
+	blackbox_data.OUT10 = PWM_Output.Canal_10;
 }
 
 void SD_blackboxNewFile(void){
 	char ActualFile[5] = {0};
 	uint16_t FileCount;
+	f_close(&BlackBox);
 
 	FileCount = ASCII2uint16(&BlackBoxFile[2], 3) + 1;
 	uint162ASCII(FileCount, ActualFile);
@@ -157,25 +220,25 @@ void SD_blackboxNewFile(void){
 }
 
 void SD_blackbox_write(void){
-	static uint32_t DataCount;
-	static uint16_t WriteCount;
+	static uint8_t NewFileCount = 0;
+	static uint32_t DataCount = 0;
+	static uint16_t WriteCount = 0;
 
-	f_printf(&BlackBox, "%d,%d,%d,%d,%d,",DataCount,TimeOn_Counter,(int32_t)(IMU.ACC.x*100),(int32_t)(IMU.ACC.y*100),(int32_t)(IMU.ACC.z*100));
-	f_printf(&BlackBox, "%d,%d,%d,%d,%d,%d,",(int32_t)(IMU.GYR.x*100),(int32_t)(IMU.GYR.y*100),(int32_t)(IMU.GYR.z*100),(int32_t)(IMU.Roll*100),(int32_t)(IMU.Pitch*100),(int32_t)(IMU.Heading*100));
-	f_printf(&BlackBox, "%d,NA,NA,NA,%d,%d,NA,",BMP280.Barometric_Altitude,BMP280.Pressure,Radio_input.Banderas);
-	f_printf(&BlackBox, "%d,%d,%d,%d,",Radio_input.Canal_1,Radio_input.Canal_2,Radio_input.Canal_3,Radio_input.Canal_4);
-	f_printf(&BlackBox, "%d,%d,%d,%d,",Radio_input.Canal_5,Radio_input.Canal_6,Radio_input.Canal_7,Radio_input.Canal_8);
-	f_printf(&BlackBox, "%d,%d,%d,%d,",Radio_input.Canal_9,Radio_input.Canal_10,Radio_input.Canal_11,Radio_input.Canal_12);
-	f_printf(&BlackBox, "%d,%d,%d,%d,",Radio_input.Canal_13,Radio_input.Canal_14,Radio_input.Canal_15,Radio_input.Canal_16);
-	f_printf(&BlackBox, "%d,%d,%d,%d,",Radio_input.Interruptor_1,Radio_input.Interruptor_2,PWM_Output.Canal_1,PWM_Output.Canal_2);
-	f_printf(&BlackBox, "%d,%d,%d,%d,",PWM_Output.Canal_3,PWM_Output.Canal_4,PWM_Output.Canal_5,PWM_Output.Canal_6);
-	f_printf(&BlackBox, "%d,%d,%d,%d\n",PWM_Output.Canal_7,PWM_Output.Canal_8,PWM_Output.Canal_9,PWM_Output.Canal_10);
+	SD_blackbox_refresh();
 
-	if(WriteCount > 100){
+	blackbox_data.Nmsg = DataCount;
+	memcpy(&BlackBoxBuffer[WriteCount],&blackbox_data,sizeof(blackbox_data));
+
+	if(WriteCount == 15){
+		for (uint8_t n = 0; n < 16; ++n) {
+			f_write(&BlackBox, &BlackBoxBuffer[n], sizeof(blackbox_data), &bw);
+		}
 		fresult = f_sync(&BlackBox);
 		WriteCount = 0;
+		++NewFileCount;
+		++DataCount;
+		return;
 	}
-
 	++WriteCount;
 	++DataCount;
 }

@@ -58,6 +58,8 @@
 /* USER CODE BEGIN PV */
 extern uint8_t SBUS_RxBuffer;
 uint32_t TimeOn_Counter = 0x00;
+
+uint8_t SD_StoreFlag;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
