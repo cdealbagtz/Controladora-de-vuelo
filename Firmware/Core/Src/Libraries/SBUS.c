@@ -9,8 +9,6 @@
 #include "Libraries/SBUS.h"
 #include "Libraries/PWM.h"
 
-extern PWM_Output_t PWM_Output;
-
 uint8_t SBUS_UART_Rx[25];
 uint8_t SBUS_RxBuffer = 0x00;
 
@@ -92,8 +90,6 @@ void Temp_BypassFunct (void){
 	PWM_Output.Canal_8  = Radio_input.Canal_8;
 	PWM_Output.Canal_9  = Radio_input.Canal_9;
 	PWM_Output.Canal_10 = Radio_input.Canal_10;
-
-	PWM_Assing();
 }
 
 void SBUS_getData(void){
@@ -137,6 +133,8 @@ void SBUS_getData(void){
 
 	//En el caso del byte 24, el primer bit menos significativo corresponde al canal 17, el segundo al canal 18, el tercero a el fail safe y
 	//el cuarto a la perdida de paquetes. Los 4 restantes no se utilizan.
+
+	Radio_input.Banderas = SBUS_UART_Rx[23];
 	if(SBUS_UART_Rx[23]>=8){
 		SBUS_UART_Rx[23]-=8;
 		Radio_input.fail_safe = FailSafe;

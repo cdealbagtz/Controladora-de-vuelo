@@ -188,21 +188,18 @@ void BNO_HWReset(void){
 			HAL_GPIO_WritePin(IMU_RST_GPIO_Port, IMU_RST_Pin, SET);
 			bno055_delay(70);
 			ResetFlag = 0;
-			BNO_CurrentState = Config;
+			BNO_CurrentState = Configuration;
 			break;
 		default:
 			break;
 	}
-
-
-
 }
 
 void BNO_SWReset(void){
 	BNO_Write(BNO055_SYS_TRIGGER,0x20);
 	bno055_delay(70);
 	IMU.ID = 0x00;
-	BNO_CurrentState = Config;
+	BNO_CurrentState = Configuration;
 }
 
 void bno055_setOperationMode(bno055_opmode_t mode) {
@@ -420,7 +417,7 @@ void BNO_Tasks(void){
 			case Reset:
 				BNO_SWReset();
 			break;
-			case Config:
+			case Configuration:
 				BNO_Config();
 				break;
 			case Calibration:

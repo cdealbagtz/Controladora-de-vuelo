@@ -150,7 +150,7 @@ typedef struct{
 
 typedef enum{
 	Init,
-	Config,
+	Configuration,
 	Calibration,
 	Operation,
 	Reset
@@ -278,7 +278,8 @@ typedef enum{
 
 
 extern uint8_t BNO_BufferByte;
-extern uint64_t TimeOn_Counter;
+extern uint32_t TimeOn_Counter;
+extern IMU_t IMU;
 
 void BNO_Init(void);
 void BNO_Receive(uint8_t Buffer);

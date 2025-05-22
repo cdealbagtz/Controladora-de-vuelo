@@ -40,7 +40,10 @@ Core/Src/Libraries/SD.o: ../Core/Src/Libraries/SD.c ../Core/Inc/CONFIG.h \
  ../Middlewares/Third_Party/FatFs/src/integer.h ../FATFS/Target/ffconf.h \
  ../Middlewares/Third_Party/FatFs/src/ff_gen_drv.h \
  ../Middlewares/Third_Party/FatFs/src/diskio.h \
- ../Middlewares/Third_Party/FatFs/src/ff.h ../FATFS/Target/user_diskio.h
+ ../Middlewares/Third_Party/FatFs/src/ff.h ../FATFS/Target/user_diskio.h \
+ ../Core/Inc/Libraries/BNO050.h ../Core/Inc/usart.h ../Core/Inc/main.h \
+ ../Core/Inc/Libraries/BMP280.h ../Core/Inc/Libraries/SBUS.h \
+ ../Core/Inc/Libraries/PWM.h ../Core/Inc/tim.h
 ../Core/Inc/CONFIG.h:
 ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h:
 ../Drivers/CMSIS/Include/core_cm7.h:
@@ -88,3 +91,10 @@ Core/Src/Libraries/SD.o: ../Core/Src/Libraries/SD.c ../Core/Inc/CONFIG.h \
 ../Middlewares/Third_Party/FatFs/src/diskio.h:
 ../Middlewares/Third_Party/FatFs/src/ff.h:
 ../FATFS/Target/user_diskio.h:
+../Core/Inc/Libraries/BNO050.h:
+../Core/Inc/usart.h:
+../Core/Inc/main.h:
+../Core/Inc/Libraries/BMP280.h:
+../Core/Inc/Libraries/SBUS.h:
+../Core/Inc/Libraries/PWM.h:
+../Core/Inc/tim.h:

@@ -13,7 +13,7 @@
 
 typedef enum RC_Status{
 	OFF = 0x00,
-	ON  = 0xFF,
+	ON  = 0x01,
 	Ok = 0xAA,
 	Pkg_Lost = 0x10,
 	Uart_Error = 0x20,
@@ -21,6 +21,10 @@ typedef enum RC_Status{
 }RC_Status_e;
 
 typedef struct Radio_input{
+
+
+	uint8_t Banderas;
+
 	uint16_t Canal_1; // 1000 a 2000
 	uint16_t Canal_2; // 1000 a 2000
 	uint16_t Canal_3; // 1000 a 2000
@@ -47,6 +51,8 @@ typedef struct Radio_input{
 
 	uint8_t  Uart_Counter;
 }Radio_input_t;
+
+extern Radio_input_t Radio_input;
 
 void SBUS_IntegrityVerification(void);
 

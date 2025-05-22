@@ -24,6 +24,7 @@ typedef struct{
 	uint16_t Canal_10;// 1000 a 2000
 }PWM_Output_t;
 
+extern PWM_Output_t PWM_Output;
 
 void PWM_Assing(void);
 

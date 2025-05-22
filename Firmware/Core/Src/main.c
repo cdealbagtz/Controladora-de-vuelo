@@ -35,6 +35,7 @@
 #include "Libraries/SBUS.h"
 #include "Libraries/LED.h"
 #include "Libraries/BNO050.h"
+#include "Libraries/PWM.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -56,6 +57,9 @@
 
 /* USER CODE BEGIN PV */
 extern uint8_t SBUS_RxBuffer;
+uint32_t TimeOn_Counter = 0x00;
+
+uint8_t SD_StoreFlag;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -67,7 +71,7 @@ static void MPU_Config(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-uint8_t TestPage;
+
 /* USER CODE END 0 */
 
 /**
@@ -204,9 +208,6 @@ void SystemClock_Config(void)
 
 /* USER CODE BEGIN 4 */
 
-uint64_t TimeOn_Counter = 0x00;
-HAL_StatusTypeDef Reception_Info = 0x00;
-
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	if (huart -> Instance == USART1){
@@ -215,7 +216,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 	}
     else if (huart -> Instance == USART3){
         BNO_Receive(BNO_BufferByte);
-        Reception_Info =  HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
+        HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
     }
 }
 
@@ -231,6 +232,9 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 	if (htim -> Instance == TIM7){
 		BNO_Tasks();
 		BMP280_calculate();
+
+		PWM_Assing();
+		SD_blackbox_write();
 	}
 }
 /* USER CODE END 4 */
