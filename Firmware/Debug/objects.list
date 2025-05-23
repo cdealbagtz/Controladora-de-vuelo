@@ -1,6 +1,7 @@
 "./Core/Src/Libraries/BMP280.o"
 "./Core/Src/Libraries/BNO050.o"
 "./Core/Src/Libraries/LED.o"
+"./Core/Src/Libraries/NMEA.o"
 "./Core/Src/Libraries/PWM.o"
 "./Core/Src/Libraries/SBUS.o"
 "./Core/Src/Libraries/SD.o"
