@@ -36,7 +36,7 @@
 #include "Libraries/LED.h"
 #include "Libraries/BNO050.h"
 #include "Libraries/PWM.h"
-#include "Libraries/nmea_parse.h"
+#include "libNMEA.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -60,17 +60,10 @@
 #define RxBuffer_SIZE 64  //configure uart receive buffer size
 #define DataBuffer_SIZE 512 //gather a few rxBuffer frames before parsing
 
-// Functions for UART receiving, based on the DMA receive function, implementations may vary
-uint16_t oldPos = 0;
-uint16_t newPos = 0;
-uint8_t RxBuffer[RxBuffer_SIZE];
-uint8_t DataBuffer[DataBuffer_SIZE];
 
-//create a GPS data structure
-GPS_t GPS;
-
-extern DMA_HandleTypeDef hdma_uart4_rx;
 extern uint8_t SBUS_RxBuffer;
+extern DMA_HandleTypeDef hdma_uart4_rx;
+
 uint32_t TimeOn_Counter = 0x00;
 
 uint8_t SD_StoreFlag;
@@ -86,32 +79,6 @@ static void MPU_Config(void);
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
 
-/*
- * UART buffer handler based on the DMA receive function, every implementation is valid,
- * as long as you pass a sufficiently long receive buffer to the library.
- * */
-void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size)
-{
-	if(huart->Instance == UART4){
-	    oldPos = newPos; //keep track of the last position in the buffer
-	    if(oldPos + Size > DataBuffer_SIZE){ //if the buffer is full, parse it, then reset the buffer
-
-	        uint16_t datatocopy = DataBuffer_SIZE-oldPos;  // find out how much space is left in the main buffer
-	        memcpy ((uint8_t *)DataBuffer+oldPos, RxBuffer, datatocopy);  // copy data in that remaining space
-
-	        oldPos = 0;  // point to the start of the buffer
-	        memcpy ((uint8_t *)DataBuffer, (uint8_t *)RxBuffer+datatocopy, (Size-datatocopy));  // copy the remaining data
-	        newPos = (Size-datatocopy);  // update the position
-	    }
-	    else{
-	        memcpy((uint8_t *)DataBuffer+oldPos, RxBuffer, Size); //copy received data to the buffer
-	        newPos = Size+oldPos; //update buffer position
-
-	    }
-	    HAL_UARTEx_ReceiveToIdle_DMA(&huart4, (uint8_t *)RxBuffer, RxBuffer_SIZE); //re-enable the DMA interrupt
-	    __HAL_DMA_DISABLE_IT(&hdma_uart4_rx, DMA_IT_HT); //disable the half transfer interrupt
-	}
-}
 /* USER CODE END 0 */
 
 /**
@@ -166,10 +133,7 @@ int main(void)
   BMP280_init();
   SD_init();
   HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
-
-  HAL_UARTEx_ReceiveToIdle_DMA(&huart4, (uint8_t *)RxBuffer, RxBuffer_SIZE);
-  __HAL_DMA_DISABLE_IT(&hdma_uart4_rx, DMA_IT_HT);
-
+  NMEA_init(&huart4, &hdma_uart4_rx);
   HAL_TIM_Base_Start_IT(&htim6);
   HAL_TIM_Base_Start_IT(&htim7);
 
@@ -182,7 +146,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  nmea_parse(&GPS, DataBuffer);
+	  NMEA_process_task();
 
   }
   /* USER CODE END 3 */
@@ -261,6 +225,10 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
     else if (huart -> Instance == USART3){
         BNO_Receive(BNO_BufferByte);
         HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
+    }
+    else if(huart -> Instance == UART4){
+
+
     }
 }
 

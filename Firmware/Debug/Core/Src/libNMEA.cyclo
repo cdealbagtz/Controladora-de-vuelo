@@ -1,0 +1,12 @@
+../Core/Src/libNMEA.c:49:13:default_CB	1
+../Core/Src/libNMEA.c:65:13:NMEA_CB_register	8
+../Core/Src/libNMEA.c:88:13:NMEA_CB_unregister	5
+../Core/Src/libNMEA.c:113:14:NMEA_parser	13
+../Core/Src/libNMEA.c:194:16:hx2int	3
+../Core/Src/libNMEA.c:210:20:NMEA_checksum_clc	4
+../Core/Src/libNMEA.c:230:13:NMEA_read_line	4
+../Core/Src/libNMEA.c:249:6:NMEA_init	1
+../Core/Src/libNMEA.c:269:20:NMEA_UART_DMA_get_char	5
+../Core/Src/libNMEA.c:299:20:NMEA_UART_DMA_copy_buffer	19
+../Core/Src/libNMEA.c:317:13:NMEA_process_task	3
+../Core/Src/libNMEA.c:328:13:user_UART_IDLE_IT_handler	2

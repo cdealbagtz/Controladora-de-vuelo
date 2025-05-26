@@ -8,7 +8,7 @@
 #ifndef INC_PERIPHERAL_BMP280_H_
 #define INC_PERIPHERAL_BMP280_H_
 
-#include "main.h"
+#include <spi.h>
 #include <math.h>
 
 extern SPI_HandleTypeDef hspi2;

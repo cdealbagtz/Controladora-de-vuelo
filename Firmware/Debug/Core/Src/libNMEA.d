@@ -1,5 +1,4 @@
-Core/Src/Libraries/BMP280.o: ../Core/Src/Libraries/BMP280.c \
- ../Core/Inc/Libraries/BMP280.h ../Core/Inc/spi.h ../Core/Inc/main.h \
+Core/Src/libNMEA.o: ../Core/Src/libNMEA.c ../Core/Inc/libNMEA.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../Core/Inc/stm32h7xx_hal_conf.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h \
@@ -35,9 +34,7 @@ Core/Src/Libraries/BMP280.o: ../Core/Src/Libraries/BMP280.c \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
-../Core/Inc/Libraries/BMP280.h:
-../Core/Inc/spi.h:
-../Core/Inc/main.h:
+../Core/Inc/libNMEA.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
 ../Core/Inc/stm32h7xx_hal_conf.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h:
