@@ -22,13 +22,12 @@
 extern uint32_t TimeOn_Counter;
 
 typedef struct{
-    // === 8-byte aligned (64 bits) ===
-    double Ax, Ay, Az;
-    double Gx, Gy, Gz;
-    double Gfx, Gfy, Gfz;
-    double Roll, Pitch, Heading;
+	// === 4-byte aligned (32 bits) ===
+	float Ax, Ay, Az;
+	float Gx, Gy, Gz;
+	float Gfx, Gfy, Gfz;
+	float Roll, Pitch, Heading;
 
-    // === 4-byte aligned (32 bits) ===
     uint32_t Nmsg;
     uint32_t Time;
     int32_t Latitude;
