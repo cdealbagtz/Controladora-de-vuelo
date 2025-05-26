@@ -13,15 +13,6 @@
 #include "string.h"
 #include <stdbool.h>
 
-
-#ifdef FREERTOS_ENABLED
-#include "FreeRTOS.h"
-#include "task.h"
-#include "cmsis_os.h"
-#endif
-
-
-
 typedef enum{
 	AwaitingMsg = 0x00,
 	Read_Response = 0xBB,

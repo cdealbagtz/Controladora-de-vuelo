@@ -36,6 +36,7 @@
 #include "Libraries/LED.h"
 #include "Libraries/BNO050.h"
 #include "Libraries/PWM.h"
+#include "libNMEA.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -56,7 +57,13 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+#define RxBuffer_SIZE 64  //configure uart receive buffer size
+#define DataBuffer_SIZE 512 //gather a few rxBuffer frames before parsing
+
+
 extern uint8_t SBUS_RxBuffer;
+extern DMA_HandleTypeDef hdma_uart4_rx;
+
 uint32_t TimeOn_Counter = 0x00;
 
 uint8_t SD_StoreFlag;
@@ -126,6 +133,7 @@ int main(void)
   BMP280_init();
   SD_init();
   HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
+  NMEA_init(&huart4, &hdma_uart4_rx);
   HAL_TIM_Base_Start_IT(&htim6);
   HAL_TIM_Base_Start_IT(&htim7);
 
@@ -138,7 +146,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-
+	  NMEA_process_task();
 
   }
   /* USER CODE END 3 */
@@ -217,6 +225,10 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
     else if (huart -> Instance == USART3){
         BNO_Receive(BNO_BufferByte);
         HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
+    }
+    else if(huart -> Instance == UART4){
+
+
     }
 }
 

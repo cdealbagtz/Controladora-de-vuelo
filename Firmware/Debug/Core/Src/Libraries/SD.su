@@ -7,7 +7,7 @@
 ../Core/Src/Libraries/SD.c:126:6:SD_GainsInit	4	static
 ../Core/Src/Libraries/SD.c:130:6:SD_CreateFlightPath	8	static
 ../Core/Src/Libraries/SD.c:139:6:SD_blackbox_init	8	static
-../Core/Src/Libraries/SD.c:149:6:SD_blackbox_refresh	4	static
-../Core/Src/Libraries/SD.c:216:6:SD_blackboxNewFile	16	static
-../Core/Src/Libraries/SD.c:231:6:SD_blackbox_write	16	static
-../Core/Src/Libraries/SD.c:256:6:SD_init	8	static
+../Core/Src/Libraries/SD.c:144:6:SD_blackbox_refresh	4	static
+../Core/Src/Libraries/SD.c:207:6:SD_blackboxNewFile	16	static
+../Core/Src/Libraries/SD.c:222:6:SD_blackbox_write	16	static
+../Core/Src/Libraries/SD.c:247:6:SD_init	8	static
