@@ -45,7 +45,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Core/Inc/gpio.h ../Core/Inc/Libraries/SD.h \
  ../Core/Inc/Libraries/BMP280.h ../Core/Inc/Libraries/SBUS.h \
  ../Core/Inc/Libraries/LED.h ../Core/Inc/Libraries/BNO050.h \
- ../Core/Inc/Libraries/PWM.h
+ ../Core/Inc/Libraries/PWM.h ../Core/Inc/Libraries/nmea_parse.h \
+ ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h
 ../Core/Inc/main.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
 ../Core/Inc/stm32h7xx_hal_conf.h:
@@ -105,3 +106,5 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../Core/Inc/Libraries/LED.h:
 ../Core/Inc/Libraries/BNO050.h:
 ../Core/Inc/Libraries/PWM.h:
+../Core/Inc/Libraries/nmea_parse.h:
+../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h:
