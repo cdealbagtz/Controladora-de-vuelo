@@ -176,6 +176,7 @@ NVIC.TIM7_IRQn=true\:0\:0\:false\:false\:true\:true\:true\:true
 NVIC.UART4_IRQn=true\:0\:0\:false\:false\:true\:true\:true\:true
 NVIC.USART1_IRQn=true\:0\:0\:false\:false\:true\:true\:true\:true
 NVIC.USART3_IRQn=true\:0\:0\:false\:false\:true\:true\:true\:true
+NVIC.USART6_IRQn=true\:0\:0\:false\:false\:true\:true\:true\:true
 NVIC.UsageFault_IRQn=true\:0\:0\:false\:false\:true\:false\:false\:false
 PA0.Locked=true
 PA0.Mode=Asynchronous

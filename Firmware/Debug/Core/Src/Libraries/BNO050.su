@@ -18,5 +18,5 @@
 ../Core/Src/Libraries/BNO050.c:281:6:BNO_CalibrationStatus	8	static
 ../Core/Src/Libraries/BNO050.c:360:6:BNO_GetData	8	static
 ../Core/Src/Libraries/BNO050.c:364:6:BNO_Receive	16	static
-../Core/Src/Libraries/BNO050.c:401:6:BNO_FaultManager	8	static
-../Core/Src/Libraries/BNO050.c:411:6:BNO_Tasks	8	static
+../Core/Src/Libraries/BNO050.c:401:6:BNO_FaultManager	16	static
+../Core/Src/Libraries/BNO050.c:416:6:BNO_Tasks	8	static
