@@ -1,2 +1,4 @@
-../Core/Src/Libraries/Lora_LR03.c:13:6:LR03_AT	4	static
-../Core/Src/Libraries/Lora_LR03.c:17:6:Lora_StateMachine	8	static
+../Core/Src/Libraries/Lora_LR03.c:15:6:LR03_AT	16	static
+../Core/Src/Libraries/Lora_LR03.c:23:6:LR03_Level	32	static
+../Core/Src/Libraries/Lora_LR03.c:33:6:LR03_Receive	16	static
+../Core/Src/Libraries/Lora_LR03.c:39:6:LR03_StateMachine	8	static

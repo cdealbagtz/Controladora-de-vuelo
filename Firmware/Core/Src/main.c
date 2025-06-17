@@ -36,6 +36,7 @@
 #include "Libraries/LED.h"
 #include "Libraries/BNO050.h"
 #include "Libraries/PWM.h"
+#include "Libraries/Lora_LR03.h"
 #include "libNMEA.h"
 /* USER CODE END Includes */
 
@@ -64,6 +65,7 @@
 extern uint8_t SBUS_RxBuffer;
 extern DMA_HandleTypeDef hdma_uart4_rx;
 
+uint8_t LR03_RxByte = 0;
 uint32_t TimeOn_Counter = 0x00;
 
 uint8_t SD_StoreFlag;
@@ -132,7 +134,9 @@ int main(void)
   /* USER CODE BEGIN 2 */
   BMP280_init();
   SD_init();
+  SBUS_init();
   HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
+  HAL_UART_Receive_IT(&huart6, &LR03_RxByte,1);
   NMEA_init(&huart4, &hdma_uart4_rx);
   HAL_TIM_Base_Start_IT(&htim6);
   HAL_TIM_Base_Start_IT(&htim7);
@@ -147,6 +151,7 @@ int main(void)
 
     /* USER CODE BEGIN 3 */
 	  NMEA_process_task();
+	  LR03_StateMachine();
 
   }
   /* USER CODE END 3 */
@@ -226,9 +231,9 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
         BNO_Receive(BNO_BufferByte);
         HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
     }
-    else if(huart -> Instance == UART4){
-
-
+    else if(huart -> Instance == USART6){
+    	LR03_Receive(LR03_RxByte);
+    	HAL_UART_Receive_IT(&huart6, &LR03_RxByte,1);
     }
 }
 
