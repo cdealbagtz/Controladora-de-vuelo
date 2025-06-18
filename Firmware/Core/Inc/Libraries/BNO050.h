@@ -44,23 +44,23 @@ typedef enum{
 
 typedef struct{
 	uint8_t ID;
-	double x;
-	double y;
-	double z;
+	float x;
+	float y;
+	float z;
 }ACC_t;
 
 typedef struct{
 	uint8_t ID;
-	double x;
-	double y;
-	double z;
+	float x;
+	float y;
+	float z;
 }MAG_t;
 
 typedef struct{
 	uint8_t ID;
-	double x;
-	double y;
-	double z;
+	float x;
+	float y;
+	float z;
 }GYR_t;
 
 typedef struct {
@@ -104,10 +104,10 @@ typedef enum {  // BNO-55 operation modes
 } bno055_opmode_t;
 
 typedef struct {
-  double w;
-  double x;
-  double y;
-  double z;
+	float w;
+	float x;
+	float y;
+	float z;
 } bno055_vector_t;
 
 typedef struct{
@@ -126,9 +126,9 @@ typedef struct{
 	MAG_t MAG; //  uT
 	GYR_t GYR; //  °/s
 
-	double Heading;
-	double Pitch;
-	double Roll;
+	float Heading;
+	float Pitch;
+	float Roll;
 
 	uint8_t Page;
 	uint8_t Unit_Select;

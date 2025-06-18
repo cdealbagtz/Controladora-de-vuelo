@@ -119,21 +119,21 @@ void BNO_Page0Adress(void){
 			break;
 		case BNO055_ACC_DATA_X_LSB:
 
-			IMU.ACC.x = ((double)((int16_t)((BNO_RxBuffer[2] << 8) | BNO_RxBuffer[1])))/100;
-			IMU.ACC.y = ((double)((int16_t)((BNO_RxBuffer[4] << 8) | BNO_RxBuffer[3])))/100;
-			IMU.ACC.z = ((double)((int16_t)((BNO_RxBuffer[6] << 8) | BNO_RxBuffer[5])))/100;
+			IMU.ACC.x = ((float)((int16_t)((BNO_RxBuffer[2] << 8) | BNO_RxBuffer[1])))/100;
+			IMU.ACC.y = ((float)((int16_t)((BNO_RxBuffer[4] << 8) | BNO_RxBuffer[3])))/100;
+			IMU.ACC.z = ((float)((int16_t)((BNO_RxBuffer[6] << 8) | BNO_RxBuffer[5])))/100;
 
-			IMU.MAG.x = ((double)((int16_t)((BNO_RxBuffer[8] << 8) | BNO_RxBuffer[7])))/16;
-			IMU.MAG.y = ((double)((int16_t)((BNO_RxBuffer[10] << 8) | BNO_RxBuffer[9])))/16;
-			IMU.MAG.z = ((double)((int16_t)((BNO_RxBuffer[12] << 8) | BNO_RxBuffer[11])))/16;
+			IMU.MAG.x = ((float)((int16_t)((BNO_RxBuffer[8] << 8) | BNO_RxBuffer[7])))/16;
+			IMU.MAG.y = ((float)((int16_t)((BNO_RxBuffer[10] << 8) | BNO_RxBuffer[9])))/16;
+			IMU.MAG.z = ((float)((int16_t)((BNO_RxBuffer[12] << 8) | BNO_RxBuffer[11])))/16;
 
-			IMU.GYR.x = ((double)((int16_t)((BNO_RxBuffer[14] << 8) | BNO_RxBuffer[13])))/16;
-			IMU.GYR.y = -((double)((int16_t)((BNO_RxBuffer[16] << 8) | BNO_RxBuffer[15])))/16;
-			IMU.GYR.z = -((double)((int16_t)((BNO_RxBuffer[18] << 8) | BNO_RxBuffer[17])))/16;
+			IMU.GYR.x = ((float)((int16_t)((BNO_RxBuffer[14] << 8) | BNO_RxBuffer[13])))/16;
+			IMU.GYR.y = -((float)((int16_t)((BNO_RxBuffer[16] << 8) | BNO_RxBuffer[15])))/16;
+			IMU.GYR.z = -((float)((int16_t)((BNO_RxBuffer[18] << 8) | BNO_RxBuffer[17])))/16;
 
-			IMU.Heading = ((double)((int16_t)((BNO_RxBuffer[20] << 8) | BNO_RxBuffer[19])))/16;
-			IMU.Pitch = ((double)((int16_t)((BNO_RxBuffer[22] << 8) | BNO_RxBuffer[21])))/16;
-			IMU.Roll = ((double)((int16_t)((BNO_RxBuffer[24] << 8) | BNO_RxBuffer[23])))/16;
+			IMU.Heading = ((float)((int16_t)((BNO_RxBuffer[20] << 8) | BNO_RxBuffer[19])))/16;
+			IMU.Pitch = ((float)((int16_t)((BNO_RxBuffer[22] << 8) | BNO_RxBuffer[21])))/16;
+			IMU.Roll = ((float)((int16_t)((BNO_RxBuffer[24] << 8) | BNO_RxBuffer[23])))/16;
 
 			BNO_ErrorHandler = ReadSucces;
 			break;
