@@ -401,10 +401,15 @@ void BNO_Receive(uint8_t Buffer){
 void BNO_FaultManager(void){
 	if(BNO_ComsCounter > 3){
 		Reset_UART(&huart3);
-		BNO_ComsCounter = 0;
 		BNO_Rx_Status = AwaitingMsg;
 		HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
 		memset(BNO_RxBuffer, 0, sizeof(BNO_RxBuffer));
+	}
+	if(BNO_ErrorHandler == WRONG_START_BYTE){
+		uint8_t Buffer = 0x00;
+
+		HAL_UART_Transmit_IT(&huart3, &Buffer, 1);
+		BNO_ErrorHandler = 0;
 	}
 }
 
