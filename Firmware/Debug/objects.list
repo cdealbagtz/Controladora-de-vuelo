@@ -7,11 +7,8 @@
 "./Core/Src/Libraries/SD.o"
 "./Core/Src/dma.o"
 "./Core/Src/fdcan.o"
-<<<<<<< HEAD
-"./Core/Src/freertos.o"
-=======
 "./Core/Src/filter.o"
->>>>>>> main
+"./Core/Src/freertos.o"
 "./Core/Src/gpio.o"
 "./Core/Src/i2c.o"
 "./Core/Src/libNMEA.o"
