@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "cmsis_os.h"
 #include "dma.h"
 #include "fatfs.h"
 #include "fdcan.h"
@@ -74,6 +75,7 @@ uint8_t SD_StoreFlag;
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 static void MPU_Config(void);
+void MX_FREERTOS_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -127,21 +129,24 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART6_UART_Init();
   MX_TIM13_Init();
-  MX_FATFS_Init();
-  MX_TIM6_Init();
   MX_USART3_UART_Init();
-  MX_TIM7_Init();
+  MX_FATFS_Init();
   /* USER CODE BEGIN 2 */
   BMP280_init();
-  SD_init();
+  //SD_init();
   SBUS_init();
   HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
   HAL_UART_Receive_IT(&huart6, &LR03_RxByte,1);
   NMEA_init(&huart4, &hdma_uart4_rx);
-  HAL_TIM_Base_Start_IT(&htim6);
-  HAL_TIM_Base_Start_IT(&htim7);
-
   /* USER CODE END 2 */
+
+  /* Call init function for freertos objects (in cmsis_os2.c) */
+  MX_FREERTOS_Init();
+
+  /* Start scheduler */
+  osKernelStart();
+
+  /* We should never get here as control is now taken by the scheduler */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
@@ -150,8 +155,7 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-	  NMEA_process_task();
-	  LR03_StateMachine();
+
 
   }
   /* USER CODE END 3 */
@@ -237,23 +241,6 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
     }
 }
 
-void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
-{
-	//Interrupción cada 1 ms
-	if (htim -> Instance == TIM6){
-		TimeOn_Counter++;
-		LED_Tasks();
-		SBUS_IntegrityVerification();
-	}
-	//Interrupción cada 10 ms
-	if (htim -> Instance == TIM7){
-		BNO_Tasks();
-		BMP280_calculate();
-
-		PWM_Assing();
-		SD_blackbox_write();
-	}
-}
 /* USER CODE END 4 */
 
  /* MPU Configuration */
@@ -283,6 +270,27 @@ void MPU_Config(void)
   /* Enables the MPU */
   HAL_MPU_Enable(MPU_PRIVILEGED_DEFAULT);
 
+}
+
+/**
+  * @brief  Period elapsed callback in non blocking mode
+  * @note   This function is called  when TIM17 interrupt took place, inside
+  * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
+  * a global variable "uwTick" used as application time base.
+  * @param  htim : TIM handle
+  * @retval None
+  */
+void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+{
+  /* USER CODE BEGIN Callback 0 */
+
+  /* USER CODE END Callback 0 */
+  if (htim->Instance == TIM17) {
+    HAL_IncTick();
+  }
+  /* USER CODE BEGIN Callback 1 */
+
+  /* USER CODE END Callback 1 */
 }
 
 /**

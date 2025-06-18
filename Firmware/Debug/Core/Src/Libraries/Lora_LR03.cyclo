@@ -1,4 +1,4 @@
 ../Core/Src/Libraries/Lora_LR03.c:15:6:LR03_AT	1
-../Core/Src/Libraries/Lora_LR03.c:23:6:LR03_Level	3
-../Core/Src/Libraries/Lora_LR03.c:33:6:LR03_Receive	1
-../Core/Src/Libraries/Lora_LR03.c:39:6:LR03_StateMachine	3
+../Core/Src/Libraries/Lora_LR03.c:20:6:LR03_Level	3
+../Core/Src/Libraries/Lora_LR03.c:28:6:LR03_Receive	1
+../Core/Src/Libraries/Lora_LR03.c:34:6:LR03_StateMachine	3
