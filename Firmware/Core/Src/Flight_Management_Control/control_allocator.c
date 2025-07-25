@@ -6,38 +6,72 @@
  */
 
 #include "Flight_Management_Control/control_allocator.h"
+#include "Flight_Management_Control/servo_mixers.h"
 
-Servo_outputs_s control_allocator(Cmd_s control_cmd, Trim_s trims, Amplitude_servo_s Amplitude ,Servo_reverse_s reverse, uint8_t frame_type)
+
+
+void control_allocator(Cmd_s control_cmd, Trim_s trims,Servo_reverse_s reverse, uint8_t frame_type)
 {
 	//
-	Servo_outputs_s servo_outputs;
+	Servo_mgmt_s servo_outs;
+
+
 	switch(frame_type){
-	case 0:
-		servo_outputs = FIX_WING_MIXER(control_cmd, trims, Amplitude);
-		break;
-	case 1:
-		servo_outputs = FLYING_WING_MIXER(control_cmd, trims, Amplitude);
-		break;
-	case 2:
-		servo_outputs = TANDEM_WING_MIXER(control_cmd, trims, Amplitude);
-		break;
-	case 3:
-		servo_outputs = CUSTOM_FRAME_MIXER(control_cmd, trims, Amplitude);
-		break;
-	default:
-		servo_outputs.S_1 = 1500;
-		servo_outputs.S_2 = 1500;
-		servo_outputs.S_3 = 1500;
-		servo_outputs.S_4 = 1500;
-		servo_outputs.S_5 = 1500;
-		servo_outputs.S_6 = 1500;
-		servo_outputs.S_7 = 1500;
-		servo_outputs.S_8 = 1500;
-		servo_outputs.S_9 = 1500;
-		servo_outputs.S_10 = 1500;
+		case 0:
+			servo_outs = FIX_WING_MIXER(control_cmd, trims)     ;
+			break;
+		case 1:
+			servo_outs = FLYING_WING_MIXER(control_cmd, trims)  ;
+			break;
+		case 2:
+			servo_outs = TANDEM_WING_MIXER(control_cmd, trims)  ;
+			break;
+		case 3:
+			servo_outs = CUSTOM_FRAME_MIXER(control_cmd, trims) ;
+			break;
+		default:
+
+			for(int i = 0; i < 10; i++)
+			{
+				//
+				servo_outs.S[i] = 1500 ;
+			}
+
+		}
+
+	PWM_Output = reverse_servos( servo_outs ,reverse);
+}
+
+uint16_t reverse_servo_value(uint16_t input)
+{
+    // Asegurarnos que el valor esté dentro del rango válido
+    if (input < 1000) input = 1000;
+    if (input > 2000) input = 2000;
+
+    // Calcular el valor invertido
+    return 3000 - input;
+}
+
+
+Servo_mgmt_s reverse_servos(Servo_mgmt_s inputs, Servo_reverse_s reverse)
+{
+	//
+	Servo_mgmt_s uotputs;
+
+	for(int i = 0; i < 10; i++)
+	{
+		//
+		if (reverse.S[i])
+		{
+			//
+			uotputs.S[i] = reverse_servo_value(inputs.S[i]);
+		}
+		else
+		{
+			//
+			uotputs.S[i] = inputs.S[i];
+		}
 	}
 
-
-
-	return servo_outputs;
+	return uotputs;
 }

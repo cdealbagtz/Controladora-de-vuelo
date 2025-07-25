@@ -168,7 +168,7 @@ void fTask_10ms(void const * argument)
 	BNO_Tasks();
 	BMP280_calculate();
 
-	PWM_Assing();
+	PWM_Assign();
 	SD_blackbox_write();
     osDelay(10);
   }
