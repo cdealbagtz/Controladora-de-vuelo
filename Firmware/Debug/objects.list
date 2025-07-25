@@ -1,4 +1,6 @@
 "./Core/Src/Flight_Management_Control/control_allocator.o"
+"./Core/Src/Flight_Management_Control/flight_management.o"
+"./Core/Src/Flight_Management_Control/modes_management.o"
 "./Core/Src/Flight_Management_Control/servo_mixers.o"
 "./Core/Src/Flight_control.o"
 "./Core/Src/dma.o"

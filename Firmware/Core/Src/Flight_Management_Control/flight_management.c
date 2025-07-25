@@ -5,9 +5,11 @@
  *      Author: rtrujillo
  */
 
+#include "Flight_Management_Control/flight_management.h"
 
-void Task_tier_1(void)
+void FlightTaskAttitude(void)
 {
 	//
+
 
 }
