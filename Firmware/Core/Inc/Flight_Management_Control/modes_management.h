@@ -8,10 +8,14 @@
 #ifndef INC_FLIGHT_MANAGEMENT_CONTROL_MODES_MANAGEMENT_H_
 #define INC_FLIGHT_MANAGEMENT_CONTROL_MODES_MANAGEMENT_H_
 
+#include "stdint.h"
+#include "Libraries/SBUS.h"
+
 typedef enum {
     MANUAL_MODE = 0,
     RATE_MODE,
     ATTITUDE_HOLD_MODE,
+	FBW_MODE,
     FAILSAFE_MODE
 } FlightMode_t;
 
