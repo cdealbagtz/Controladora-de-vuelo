@@ -8,6 +8,7 @@
 
 #include "Flight_Management_Control/modes_management.h"
 
+FlightMode_t mode ;
 
 uint8_t CurrentMode(void)
 {

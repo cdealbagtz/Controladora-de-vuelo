@@ -35,6 +35,8 @@
 #include "libNMEA.h"
 #include "filter.h"
 /* USER CODE END Includes */
+#include "Flight_Management_Control/flight_management.h"
+
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
@@ -169,6 +171,8 @@ void fTask_10ms(void const * argument)
   {
 	BNO_Tasks();
 	BMP280_calculate();
+
+	FlightTaskAttitude();
 
 	PWM_Assign();
 	SD_blackbox_write();
