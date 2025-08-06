@@ -29,6 +29,11 @@ typedef struct {
 #define PWM_MAX 2000    // μs (posición alta)
 #define PWM_DEADZONE 50 // μs (zona muerta para evitar ruido)
 
+
+extern FlightMode_t mode ;
+
 uint8_t CurrentMode(void);
+
+void get_flight_mode(void);
 
 #endif /* INC_FLIGHT_MANAGEMENT_CONTROL_MODES_MANAGEMENT_H_ */

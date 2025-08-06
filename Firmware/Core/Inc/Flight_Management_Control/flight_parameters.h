@@ -1,0 +1,25 @@
+/*
+ * flight_parameters.h
+ *
+ *  Created on: Aug 4, 2025
+ *      Author: rtrujillo
+ */
+
+#ifndef INC_FLIGHT_MANAGEMENT_CONTROL_FLIGHT_PARAMETERS_H_
+#define INC_FLIGHT_MANAGEMENT_CONTROL_FLIGHT_PARAMETERS_H_
+
+#include <stdio.h>
+
+#define SAMPLE_ATT 0.005 	// Delta Tiempo de ejecución de la capa ATT.
+
+#define K_P 	0.001f
+#define K_Q 	0.001f
+#define K_R 	0.001f
+
+
+#define LPF_gyro_x	50.0f
+#define LPF_gyro_y 	50.0f
+#define LPF_gyro_z	50.0f
+
+
+#endif /* INC_FLIGHT_MANAGEMENT_CONTROL_FLIGHT_PARAMETERS_H_ */

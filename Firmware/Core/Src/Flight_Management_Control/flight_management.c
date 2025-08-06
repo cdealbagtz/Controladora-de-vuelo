@@ -7,14 +7,23 @@
 
 #include "Flight_Management_Control/flight_management.h"
 
-FlightMode_t mode = 0;
+
 Cmd_s Command_in;
 Cmd_s Command_out;
+Cmd_s rates_Gains;
+
 
 void FlightTaskAttitude(void)
 {
 	//
-	mode = (FlightMode_t)CurrentMode();
+	attitude_parameters_refresh();
+
+	refresh_actual_rates();
+
+	get_flight_mode();
+
+	Command_in = get_commands_rc();
+
 
 	switch(mode)
 	{
@@ -24,7 +33,7 @@ void FlightTaskAttitude(void)
 		break;
 	case RATE_MODE:
 		//
-		//Command_out =
+		Command_out = rates_control_law(Command_in , actual_rates, rates_Gains);
 		break;
 	case MANUAL_MODE:
 		//

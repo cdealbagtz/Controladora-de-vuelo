@@ -33,3 +33,10 @@ uint8_t CurrentMode(void)
 	    }
 
 }
+
+void get_flight_mode(void)
+{
+	//
+	mode = (FlightMode_t)CurrentMode();
+}
+

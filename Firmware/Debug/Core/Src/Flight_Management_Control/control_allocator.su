@@ -1,3 +1,5 @@
 ../Core/Src/Flight_Management_Control/control_allocator.c:13:6:control_allocator	136	static
 ../Core/Src/Flight_Management_Control/control_allocator.c:45:10:reverse_servo_value	16	static
 ../Core/Src/Flight_Management_Control/control_allocator.c:56:14:reverse_servos	48	static
+../Core/Src/Flight_Management_Control/control_allocator.c:79:7:saturation	32	static
+../Core/Src/Flight_Management_Control/control_allocator.c:97:7:get_commands_rc	56	static

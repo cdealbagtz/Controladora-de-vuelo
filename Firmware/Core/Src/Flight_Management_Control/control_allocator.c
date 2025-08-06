@@ -75,3 +75,37 @@ Servo_mgmt_s reverse_servos(Servo_mgmt_s inputs, Servo_reverse_s reverse)
 
 	return uotputs;
 }
+
+float saturation(float signal_in,float sat_min,float sat_max)
+{
+    float signal_out;
+    if (signal_in < sat_min)
+    {
+    	signal_out = sat_min;
+    }
+    else if (signal_in > sat_max)
+    {
+    	signal_out = sat_max;
+    }
+    else
+    {
+    	signal_out = signal_in;
+    }
+    return signal_out;
+}
+
+Cmd_s get_commands_rc(void)
+{
+	//
+	Cmd_s out_norms;
+
+	out_norms.roll 		= ((float)Radio_input.Canal_1 - 1500.0 ) / 500.0 ;
+
+	out_norms.pitch 	= ((float)Radio_input.Canal_2 - 1500.0 ) / 500.0 ;
+
+	out_norms.yaw 		= ((float)Radio_input.Canal_3 - 1500.0 ) / 500.0 ;
+
+	out_norms.thrust 	= ((float)Radio_input.Canal_4 - 1000.0 ) / 1000.0 ;
+
+	return out_norms;
+}

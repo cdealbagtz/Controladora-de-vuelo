@@ -63,7 +63,7 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
  ../Core/Inc/Libraries/PWM.h ../Core/Inc/tim.h \
  ../Core/Inc/Libraries/Lora_LR03.h \
  ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h \
- ../Core/Inc/libNMEA.h
+ ../Core/Inc/libNMEA.h ../Core/Inc/filter.h
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
@@ -138,3 +138,4 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
 ../Core/Inc/Libraries/Lora_LR03.h:
 ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h:
 ../Core/Inc/libNMEA.h:
+../Core/Inc/filter.h:

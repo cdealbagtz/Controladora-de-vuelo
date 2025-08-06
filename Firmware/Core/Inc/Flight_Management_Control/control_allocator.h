@@ -12,6 +12,7 @@
 #include "stm32h7b0xx.h"
 #include "stdbool.h"
 #include "Libraries/PWM.h"
+#include "Libraries/SBUS.h"
 
 typedef struct{
     float roll;
@@ -47,5 +48,9 @@ void control_allocator(Cmd_s control_cmd, Trim_s trims,Servo_reverse_s reverse, 
 uint16_t reverse_servo_value(uint16_t input) ;
 
 Servo_mgmt_s reverse_servos(Servo_mgmt_s inputs, Servo_reverse_s reverse);
+
+float saturation(float signal_in,float sat_min,float sat_max);
+
+Cmd_s get_commands_rc(void);
 
 #endif /* INC_FLIGHT_MANAGEMENT_CONTROL_CONTROL_ALLOCATOR_H_ */

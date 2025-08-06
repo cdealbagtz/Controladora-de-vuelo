@@ -8,7 +8,7 @@
 #include "filter.h"
 #include <math.h>
 
-LPF_s filtrado_lpf(LPF_s *filtro)
+LPF_s filtering_lpf(LPF_s *filtro)
 {
     /* Filtro pasa-bajas:
      *  Solución numérica a

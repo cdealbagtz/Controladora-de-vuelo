@@ -1,5 +1,7 @@
-Core/Src/Flight_Management_Control/control_allocator.o: \
- ../Core/Src/Flight_Management_Control/control_allocator.c \
+Core/Src/Flight_Management_Control/rates_mode.o: \
+ ../Core/Src/Flight_Management_Control/rates_mode.c \
+ ../Core/Inc/Flight_Management_Control/rates_mode.h \
+ ../Core/Inc/Flight_Management_Control/flight_parameters.h \
  ../Core/Inc/Flight_Management_Control/control_allocator.h \
  ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h \
  ../Drivers/CMSIS/Include/core_cm7.h \
@@ -39,7 +41,10 @@ Core/Src/Flight_Management_Control/control_allocator.o: \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h \
  ../Core/Inc/tim.h ../Core/Inc/main.h ../Core/Inc/Libraries/SBUS.h \
- ../Core/Inc/usart.h ../Core/Inc/Flight_Management_Control/servo_mixers.h
+ ../Core/Inc/usart.h ../Core/Inc/Flight_Management_Control/sensors.h \
+ ../Core/Inc/Libraries/BNO050.h ../Core/Inc/filter.h
+../Core/Inc/Flight_Management_Control/rates_mode.h:
+../Core/Inc/Flight_Management_Control/flight_parameters.h:
 ../Core/Inc/Flight_Management_Control/control_allocator.h:
 ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h:
 ../Drivers/CMSIS/Include/core_cm7.h:
@@ -82,4 +87,6 @@ Core/Src/Flight_Management_Control/control_allocator.o: \
 ../Core/Inc/main.h:
 ../Core/Inc/Libraries/SBUS.h:
 ../Core/Inc/usart.h:
-../Core/Inc/Flight_Management_Control/servo_mixers.h:
+../Core/Inc/Flight_Management_Control/sensors.h:
+../Core/Inc/Libraries/BNO050.h:
+../Core/Inc/filter.h:

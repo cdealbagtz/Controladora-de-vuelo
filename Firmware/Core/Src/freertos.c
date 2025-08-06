@@ -33,6 +33,7 @@
 #include "Libraries/PWM.h"
 #include "Libraries/Lora_LR03.h"
 #include "libNMEA.h"
+#include "filter.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -141,6 +142,7 @@ void fTask_1ms(void const * argument)
 {
   /* USER CODE BEGIN fTask_1ms */
   /* Infinite loop */
+	LPF_gyro_filter_init();
   for(;;)
   {
 	TimeOn_Counter++;

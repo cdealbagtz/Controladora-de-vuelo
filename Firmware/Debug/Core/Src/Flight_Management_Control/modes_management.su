@@ -1,1 +1,2 @@
 ../Core/Src/Flight_Management_Control/modes_management.c:12:9:CurrentMode	16	static
+../Core/Src/Flight_Management_Control/modes_management.c:37:6:get_flight_mode	8	static
