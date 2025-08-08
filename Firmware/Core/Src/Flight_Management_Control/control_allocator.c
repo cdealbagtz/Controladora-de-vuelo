@@ -8,7 +8,61 @@
 #include "Flight_Management_Control/control_allocator.h"
 #include "Flight_Management_Control/servo_mixers.h"
 
+Cmd_s Command_out ;
+Cmd_s Control_out ;
+float commands_noise[4];
+LPF_s commands_fltrs[4] ;
+float cmds_out[4];
+float COF_cmds[4];
 
+void LPF_cmd_filter_init(void)
+{
+	//
+	COF_cmds[0] = CutOffFreq_cmd_ail;
+	COF_cmds[1] = CutOffFreq_cmd_ele;
+	COF_cmds[2] = CutOffFreq_cmd_rud;
+	COF_cmds[3] = CutOffFreq_cmd_thr;
+	for(int idx = 0; idx < 4; idx++)
+	{
+		//
+		commands_fltrs[idx].inicio 		= 1;
+		commands_fltrs[idx].f_cutoff 	= COF_cmds[idx];
+		commands_fltrs[idx].t_sample 	= SAMPLE_ATT ;
+		commands_fltrs[idx].Y_0 		= 0.0f ;
+		commands_fltrs[idx].U_n 		= 0.0f ;
+		commands_fltrs[idx].Y_n 		= 0.0f ;
+		commands_fltrs[idx].Y_nm1 		= 0.0f ;
+		commands_fltrs[idx].U_nm1 		= 0.0f ;
+		commands_fltrs[idx].t_n 		= 0.0f ;
+		commands_fltrs[idx].t_nm1 		= 0.0f ;
+	}
+}
+
+void command_filtering(void)
+{
+	//
+	Cmd_s commands ;
+
+	commands_noise[0] = Command_out.roll   ;
+	commands_noise[1] = Command_out.pitch  ;
+	commands_noise[2] = Command_out.yaw    ;
+	commands_noise[3] = Command_out.thrust ;
+
+	for(int idx = 0; idx < 4; idx++)
+	{
+		//
+		commands_fltrs[idx].U_n 	= commands_noise[idx];
+		commands_fltrs[idx] 		= filtering_lpf(&commands_fltrs);
+
+	}
+	//
+	commands.roll 		= commands_fltrs[0].Y_n ;
+	commands.pitch 	= commands_fltrs[1].Y_n ;
+	commands.yaw 		= commands_fltrs[2].Y_n ;
+	commands.thrust 	= commands_fltrs[3].Y_n ;
+
+
+}
 
 void control_allocator(Cmd_s control_cmd, Trim_s trims,Servo_reverse_s reverse, uint8_t frame_type)
 {

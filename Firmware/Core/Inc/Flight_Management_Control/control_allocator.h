@@ -8,11 +8,17 @@
 #ifndef INC_FLIGHT_MANAGEMENT_CONTROL_CONTROL_ALLOCATOR_H_
 #define INC_FLIGHT_MANAGEMENT_CONTROL_CONTROL_ALLOCATOR_H_
 
+
+
 //Incluye stdint, etc
 #include "stm32h7b0xx.h"
 #include "stdbool.h"
 #include "Libraries/PWM.h"
 #include "Libraries/SBUS.h"
+
+#include "filter.h"
+
+#include "Flight_Management_Control/flight_parameters.h"
 
 typedef struct{
     float roll;
@@ -42,6 +48,10 @@ typedef struct {
     bool S[10]; // S[0] a S[9] para los 10 servos (equivalente a S_1 a S_10)
 } Servo_reverse_s;
 
+extern Cmd_s Command_out ;
+extern Cmd_s Control_out ;
+
+void command_filtering(void);
 
 void control_allocator(Cmd_s control_cmd, Trim_s trims,Servo_reverse_s reverse, uint8_t frame_type);
 
@@ -52,5 +62,7 @@ Servo_mgmt_s reverse_servos(Servo_mgmt_s inputs, Servo_reverse_s reverse);
 float saturation(float signal_in,float sat_min,float sat_max);
 
 Cmd_s get_commands_rc(void);
+
+
 
 #endif /* INC_FLIGHT_MANAGEMENT_CONTROL_CONTROL_ALLOCATOR_H_ */

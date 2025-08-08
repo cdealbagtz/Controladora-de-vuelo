@@ -43,9 +43,9 @@ Core/Src/Flight_Management_Control/parameters_manager.o: \
  ../Core/Inc/usart.h ../Core/Inc/main.h \
  ../Core/Inc/Flight_Management_Control/control_allocator.h \
  ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h \
- ../Core/Inc/Libraries/PWM.h ../Core/Inc/tim.h \
+ ../Core/Inc/Libraries/PWM.h ../Core/Inc/tim.h ../Core/Inc/filter.h \
  ../Core/Inc/Flight_Management_Control/sensors.h \
- ../Core/Inc/Libraries/BNO050.h ../Core/Inc/filter.h \
+ ../Core/Inc/Libraries/BNO050.h \
  ../Core/Inc/Flight_Management_Control/rates_mode.h
 ../Core/Inc/Flight_Management_Control/parameters_manager.h:
 ../Core/Inc/Flight_Management_Control/flight_parameters.h:
@@ -93,7 +93,7 @@ Core/Src/Flight_Management_Control/parameters_manager.o: \
 ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h:
 ../Core/Inc/Libraries/PWM.h:
 ../Core/Inc/tim.h:
+../Core/Inc/filter.h:
 ../Core/Inc/Flight_Management_Control/sensors.h:
 ../Core/Inc/Libraries/BNO050.h:
-../Core/Inc/filter.h:
 ../Core/Inc/Flight_Management_Control/rates_mode.h:

@@ -27,12 +27,12 @@ typedef struct {
 #define PWM_MIN 1000    // μs (posición baja)
 #define PWM_MID 1500    // μs (posición media)
 #define PWM_MAX 2000    // μs (posición alta)
-#define PWM_DEADZONE 50 // μs (zona muerta para evitar ruido)
+#define PWM_DEADZONE 250 // μs (zona muerta para evitar ruido)
 
 
 extern FlightMode_t mode ;
 
-uint8_t CurrentMode(void);
+uint8_t rc_three_steps_CurrentMode(void);
 
 void get_flight_mode(void);
 

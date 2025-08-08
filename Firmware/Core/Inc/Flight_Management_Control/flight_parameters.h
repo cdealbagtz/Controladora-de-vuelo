@@ -21,5 +21,10 @@
 #define LPF_gyro_y 	50.0f
 #define LPF_gyro_z	50.0f
 
+#define CutOffFreq_cmd_ail	50.0f //Frecuancia de conrte comando alerones.
+#define CutOffFreq_cmd_ele	50.0f //Frecuancia de conrte comando alerones.
+#define CutOffFreq_cmd_rud	50.0f //Frecuancia de conrte comando alerones.
+#define CutOffFreq_cmd_thr	50.0f //Frecuancia de conrte comando alerones.
+
 
 #endif /* INC_FLIGHT_MANAGEMENT_CONTROL_FLIGHT_PARAMETERS_H_ */

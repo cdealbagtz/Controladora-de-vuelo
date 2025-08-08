@@ -9,8 +9,9 @@
 
 
 Cmd_s Command_in;
-Cmd_s Command_out;
+
 Cmd_s rates_Gains;
+
 
 
 void FlightTaskAttitude(void)
@@ -41,10 +42,14 @@ void FlightTaskAttitude(void)
 		break;
 	default:
 		//
+		Command_out = Command_in;
 		break;
 	}
 
+	command_filtering();
+
 }
+
 
 void AttitudeHold(void)
 {

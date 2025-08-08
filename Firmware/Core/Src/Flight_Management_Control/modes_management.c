@@ -10,7 +10,7 @@
 
 FlightMode_t mode ;
 
-uint8_t CurrentMode(void)
+uint8_t rc_three_steps_CurrentMode(void)
 {
 	//
 	uint16_t pwm_value = Radio_input.Canal_5;
@@ -19,7 +19,7 @@ uint8_t CurrentMode(void)
 	{
 	        return MANUAL_MODE;
 	 }
-	else if (pwm_value > (PWM_MID + PWM_DEADZONE) && pwm_value < (PWM_MAX - PWM_DEADZONE))
+	else if (pwm_value < (PWM_MID + PWM_DEADZONE) && pwm_value > (PWM_MAX - PWM_DEADZONE))
 	 {
 	        return RATE_MODE;
 	  }
@@ -38,6 +38,6 @@ uint8_t CurrentMode(void)
 void get_flight_mode(void)
 {
 	//
-	mode = (FlightMode_t)CurrentMode();
+	mode = (FlightMode_t)rc_three_steps_CurrentMode();
 }
 

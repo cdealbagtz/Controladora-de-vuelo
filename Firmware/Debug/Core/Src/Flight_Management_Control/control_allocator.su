@@ -1,5 +1,7 @@
-../Core/Src/Flight_Management_Control/control_allocator.c:13:6:control_allocator	136	static
-../Core/Src/Flight_Management_Control/control_allocator.c:45:10:reverse_servo_value	16	static
-../Core/Src/Flight_Management_Control/control_allocator.c:56:14:reverse_servos	48	static
-../Core/Src/Flight_Management_Control/control_allocator.c:79:7:saturation	32	static
-../Core/Src/Flight_Management_Control/control_allocator.c:97:7:get_commands_rc	56	static
+../Core/Src/Flight_Management_Control/control_allocator.c:18:6:LPF_cmd_filter_init	16	static
+../Core/Src/Flight_Management_Control/control_allocator.c:41:6:command_filtering	88	static
+../Core/Src/Flight_Management_Control/control_allocator.c:67:6:control_allocator	136	static
+../Core/Src/Flight_Management_Control/control_allocator.c:99:10:reverse_servo_value	16	static
+../Core/Src/Flight_Management_Control/control_allocator.c:110:14:reverse_servos	48	static
+../Core/Src/Flight_Management_Control/control_allocator.c:133:7:saturation	32	static
+../Core/Src/Flight_Management_Control/control_allocator.c:151:7:get_commands_rc	56	static
