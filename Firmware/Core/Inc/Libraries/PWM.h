@@ -11,20 +11,12 @@
 #include "stm32h7xx.h"
 #include "tim.h"
 
-typedef struct{
-	uint16_t Canal_1; // 1000 a 2000
-	uint16_t Canal_2; // 1000 a 2000
-	uint16_t Canal_3; // 1000 a 2000
-	uint16_t Canal_4; // 1000 a 2000
-	uint16_t Canal_5; // 1000 a 2000
-	uint16_t Canal_6; // 1000 a 2000
-	uint16_t Canal_7; // 1000 a 2000
-	uint16_t Canal_8; // 1000 a 2000
-	uint16_t Canal_9; // 1000 a 2000
-	uint16_t Canal_10;// 1000 a 2000
-}PWM_Output_t;
+// Estructuras modificadas con arrays
+typedef struct {
+    uint16_t S[10]; // S[0] a S[9] para los 10 servos (S_1 a S_10)
+} Servo_mgmt_s;
 
-extern PWM_Output_t PWM_Output;
+extern Servo_mgmt_s PWM_Output;
 
 void PWM_Assing(void);
 

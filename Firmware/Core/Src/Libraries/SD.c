@@ -192,16 +192,16 @@ void SD_blackbox_refresh(void){
 	blackbox_data.Interruptor_1 = Radio_input.Interruptor_1;
 	blackbox_data.Interruptor_2 = Radio_input.Interruptor_2;
 
-	blackbox_data.OUT1  = PWM_Output.Canal_1;
-	blackbox_data.OUT2  = PWM_Output.Canal_2;
-	blackbox_data.OUT3  = PWM_Output.Canal_3;
-	blackbox_data.OUT4  = PWM_Output.Canal_4;
-	blackbox_data.OUT5  = PWM_Output.Canal_5;
-	blackbox_data.OUT6  = PWM_Output.Canal_6;
-	blackbox_data.OUT7  = PWM_Output.Canal_7;
-	blackbox_data.OUT8  = PWM_Output.Canal_8;
-	blackbox_data.OUT9  = PWM_Output.Canal_9;
-	blackbox_data.OUT10 = PWM_Output.Canal_10;
+//	blackbox_data.OUT1  = PWM_Output.Canal_1;
+//	blackbox_data.OUT2  = PWM_Output.Canal_2;
+//	blackbox_data.OUT3  = PWM_Output.Canal_3;
+//	blackbox_data.OUT4  = PWM_Output.Canal_4;
+//	blackbox_data.OUT5  = PWM_Output.Canal_5;
+//	blackbox_data.OUT6  = PWM_Output.Canal_6;
+//	blackbox_data.OUT7  = PWM_Output.Canal_7;
+//	blackbox_data.OUT8  = PWM_Output.Canal_8;
+//	blackbox_data.OUT9  = PWM_Output.Canal_9;
+//	blackbox_data.OUT10 = PWM_Output.Canal_10;
 }
 
 void SD_blackboxNewFile(void){

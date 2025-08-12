@@ -63,7 +63,13 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
  ../Core/Inc/Libraries/PWM.h ../Core/Inc/tim.h \
  ../Core/Inc/Libraries/Lora_LR03.h \
  ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h \
- ../Core/Inc/libNMEA.h
+ ../Core/Inc/libNMEA.h ../Core/Inc/filter.h \
+ ../Core/Inc/Flight_Management_Control/flight_management.h \
+ ../Core/Inc/Flight_Management_Control/flight_parameters.h \
+ ../Core/Inc/Flight_Management_Control/modes_management.h \
+ ../Core/Inc/Flight_Management_Control/control_allocator.h \
+ ../Core/Inc/Flight_Management_Control/sensors.h \
+ ../Core/Inc/Flight_Management_Control/rates_mode.h
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
@@ -138,3 +144,10 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
 ../Core/Inc/Libraries/Lora_LR03.h:
 ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h:
 ../Core/Inc/libNMEA.h:
+../Core/Inc/filter.h:
+../Core/Inc/Flight_Management_Control/flight_management.h:
+../Core/Inc/Flight_Management_Control/flight_parameters.h:
+../Core/Inc/Flight_Management_Control/modes_management.h:
+../Core/Inc/Flight_Management_Control/control_allocator.h:
+../Core/Inc/Flight_Management_Control/sensors.h:
+../Core/Inc/Flight_Management_Control/rates_mode.h:

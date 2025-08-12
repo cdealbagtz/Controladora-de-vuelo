@@ -33,7 +33,11 @@
 #include "Libraries/PWM.h"
 #include "Libraries/Lora_LR03.h"
 #include "libNMEA.h"
+#include "filter.h"
 /* USER CODE END Includes */
+#include "Flight_Management_Control/flight_management.h"
+#include "Flight_Management_Control/control_allocator.h"
+
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
@@ -141,6 +145,9 @@ void fTask_1ms(void const * argument)
 {
   /* USER CODE BEGIN fTask_1ms */
   /* Infinite loop */
+	LPF_gyro_filter_init();
+	LPF_cmd_filter_init();
+
   for(;;)
   {
 	TimeOn_Counter++;
@@ -168,7 +175,9 @@ void fTask_10ms(void const * argument)
 	BNO_Tasks();
 	BMP280_calculate();
 
-	PWM_Assing();
+	FlightTaskAttitude();
+
+	PWM_Assign();
 	SD_blackbox_write();
     osDelay(10);
   }

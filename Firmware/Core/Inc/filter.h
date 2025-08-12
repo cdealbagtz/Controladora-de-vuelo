@@ -23,6 +23,6 @@ typedef struct {
 } LPF_s;
 
 // Prototipos
-LPF_s filtrado_lpf(LPF_s *filtro);
+LPF_s filtering_lpf(LPF_s *filtro);
 
 #endif /* INC_FILTER_H_ */
