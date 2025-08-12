@@ -147,6 +147,7 @@ void fTask_1ms(void const * argument)
   /* Infinite loop */
 	LPF_gyro_filter_init();
 	LPF_cmd_filter_init();
+
   for(;;)
   {
 	TimeOn_Counter++;

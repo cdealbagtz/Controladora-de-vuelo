@@ -12,6 +12,8 @@
 
 #define SAMPLE_ATT 0.005 	// Delta Tiempo de ejecución de la capa ATT.
 
+#define CONFIGURATION 0 //
+
 #define K_P 	0.001f
 #define K_Q 	0.001f
 #define K_R 	0.001f

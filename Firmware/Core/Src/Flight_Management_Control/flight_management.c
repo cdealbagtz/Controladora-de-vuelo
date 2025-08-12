@@ -48,6 +48,12 @@ void FlightTaskAttitude(void)
 
 	command_filtering();
 
+	get_actual_trims();
+
+	init_Reverse_Servos(&Reverse);
+
+	control_allocator(Commands , Trims );
+
 }
 
 

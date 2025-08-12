@@ -8,7 +8,7 @@
 
 
 
-Servo_mgmt_s FIX_WING_MIXER(Cmd_s control_cmd, Trim_s trims)
+Servo_mgmt_s FIX_WING_MIXER(Cmd_s control_cmd, Cmd_s trims)
 {
 	//
 	Servo_mgmt_s mixer_output;
@@ -27,7 +27,7 @@ Servo_mgmt_s FIX_WING_MIXER(Cmd_s control_cmd, Trim_s trims)
 	return mixer_output;
 }
 
-Servo_mgmt_s FLYING_WING_MIXER(Cmd_s control_cmd, Trim_s trims)
+Servo_mgmt_s FLYING_WING_MIXER(Cmd_s control_cmd, Cmd_s trims)
 {
 	//
 	Servo_mgmt_s mixer_output;
@@ -46,7 +46,7 @@ Servo_mgmt_s FLYING_WING_MIXER(Cmd_s control_cmd, Trim_s trims)
 	return mixer_output;
 }
 
-Servo_mgmt_s TANDEM_WING_MIXER(Cmd_s control_cmd, Trim_s trims)
+Servo_mgmt_s TANDEM_WING_MIXER(Cmd_s control_cmd, Cmd_s trims)
 {
 	//
 	Servo_mgmt_s mixer_output;
@@ -65,7 +65,7 @@ Servo_mgmt_s TANDEM_WING_MIXER(Cmd_s control_cmd, Trim_s trims)
 	return mixer_output;
 }
 
-Servo_mgmt_s CUSTOM_FRAME_MIXER(Cmd_s control_cmd, Trim_s trims)
+Servo_mgmt_s CUSTOM_FRAME_MIXER(Cmd_s control_cmd, Cmd_s trims)
 {
 	//
 	Servo_mgmt_s mixer_output;

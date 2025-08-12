@@ -8,12 +8,17 @@
 #include "Flight_Management_Control/control_allocator.h"
 #include "Flight_Management_Control/servo_mixers.h"
 
+FRAMES_e Frame ;
 Cmd_s Command_out ;
 Cmd_s Control_out ;
-float commands_noise[4];
+Cmd_s Trims ;
+Cmd_s Commands ;
+float commands_noise[4] ;
 LPF_s commands_fltrs[4] ;
 float cmds_out[4];
 float COF_cmds[4];
+Servo_reverse_s Reverse ;
+
 
 void LPF_cmd_filter_init(void)
 {
@@ -41,8 +46,6 @@ void LPF_cmd_filter_init(void)
 void command_filtering(void)
 {
 	//
-	Cmd_s commands ;
-
 	commands_noise[0] = Command_out.roll   ;
 	commands_noise[1] = Command_out.pitch  ;
 	commands_noise[2] = Command_out.yaw    ;
@@ -52,35 +55,37 @@ void command_filtering(void)
 	{
 		//
 		commands_fltrs[idx].U_n 	= commands_noise[idx];
-		commands_fltrs[idx] 		= filtering_lpf(&commands_fltrs);
+		commands_fltrs[idx] 		= filtering_lpf(&commands_fltrs[idx]);
 
 	}
 	//
-	commands.roll 		= commands_fltrs[0].Y_n ;
-	commands.pitch 	= commands_fltrs[1].Y_n ;
-	commands.yaw 		= commands_fltrs[2].Y_n ;
-	commands.thrust 	= commands_fltrs[3].Y_n ;
+	Commands.roll 		= 	commands_fltrs[0].Y_n ;
+	Commands.pitch 		= 	commands_fltrs[1].Y_n ;
+	Commands.yaw 		= 	commands_fltrs[2].Y_n ;
+	Commands.thrust 	= 	commands_fltrs[3].Y_n ;
 
 
 }
 
-void control_allocator(Cmd_s control_cmd, Trim_s trims,Servo_reverse_s reverse, uint8_t frame_type)
+void control_allocator(Cmd_s control_cmd, Cmd_s trims )
 {
 	//
 	Servo_mgmt_s servo_outs;
 
+	Frame = CONFIGURATION;
 
-	switch(frame_type){
-		case 0:
+
+	switch(Frame){
+		case FIX_WING:
 			servo_outs = FIX_WING_MIXER(control_cmd, trims)     ;
 			break;
-		case 1:
+		case FLYING_WING:
 			servo_outs = FLYING_WING_MIXER(control_cmd, trims)  ;
 			break;
-		case 2:
+		case TANDEM_WING:
 			servo_outs = TANDEM_WING_MIXER(control_cmd, trims)  ;
 			break;
-		case 3:
+		case CUSTOM_FRAME:
 			servo_outs = CUSTOM_FRAME_MIXER(control_cmd, trims) ;
 			break;
 		default:
@@ -93,7 +98,7 @@ void control_allocator(Cmd_s control_cmd, Trim_s trims,Servo_reverse_s reverse, 
 
 		}
 
-	PWM_Output = reverse_servos( servo_outs ,reverse);
+	PWM_Output = reverse_servos(servo_outs );
 }
 
 uint16_t reverse_servo_value(uint16_t input)
@@ -107,7 +112,7 @@ uint16_t reverse_servo_value(uint16_t input)
 }
 
 
-Servo_mgmt_s reverse_servos(Servo_mgmt_s inputs, Servo_reverse_s reverse)
+Servo_mgmt_s reverse_servos(Servo_mgmt_s inputs )
 {
 	//
 	Servo_mgmt_s uotputs;
@@ -115,7 +120,7 @@ Servo_mgmt_s reverse_servos(Servo_mgmt_s inputs, Servo_reverse_s reverse)
 	for(int i = 0; i < 10; i++)
 	{
 		//
-		if (reverse.S[i])
+		if (Reverse.S[i])
 		{
 			//
 			uotputs.S[i] = reverse_servo_value(inputs.S[i]);
@@ -162,4 +167,23 @@ Cmd_s get_commands_rc(void)
 	out_norms.thrust 	= ((float)Radio_input.Canal_4 - 1000.0 ) / 1000.0 ;
 
 	return out_norms;
+}
+
+void get_actual_trims(void)
+{
+	//
+	Trims.roll 		=  (float)Radio_input.Canal_10 - 1500.0 ;
+	Trims.pitch 	=  (float)Radio_input.Canal_11 - 1500.0 ;
+	Trims.yaw 		=  (float)Radio_input.Canal_12 - 1500.0 ;
+	Trims.thrust 	=  0.0f ;
+}
+
+
+void init_Reverse_Servos(Servo_reverse_s *servos)
+{
+    for (int i = 0; i < 10; i++)
+    {
+    	//
+        servos->S[i] = false;
+    }
 }
