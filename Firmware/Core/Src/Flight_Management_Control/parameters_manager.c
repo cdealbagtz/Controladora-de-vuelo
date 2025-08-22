@@ -12,9 +12,9 @@
 void attitude_parameters_refresh(void)
 {
 	//
-	rates_Gains.roll  = K_P * 100;
-	rates_Gains.pitch = K_Q * 100;
-	rates_Gains.yaw   = K_R * 100;
+	rates_Gains.roll  = K_P ;
+	rates_Gains.pitch = K_Q ;
+	rates_Gains.yaw   = K_R ;
 
 }
 

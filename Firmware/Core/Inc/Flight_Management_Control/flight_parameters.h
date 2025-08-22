@@ -10,23 +10,23 @@
 
 #include <stdio.h>
 
-#define SAMPLE_ATT 0.005 	// Delta Tiempo de ejecución de la capa ATT.
+#define SAMPLE_ATT 0.010f 	// Delta Tiempo de ejecución de la capa ATT.
 
 #define CONFIGURATION 0 //
 
-#define K_P 	0.001f
-#define K_Q 	0.001f
-#define K_R 	0.001f
+#define K_P 	0.005f
+#define K_Q 	0.005f
+#define K_R 	0.005f
 
 
 #define LPF_gyro_x	50.0f
 #define LPF_gyro_y 	50.0f
 #define LPF_gyro_z	50.0f
 
-#define CutOffFreq_cmd_ail	50.0f //Frecuancia de conrte comando alerones.
-#define CutOffFreq_cmd_ele	50.0f //Frecuancia de conrte comando alerones.
-#define CutOffFreq_cmd_rud	50.0f //Frecuancia de conrte comando alerones.
-#define CutOffFreq_cmd_thr	50.0f //Frecuancia de conrte comando alerones.
+#define CutOffFreq_cmd_ail	10.0f //Frecuancia de conrte comando alerones.
+#define CutOffFreq_cmd_ele	10.0f //Frecuancia de conrte comando alerones.
+#define CutOffFreq_cmd_rud	10.0f //Frecuancia de conrte comando alerones.
+#define CutOffFreq_cmd_thr	10.0f //Frecuancia de conrte comando alerones.
 
 
 #endif /* INC_FLIGHT_MANAGEMENT_CONTROL_FLIGHT_PARAMETERS_H_ */

@@ -35,6 +35,7 @@ void FlightTaskAttitude(void)
 	case RATE_MODE:
 		//
 		Command_out = rates_control_law(Command_in , actual_rates, rates_Gains);
+
 		break;
 	case MANUAL_MODE:
 		//

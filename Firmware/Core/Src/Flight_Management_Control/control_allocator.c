@@ -18,6 +18,7 @@ LPF_s commands_fltrs[4] ;
 float cmds_out[4];
 float COF_cmds[4];
 Servo_reverse_s Reverse ;
+Servo_mgmt_s servo_outs ;
 
 
 void LPF_cmd_filter_init(void)
@@ -70,8 +71,6 @@ void command_filtering(void)
 void control_allocator(Cmd_s control_cmd, Cmd_s trims )
 {
 	//
-	Servo_mgmt_s servo_outs;
-
 	Frame = CONFIGURATION;
 
 
