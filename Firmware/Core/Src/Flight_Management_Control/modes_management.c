@@ -19,7 +19,7 @@ uint8_t rc_three_steps_CurrentMode(void)
 	{
 	        return MANUAL_MODE;
 	 }
-	else if (pwm_value < (PWM_MID + PWM_DEADZONE) && pwm_value > (PWM_MAX - PWM_DEADZONE))
+	else if (pwm_value < 1750 && pwm_value > 1350)
 	 {
 	        return RATE_MODE;
 	  }

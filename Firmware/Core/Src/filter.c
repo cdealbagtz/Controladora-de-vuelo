@@ -39,7 +39,7 @@ LPF_s filtering_lpf(LPF_s *filtro)
 
     const float u_n = filtro->U_n;
     const float h = filtro->t_sample;
-    const float h2 = h * 0.5f;
+    const float h2 = h * .50f;
 
     // Runge-Kutta 4to orden
     const float k1 = w_0 * (u_n - y_n);

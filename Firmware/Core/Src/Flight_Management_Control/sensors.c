@@ -76,8 +76,9 @@ void refresh_actual_rates(void)
 	{
 		//
 		gyros_fltrs[idx].U_n = imu_gyr[idx];
-
-		gyros_fltrs[idx] = filtering_lpf(&gyros_fltrs[idx]);
+		// El filtro no trabaja por ejfectos de prueba
+		//gyros_fltrs[idx] = filtering_lpf(&gyros_fltrs[idx]);
+		gyros_fltrs[idx].Y_n = imu_gyr[idx];
 	}
 
 	actual_rates.roll  = gyros_fltrs[0].Y_n ;
