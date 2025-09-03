@@ -145,8 +145,6 @@ void fTask_1ms(void const * argument)
 {
   /* USER CODE BEGIN fTask_1ms */
   /* Infinite loop */
-	LPF_gyro_filter_init();
-	LPF_cmd_filter_init();
 
   for(;;)
   {
