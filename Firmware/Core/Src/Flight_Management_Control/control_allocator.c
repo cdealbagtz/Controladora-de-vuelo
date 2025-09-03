@@ -15,40 +15,12 @@ Cmd_s Trims ;
 Cmd_s Commands ;
 float commands_noise[4] ;
 float ouput_fltr[4];
-LPF_s commands_fltrs[4] ;
 float cmds_out[4];
 float COF_cmds[4];
 Servo_reverse_s Reverse ;
 Servo_mgmt_s servo_outs ;
 FilterState filters[4] = {{0.0f}, {0.0f}, {0.0f}, {0.0f}};
 
-
-void LPF_cmd_filter_init(void)
-{
-	//
-	COF_cmds[0] = CutOffFreq_cmd_ail;
-	COF_cmds[1] = CutOffFreq_cmd_ele;
-	COF_cmds[2] = CutOffFreq_cmd_rud;
-	COF_cmds[3] = CutOffFreq_cmd_thr;
-
-	// Arreglo de filtros (uno por señal)
-
-
-	for(int idx = 0; idx < 4; idx++)
-	{
-		//
-		commands_fltrs[idx].inicio 		= 1;
-		commands_fltrs[idx].f_cutoff 	= COF_cmds[idx];
-		commands_fltrs[idx].t_sample 	= SAMPLE_ATT ;
-		commands_fltrs[idx].Y_0 		= 0.0f ;
-		commands_fltrs[idx].U_n 		= 0.0f ;
-		commands_fltrs[idx].Y_n 		= 0.0f ;
-		commands_fltrs[idx].Y_nm1 		= 0.0f ;
-		commands_fltrs[idx].U_nm1 		= 0.0f ;
-		commands_fltrs[idx].t_n 		= 0.0f ;
-		commands_fltrs[idx].t_nm1 		= 0.0f ;
-	}
-}
 
 void command_filtering(void)
 {
@@ -61,17 +33,13 @@ void command_filtering(void)
 	for(int idx = 0; idx < 4; idx++)
 	{
 		//
-		commands_fltrs[idx].U_n 	= commands_noise[idx];
-		commands_fltrs[idx] 		= filtering_lpf(&commands_fltrs[idx]);
-
 		ouput_fltr[idx] = filter_step(&filters[idx], commands_noise[idx],COF_cmds[idx],SAMPLE_ATT) ;
-
 	}
 	//
-	Commands.roll 		= 	commands_fltrs[0].Y_n ;
-	Commands.pitch 		= 	commands_fltrs[1].Y_n ;
-	Commands.yaw 		= 	commands_fltrs[2].Y_n ;
-	Commands.thrust 	= 	commands_fltrs[3].Y_n ;
+	Commands.roll 		= 	ouput_fltr[0] ;
+	Commands.pitch 		= 	ouput_fltr[1] ;
+	Commands.yaw 		= 	ouput_fltr[2] ;
+	Commands.thrust 	= 	ouput_fltr[3] ;
 
 
 }
