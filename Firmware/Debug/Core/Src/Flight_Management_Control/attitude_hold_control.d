@@ -1,11 +1,8 @@
-Core/Src/Flight_Management_Control/parameters_manager.o: \
- ../Core/Src/Flight_Management_Control/parameters_manager.c \
- ../Core/Inc/Flight_Management_Control/parameters_manager.h \
+Core/Src/Flight_Management_Control/attitude_hold_control.o: \
+ ../Core/Src/Flight_Management_Control/attitude_hold_control.c \
+ ../Core/Inc/Flight_Management_Control/attitude_hold_control.h \
  ../Core/Inc/Flight_Management_Control/flight_parameters.h \
- ../Core/Inc/Flight_Management_Control/flight_management.h \
- ../Core/Inc/Flight_Management_Control/modes_management.h \
- ../Core/Inc/Libraries/SBUS.h \
- ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h \
+ ../Core/Inc/Flight_Management_Control/control_allocator.h \
  ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h \
  ../Drivers/CMSIS/Include/core_cm7.h \
  ../Drivers/CMSIS/Include/cmsis_version.h \
@@ -13,6 +10,9 @@ Core/Src/Flight_Management_Control/parameters_manager.o: \
  ../Drivers/CMSIS/Include/cmsis_gcc.h \
  ../Drivers/CMSIS/Include/mpu_armv7.h \
  ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/system_stm32h7xx.h \
+ ../Core/Inc/Libraries/PWM.h \
+ ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h \
+ ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../Core/Inc/stm32h7xx_hal_conf.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h \
@@ -40,21 +40,14 @@ Core/Src/Flight_Management_Control/parameters_manager.o: \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h \
- ../Core/Inc/usart.h ../Core/Inc/main.h \
- ../Core/Inc/Flight_Management_Control/control_allocator.h \
- ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h \
- ../Core/Inc/Libraries/PWM.h ../Core/Inc/tim.h ../Core/Inc/filter.h \
+ ../Core/Inc/tim.h ../Core/Inc/main.h ../Core/Inc/Libraries/SBUS.h \
+ ../Core/Inc/usart.h ../Core/Inc/filter.h \
  ../Core/Inc/Flight_Management_Control/sensors.h \
  ../Core/Inc/Libraries/BNO050.h \
- ../Core/Inc/Flight_Management_Control/rates_mode.h \
- ../Core/Inc/Flight_Management_Control/attitude_hold_control.h \
  ../Core/Inc/Flight_Management_Control/pid.h
-../Core/Inc/Flight_Management_Control/parameters_manager.h:
+../Core/Inc/Flight_Management_Control/attitude_hold_control.h:
 ../Core/Inc/Flight_Management_Control/flight_parameters.h:
-../Core/Inc/Flight_Management_Control/flight_management.h:
-../Core/Inc/Flight_Management_Control/modes_management.h:
-../Core/Inc/Libraries/SBUS.h:
-../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h:
+../Core/Inc/Flight_Management_Control/control_allocator.h:
 ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h:
 ../Drivers/CMSIS/Include/core_cm7.h:
 ../Drivers/CMSIS/Include/cmsis_version.h:
@@ -62,6 +55,9 @@ Core/Src/Flight_Management_Control/parameters_manager.o: \
 ../Drivers/CMSIS/Include/cmsis_gcc.h:
 ../Drivers/CMSIS/Include/mpu_armv7.h:
 ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/system_stm32h7xx.h:
+../Core/Inc/Libraries/PWM.h:
+../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h:
+../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
 ../Core/Inc/stm32h7xx_hal_conf.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h:
@@ -89,15 +85,11 @@ Core/Src/Flight_Management_Control/parameters_manager.o: \
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h:
-../Core/Inc/usart.h:
-../Core/Inc/main.h:
-../Core/Inc/Flight_Management_Control/control_allocator.h:
-../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h:
-../Core/Inc/Libraries/PWM.h:
 ../Core/Inc/tim.h:
+../Core/Inc/main.h:
+../Core/Inc/Libraries/SBUS.h:
+../Core/Inc/usart.h:
 ../Core/Inc/filter.h:
 ../Core/Inc/Flight_Management_Control/sensors.h:
 ../Core/Inc/Libraries/BNO050.h:
-../Core/Inc/Flight_Management_Control/rates_mode.h:
-../Core/Inc/Flight_Management_Control/attitude_hold_control.h:
 ../Core/Inc/Flight_Management_Control/pid.h:

@@ -15,11 +15,15 @@
 
 
 #include "Flight_Management_Control/rates_mode.h"
-
+#include "Flight_Management_Control/attitude_hold_control.h"
 
 extern Cmd_s rates_Gains;
 
+void FlightControl_inits(void);
+
 void FlightTaskAttitude(void);
+
+void FlightTaskARSP(void);
 
 void AttitudeHold(void);
 

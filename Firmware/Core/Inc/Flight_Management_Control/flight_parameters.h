@@ -28,5 +28,13 @@
 #define CutOffFreq_cmd_rud	10.0f //Frecuancia de conrte comando alerones.
 #define CutOffFreq_cmd_thr	10.0f //Frecuancia de conrte comando alerones.
 
+#define pitch_sat 30.0f
+#define roll_sat  40.0f
+
+#define KP_roll  0.00000010f
+#define KI_roll  0.00000000f
+#define KP_pitch 0.01f
+#define KI_pitch 0.0000010f
+
 
 #endif /* INC_FLIGHT_MANAGEMENT_CONTROL_FLIGHT_PARAMETERS_H_ */

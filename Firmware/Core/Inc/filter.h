@@ -8,22 +8,26 @@
 #ifndef INC_FILTER_H_
 #define INC_FILTER_H_
 
-// Estructura del filtro de primer orden
+/**
+ * @struct FilterState
+ * @brief Contiene el estado interno del filtro (la salida actual).
+ */
+
 typedef struct {
-    float x; // estado (salida)
+    float x; /**< Estado interno (equivale a la salida actual). */
 } FilterState;
 
-
-
-// Prototipos
-
-// Derivada dx/dt = f(x,u,par)
-float f(float x, float u,float par);
-
-// Paso Runge-Kutta 4
-void rk4_step(FilterState *state, float u, float dt, float params);
-
-// Aplicar filtro
+/**
+ * @brief Calcula un paso de filtrado con Runge–Kutta 4.
+ *
+ * @param state   Puntero al estado del filtro.
+ * @param u       Entrada actual (señal a filtrar).
+ * @param cut_off Parámetro proporcional a la frecuencia de corte.
+ *                Para un filtro RC clásico: cut_off = 1/(RC).
+ * @param DT      Paso de integración (segundos).
+ *
+ * @return        Valor de salida filtrada.
+ */
 float filter_step(FilterState *state, float u, float cut_off, float DT);
 
 #endif /* INC_FILTER_H_ */
