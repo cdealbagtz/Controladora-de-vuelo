@@ -5,28 +5,34 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../Core/Src/Flight_Management_Control/attitude_hold_control.c \
 ../Core/Src/Flight_Management_Control/control_allocator.c \
 ../Core/Src/Flight_Management_Control/flight_management.c \
 ../Core/Src/Flight_Management_Control/modes_management.c \
 ../Core/Src/Flight_Management_Control/parameters_manager.c \
+../Core/Src/Flight_Management_Control/pid.c \
 ../Core/Src/Flight_Management_Control/rates_mode.c \
 ../Core/Src/Flight_Management_Control/sensors.c \
 ../Core/Src/Flight_Management_Control/servo_mixers.c 
 
 OBJS += \
+./Core/Src/Flight_Management_Control/attitude_hold_control.o \
 ./Core/Src/Flight_Management_Control/control_allocator.o \
 ./Core/Src/Flight_Management_Control/flight_management.o \
 ./Core/Src/Flight_Management_Control/modes_management.o \
 ./Core/Src/Flight_Management_Control/parameters_manager.o \
+./Core/Src/Flight_Management_Control/pid.o \
 ./Core/Src/Flight_Management_Control/rates_mode.o \
 ./Core/Src/Flight_Management_Control/sensors.o \
 ./Core/Src/Flight_Management_Control/servo_mixers.o 
 
 C_DEPS += \
+./Core/Src/Flight_Management_Control/attitude_hold_control.d \
 ./Core/Src/Flight_Management_Control/control_allocator.d \
 ./Core/Src/Flight_Management_Control/flight_management.d \
 ./Core/Src/Flight_Management_Control/modes_management.d \
 ./Core/Src/Flight_Management_Control/parameters_manager.d \
+./Core/Src/Flight_Management_Control/pid.d \
 ./Core/Src/Flight_Management_Control/rates_mode.d \
 ./Core/Src/Flight_Management_Control/sensors.d \
 ./Core/Src/Flight_Management_Control/servo_mixers.d 
@@ -39,7 +45,7 @@ Core/Src/Flight_Management_Control/%.o Core/Src/Flight_Management_Control/%.su C
 clean: clean-Core-2f-Src-2f-Flight_Management_Control
 
 clean-Core-2f-Src-2f-Flight_Management_Control:
-	-$(RM) ./Core/Src/Flight_Management_Control/control_allocator.cyclo ./Core/Src/Flight_Management_Control/control_allocator.d ./Core/Src/Flight_Management_Control/control_allocator.o ./Core/Src/Flight_Management_Control/control_allocator.su ./Core/Src/Flight_Management_Control/flight_management.cyclo ./Core/Src/Flight_Management_Control/flight_management.d ./Core/Src/Flight_Management_Control/flight_management.o ./Core/Src/Flight_Management_Control/flight_management.su ./Core/Src/Flight_Management_Control/modes_management.cyclo ./Core/Src/Flight_Management_Control/modes_management.d ./Core/Src/Flight_Management_Control/modes_management.o ./Core/Src/Flight_Management_Control/modes_management.su ./Core/Src/Flight_Management_Control/parameters_manager.cyclo ./Core/Src/Flight_Management_Control/parameters_manager.d ./Core/Src/Flight_Management_Control/parameters_manager.o ./Core/Src/Flight_Management_Control/parameters_manager.su ./Core/Src/Flight_Management_Control/rates_mode.cyclo ./Core/Src/Flight_Management_Control/rates_mode.d ./Core/Src/Flight_Management_Control/rates_mode.o ./Core/Src/Flight_Management_Control/rates_mode.su ./Core/Src/Flight_Management_Control/sensors.cyclo ./Core/Src/Flight_Management_Control/sensors.d ./Core/Src/Flight_Management_Control/sensors.o ./Core/Src/Flight_Management_Control/sensors.su ./Core/Src/Flight_Management_Control/servo_mixers.cyclo ./Core/Src/Flight_Management_Control/servo_mixers.d ./Core/Src/Flight_Management_Control/servo_mixers.o ./Core/Src/Flight_Management_Control/servo_mixers.su
+	-$(RM) ./Core/Src/Flight_Management_Control/attitude_hold_control.cyclo ./Core/Src/Flight_Management_Control/attitude_hold_control.d ./Core/Src/Flight_Management_Control/attitude_hold_control.o ./Core/Src/Flight_Management_Control/attitude_hold_control.su ./Core/Src/Flight_Management_Control/control_allocator.cyclo ./Core/Src/Flight_Management_Control/control_allocator.d ./Core/Src/Flight_Management_Control/control_allocator.o ./Core/Src/Flight_Management_Control/control_allocator.su ./Core/Src/Flight_Management_Control/flight_management.cyclo ./Core/Src/Flight_Management_Control/flight_management.d ./Core/Src/Flight_Management_Control/flight_management.o ./Core/Src/Flight_Management_Control/flight_management.su ./Core/Src/Flight_Management_Control/modes_management.cyclo ./Core/Src/Flight_Management_Control/modes_management.d ./Core/Src/Flight_Management_Control/modes_management.o ./Core/Src/Flight_Management_Control/modes_management.su ./Core/Src/Flight_Management_Control/parameters_manager.cyclo ./Core/Src/Flight_Management_Control/parameters_manager.d ./Core/Src/Flight_Management_Control/parameters_manager.o ./Core/Src/Flight_Management_Control/parameters_manager.su ./Core/Src/Flight_Management_Control/pid.cyclo ./Core/Src/Flight_Management_Control/pid.d ./Core/Src/Flight_Management_Control/pid.o ./Core/Src/Flight_Management_Control/pid.su ./Core/Src/Flight_Management_Control/rates_mode.cyclo ./Core/Src/Flight_Management_Control/rates_mode.d ./Core/Src/Flight_Management_Control/rates_mode.o ./Core/Src/Flight_Management_Control/rates_mode.su ./Core/Src/Flight_Management_Control/sensors.cyclo ./Core/Src/Flight_Management_Control/sensors.d ./Core/Src/Flight_Management_Control/sensors.o ./Core/Src/Flight_Management_Control/sensors.su ./Core/Src/Flight_Management_Control/servo_mixers.cyclo ./Core/Src/Flight_Management_Control/servo_mixers.d ./Core/Src/Flight_Management_Control/servo_mixers.o ./Core/Src/Flight_Management_Control/servo_mixers.su
 
 .PHONY: clean-Core-2f-Src-2f-Flight_Management_Control
 

@@ -9,12 +9,12 @@
 Cmd_s rates_control_law(Cmd_s inputs_norms, Gyro_s actual_gyro, Cmd_s K)
 {
 	//
-	Cmd_s out_puts;
+	Cmd_s Outs;
 
-	out_puts.roll   = inputs_norms.roll  -  actual_gyro.roll * K.roll ;
-	out_puts.pitch  = inputs_norms.pitch -  actual_gyro.pitch* K.pitch ;
-	out_puts.yaw    = inputs_norms.yaw   -  actual_gyro.yaw  * K.yaw ;
-	out_puts.thrust = inputs_norms.thrust ;
+	Outs.roll   = inputs_norms.roll  -  actual_gyro.roll * K.roll ;
+	Outs.pitch  = inputs_norms.pitch -  actual_gyro.pitch* K.pitch ;
+	Outs.yaw    = inputs_norms.yaw   -  actual_gyro.yaw  * K.yaw ;
+	Outs.thrust = inputs_norms.thrust ;
 
-	return out_puts ;
+	return Outs ;
 }

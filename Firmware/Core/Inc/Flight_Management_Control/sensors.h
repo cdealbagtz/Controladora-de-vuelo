@@ -17,6 +17,13 @@ typedef struct{
     float yaw;
 }Gyro_s;
 
+
+typedef struct{
+    float roll;
+    float pitch;
+}Att_s;
+
+
 typedef struct{
     float X ;
     float Y ;
@@ -25,9 +32,13 @@ typedef struct{
 
 extern Gyro_s actual_rates;
 
+extern Att_s actual_attitude ;
+
 Gyro_s get_actual_rates(void);
 
 Acc_s get_actual_acc(void) ;
+
+Att_s get_actual_attitude(void);
 
 void LPF_gyro_filter_init(void);
 

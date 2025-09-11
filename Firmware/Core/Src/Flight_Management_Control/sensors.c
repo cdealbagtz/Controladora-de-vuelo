@@ -9,7 +9,8 @@
 
 float LPF_gyros[3];
 float imu_gyr[3];
-Gyro_s actual_rates;
+Gyro_s 	actual_rates;
+Att_s 	actual_attitude ;
 
 Gyro_s get_actual_rates(void)
 {
@@ -21,6 +22,17 @@ Gyro_s get_actual_rates(void)
 	gyros.yaw   = IMU.GYR.z ;
 
 	return gyros;
+}
+
+Att_s get_actual_attitude(void)
+{
+	//
+	Att_s attitude;
+
+	attitude.roll  = IMU.Roll ;
+	attitude.pitch = IMU.Pitch;
+
+	return attitude;
 }
 
 Acc_s get_actual_acc(void)
@@ -38,11 +50,14 @@ Acc_s get_actual_acc(void)
 void refresh_actual_rates(void)
 {
 	//
-	imu_gyr[0] 		= IMU.GYR.x ;
-	imu_gyr[1] 		= IMU.GYR.y ;
-	imu_gyr[2] 		= IMU.GYR.z ;
+	imu_gyr[0] 			= IMU.GYR.x ;
+	imu_gyr[1] 			= IMU.GYR.y ;
+	imu_gyr[2] 			= IMU.GYR.z ;
 
-	actual_rates.roll  = imu_gyr[0] ;
-	actual_rates.pitch = imu_gyr[1] ;
-	actual_rates.yaw   = imu_gyr[2] ;
+	actual_rates.roll  	= imu_gyr[0] ;
+	actual_rates.pitch 	= imu_gyr[1] ;
+	actual_rates.yaw   	= imu_gyr[2] ;
+
+	actual_attitude.roll   	= IMU.Roll  ;
+	actual_attitude.pitch  	= IMU.Pitch ;
 }

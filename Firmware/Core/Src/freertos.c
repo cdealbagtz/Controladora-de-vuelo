@@ -36,8 +36,9 @@
 #include "Libraries/PWM.h"
 #include "Flight_Management_Control/control_allocator.h"
 #include "libNMEA.h"
-#include "filter.h"
 /* USER CODE END Includes */
+#include "Flight_Management_Control/flight_management.h"
+
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
@@ -173,6 +174,7 @@ void fTask_1ms(void const * argument)
 void fTask_10ms(void const * argument)
 {
   /* USER CODE BEGIN fTask_10ms */
+	FlightControl_inits();
   /* Infinite loop */
   for(;;)
   {
@@ -201,7 +203,6 @@ void fTask_100ms(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
 	LR03_StateMachine();
     osDelay(100);
   }
