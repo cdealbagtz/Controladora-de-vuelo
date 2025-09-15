@@ -8,21 +8,26 @@
 #ifndef INC_FILTER_H_
 #define INC_FILTER_H_
 
-typedef struct {
-    float Y_n;        // Valor actual de salida
-    float Y_nm1;      // Valor anterior de salida
-    float Y_0;        // Valor inicial de salida
-    float U_n;        // Valor actual de entrada
-    float U_nm1;      // Valor anterior de entrada
-    float U_0;        // Valor inicial de entrada
-    float f_cutoff;   // Frecuencia de corte del filtro (Hz) Siempre positivo!
-    float t_sample;   // Periodo de muestreo
-    float t_n;        // Tiempo actual
-    float t_nm1;      // Tiempo anterior
-    int   inicio;     // Bandera de inicialización
-} LPF_s;
+/**
+ * @struct FilterState
+ * @brief Contiene el estado interno del filtro (la salida actual).
+ */
 
-// Prototipos
-LPF_s filtering_lpf(LPF_s *filtro);
+typedef struct {
+    float x; /**< Estado interno (equivale a la salida actual). */
+} FilterState;
+
+/**
+ * @brief Calcula un paso de filtrado con Runge–Kutta 4.
+ *
+ * @param state   Puntero al estado del filtro.
+ * @param u       Entrada actual (señal a filtrar).
+ * @param cut_off Parámetro proporcional a la frecuencia de corte.
+ *                Para un filtro RC clásico: cut_off = 1/(RC).
+ * @param DT      Paso de integración (segundos).
+ *
+ * @return        Valor de salida filtrada.
+ */
+float filter_step(FilterState *state, float u, float cut_off, float DT);
 
 #endif /* INC_FILTER_H_ */

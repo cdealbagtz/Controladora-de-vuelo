@@ -12,17 +12,19 @@ Cmd_s Command_in;
 
 Cmd_s rates_Gains;
 
-
+void FlightControl_inits(void)
+{
+	//
+	init_PIDs();
+}
 
 void FlightTaskAttitude(void)
 {
 	//
 	attitude_parameters_refresh();
-
 	refresh_actual_rates();
-
+	get_actual_attitude();
 	get_flight_mode();
-
 	Command_in = get_commands_rc();
 
 
@@ -30,11 +32,14 @@ void FlightTaskAttitude(void)
 	{
 	case FBW_MODE:
 	case ATTITUDE_HOLD_MODE:
-//		AttitudeHold();
+		//
+		Command_out = attitude_hold_control(Command_in, actual_attitude , actual_rates, rates_Gains);
+
 		break;
 	case RATE_MODE:
 		//
-		Command_out = rates_control_law(Command_in , actual_rates, rates_Gains);
+		Command_out = rates_control_law(Command_in , actual_rates, rates_Gains) ;
+
 		break;
 	case MANUAL_MODE:
 		//
@@ -47,15 +52,27 @@ void FlightTaskAttitude(void)
 	}
 
 	command_filtering();
-
 	get_actual_trims();
-
 	init_Reverse_Servos(&Reverse);
-
 	control_allocator(Commands , Trims );
-
 }
 
+void FlightTaskARSP(void)
+{
+	//
+	switch(mode)
+	{
+	//
+	case FBW_MODE:
+		//
+		break;
+
+	default:
+		//
+		break;
+	}
+
+}
 
 void AttitudeHold(void)
 {

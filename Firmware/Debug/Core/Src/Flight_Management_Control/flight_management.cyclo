@@ -1,2 +1,4 @@
-../Core/Src/Flight_Management_Control/flight_management.c:17:6:FlightTaskAttitude	5
-../Core/Src/Flight_Management_Control/flight_management.c:60:6:AttitudeHold	1
+../Core/Src/Flight_Management_Control/flight_management.c:15:6:FlightControl_inits	1
+../Core/Src/Flight_Management_Control/flight_management.c:21:6:FlightTaskAttitude	5
+../Core/Src/Flight_Management_Control/flight_management.c:60:6:FlightTaskARSP	1
+../Core/Src/Flight_Management_Control/flight_management.c:77:6:AttitudeHold	1

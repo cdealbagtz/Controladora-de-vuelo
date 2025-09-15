@@ -19,7 +19,7 @@ uint8_t rc_three_steps_CurrentMode(void)
 	{
 	        return MANUAL_MODE;
 	 }
-	else if (pwm_value < (PWM_MID + PWM_DEADZONE) && pwm_value > (PWM_MAX - PWM_DEADZONE))
+	else if (pwm_value < 1750 && pwm_value > 1350)
 	 {
 	        return RATE_MODE;
 	  }
@@ -27,12 +27,12 @@ uint8_t rc_three_steps_CurrentMode(void)
 	 {
 	        return ATTITUDE_HOLD_MODE;
 	  }
-	else {
+	else
+	{
 	        // Zona muerta → mantener último modo (evita oscilaciones)
 	        static FlightMode_t last_mode = MANUAL_MODE;
 	        return last_mode;
-	    }
-
+	 }
 }
 
 void get_flight_mode(void)

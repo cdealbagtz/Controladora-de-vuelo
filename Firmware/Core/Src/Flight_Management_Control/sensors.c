@@ -7,10 +7,10 @@
 #include "Flight_Management_Control/sensors.h"
 #include "Flight_Management_Control/flight_parameters.h"
 
-LPF_s gyros_noise[3];
-LPF_s gyros_fltrs[3];
 float LPF_gyros[3];
 float imu_gyr[3];
+Gyro_s 	actual_rates;
+Att_s 	actual_attitude ;
 
 Gyro_s get_actual_rates(void)
 {
@@ -22,6 +22,17 @@ Gyro_s get_actual_rates(void)
 	gyros.yaw   = IMU.GYR.z ;
 
 	return gyros;
+}
+
+Att_s get_actual_attitude(void)
+{
+	//
+	Att_s attitude;
+
+	attitude.roll  = IMU.Roll ;
+	attitude.pitch = IMU.Pitch;
+
+	return attitude;
 }
 
 Acc_s get_actual_acc(void)
@@ -36,51 +47,17 @@ Acc_s get_actual_acc(void)
 	return acc;
 }
 
-
-
-Gyro_s actual_rates;
-
-void LPF_gyro_filter_init(void)
-{
-	// Inicializaciones
-	LPF_gyros[0] = LPF_gyro_x ;
-	LPF_gyros[1] = LPF_gyro_y ;
-	LPF_gyros[2] = LPF_gyro_z ;
-	for(int idx = 0;idx < 3; idx++)
-	{
-		//
-		gyros_fltrs[idx].inicio 	= 1;
-		gyros_fltrs[idx].f_cutoff 	= LPF_gyros[idx] ;
-		gyros_fltrs[idx].t_sample 	= SAMPLE_ATT ;
-		gyros_fltrs[idx].Y_0 		= 0.0f ;
-		gyros_fltrs[idx].U_n 		= 0.0f;
-		gyros_fltrs[idx].Y_n 		= 0.0f;
-		gyros_fltrs[idx].Y_nm1 		= 0.0f;
-		gyros_fltrs[idx].U_nm1 		= 0.0f;
-		gyros_fltrs[idx].t_n 		= 0.0f;
-		gyros_fltrs[idx].t_nm1 		= 0.0f;
-
-	}
-
-}
-
 void refresh_actual_rates(void)
 {
 	//
-	imu_gyr[0] 		= IMU.GYR.x ;
-	imu_gyr[1] 		= IMU.GYR.y ;
-	imu_gyr[2] 		= IMU.GYR.z ;
+	imu_gyr[0] 			= IMU.GYR.x ;
+	imu_gyr[1] 			= IMU.GYR.y ;
+	imu_gyr[2] 			= IMU.GYR.z ;
 
-	//
-	for(int idx = 0; idx < 3; idx++)
-	{
-		//
-		gyros_fltrs[idx].U_n = imu_gyr[idx];
+	actual_rates.roll  	= imu_gyr[0] ;
+	actual_rates.pitch 	= imu_gyr[1] ;
+	actual_rates.yaw   	= imu_gyr[2] ;
 
-		gyros_fltrs[idx] = filtering_lpf(&gyros_fltrs[idx]);
-	}
-
-	actual_rates.roll  = gyros_fltrs[0].Y_n ;
-	actual_rates.pitch = gyros_fltrs[1].Y_n ;
-	actual_rates.yaw   = gyros_fltrs[2].Y_n ;
+	actual_attitude.roll   	= IMU.Roll  ;
+	actual_attitude.pitch  	= IMU.Pitch ;
 }
