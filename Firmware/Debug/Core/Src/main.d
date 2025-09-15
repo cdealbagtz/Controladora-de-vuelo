@@ -57,12 +57,12 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  ../Middlewares/Third_Party/FatFs/src/ff_gen_drv.h \
  ../Middlewares/Third_Party/FatFs/src/diskio.h \
  ../Middlewares/Third_Party/FatFs/src/ff.h ../FATFS/Target/user_diskio.h \
- ../Core/Inc/fdcan.h ../Core/Inc/i2c.h ../Core/Inc/memorymap.h \
- ../Core/Inc/spi.h ../Core/Inc/tim.h ../Core/Inc/usart.h \
- ../Core/Inc/gpio.h ../Core/Inc/Libraries/SD.h \
- ../Core/Inc/Libraries/BMP280.h ../Core/Inc/Libraries/SBUS.h \
- ../Core/Inc/Libraries/LED.h ../Core/Inc/Libraries/BNO050.h \
- ../Core/Inc/Libraries/PWM.h ../Core/Inc/Libraries/Lora_LR03.h \
+ ../Core/Inc/fdcan.h ../Core/Inc/i2c.h ../Core/Inc/spi.h \
+ ../Core/Inc/tim.h ../Core/Inc/usart.h ../Core/Inc/gpio.h \
+ ../Core/Inc/Libraries/SD.h ../Core/Inc/Libraries/BMP280.h \
+ ../Core/Inc/Libraries/SBUS.h ../Core/Inc/Libraries/LED.h \
+ ../Core/Inc/Libraries/BNO050.h ../Core/Inc/Libraries/PWM.h \
+ ../Core/Inc/Libraries/Lora_LR03.h \
  ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h \
  ../Core/Inc/libNMEA.h
 ../Core/Inc/main.h:
@@ -130,7 +130,6 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
 ../FATFS/Target/user_diskio.h:
 ../Core/Inc/fdcan.h:
 ../Core/Inc/i2c.h:
-../Core/Inc/memorymap.h:
 ../Core/Inc/spi.h:
 ../Core/Inc/tim.h:
 ../Core/Inc/usart.h:

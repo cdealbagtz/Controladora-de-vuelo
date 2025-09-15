@@ -62,6 +62,5 @@ Cmd_s get_commands_rc(void);
 void get_actual_trims(void);
 
 void init_Reverse_Servos(Servo_reverse_s *servos);
-void LPF_cmd_filter_init(void);
 
 #endif /* INC_FLIGHT_MANAGEMENT_CONTROL_CONTROL_ALLOCATOR_H_ */

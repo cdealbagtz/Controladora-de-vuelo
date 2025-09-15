@@ -32,9 +32,6 @@
 #include "Libraries/BNO050.h"
 #include "Libraries/PWM.h"
 #include "Libraries/Lora_LR03.h"
-#include "Flight_Management_Control/flight_management.h"
-#include "Libraries/PWM.h"
-#include "Flight_Management_Control/control_allocator.h"
 #include "libNMEA.h"
 /* USER CODE END Includes */
 #include "Flight_Management_Control/flight_management.h"
