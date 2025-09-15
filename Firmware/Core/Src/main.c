@@ -23,7 +23,6 @@
 #include "fatfs.h"
 #include "fdcan.h"
 #include "i2c.h"
-#include "memorymap.h"
 #include "spi.h"
 #include "tim.h"
 #include "usart.h"
@@ -133,7 +132,7 @@ int main(void)
   MX_FATFS_Init();
   /* USER CODE BEGIN 2 */
   BMP280_init();
-  //SD_init();
+  SD_init();
   SBUS_init();
   HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
   HAL_UART_Receive_IT(&huart6, &LR03_RxByte,1);
