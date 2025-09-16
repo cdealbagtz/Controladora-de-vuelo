@@ -51,6 +51,6 @@
 ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c:1612:10:osMessageAvailableSpace	16	static
 ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c:1622:10:osMessageDelete	16	static
 ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c:1638:11:osRecursiveMutexCreate	16	static
-../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c:1664:10:osRecursiveMutexRelease	16	static
-../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c:1685:10:osRecursiveMutexWait	16	static
+../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c:1664:10:osRecursiveMutexRelease	24	static
+../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c:1685:10:osRecursiveMutexWait	24	static
 ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS/cmsis_os.c:1724:10:osSemaphoreGetCount	16	static

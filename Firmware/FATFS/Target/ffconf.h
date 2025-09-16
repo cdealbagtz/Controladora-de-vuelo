@@ -66,7 +66,7 @@
 #define	_USE_EXPAND		0
 /* This option switches f_expand function. (0:Disable or 1:Enable) */
 
-#define _USE_CHMOD		0
+#define _USE_CHMOD		1
 /* This option switches attribute manipulation functions, f_chmod() and f_utime().
 /  (0:Disable or 1:Enable) Also _FS_READONLY needs to be 0 to enable this option. */
 
@@ -142,7 +142,7 @@
 /
 /  This option has no effect when _LFN_UNICODE == 0. */
 
-#define _FS_RPATH       0 /* 0 to 2 */
+#define _FS_RPATH       2 /* 0 to 2 */
 /* This option configures support of relative path.
 /
 /   0: Disable relative path and remove related functions.
@@ -214,10 +214,10 @@
 /  When enable exFAT, also LFN needs to be enabled. (_USE_LFN >= 1)
 /  Note that enabling exFAT discards C89 compatibility. */
 
-#define _FS_NORTC	0
-#define _NORTC_MON	6
-#define _NORTC_MDAY	4
-#define _NORTC_YEAR	2015
+#define _FS_NORTC	1
+#define _NORTC_MON	9
+#define _NORTC_MDAY	11
+#define _NORTC_YEAR	2025
 /* The option _FS_NORTC switches timestamp function. If the system does not have
 /  any RTC function or valid timestamp is not needed, set _FS_NORTC = 1 to disable
 /  the timestamp function. All objects modified by FatFs will have a fixed timestamp
@@ -227,7 +227,7 @@
 /  _NORTC_MDAY and _NORTC_YEAR have no effect.
 /  These options have no effect at read-only configuration (_FS_READONLY = 1). */
 
-#define _FS_LOCK    2     /* 0:Disable or >=1:Enable */
+#define _FS_LOCK    0     /* 0:Disable or >=1:Enable */
 /* The option _FS_LOCK switches file lock function to control duplicated file open
 /  and illegal operation to open objects. This option must be 0 when _FS_READONLY
 /  is 1.
@@ -240,9 +240,9 @@
 
 #define _FS_REENTRANT    1  /* 0:Disable or 1:Enable */
 
-#define _USE_MUTEX       0 /* 0:Disable or 1:Enable */
+#define _USE_MUTEX       1 /* 0:Disable or 1:Enable */
 #define _FS_TIMEOUT      1000 /* Timeout period in unit of time ticks */
-#define _SYNC_t          osSemaphoreId
+#define _SYNC_t          osMutexId
 /* The option _FS_REENTRANT switches the re-entrancy (thread safe) of the FatFs
 /  module itself. Note that regardless of this option, file access to different
 /  volume is always re-entrant and volume control functions, f_mount(), f_mkfs()

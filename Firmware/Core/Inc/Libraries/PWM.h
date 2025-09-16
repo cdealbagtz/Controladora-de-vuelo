@@ -18,7 +18,7 @@ typedef struct {
 
 extern Servo_mgmt_s PWM_Output;
 
-void PWM_Assing(void);
+void PWM_Assign(void);
 
 
 #endif /* INC_LIBRARIES_PWM_H_ */

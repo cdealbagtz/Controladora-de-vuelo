@@ -59,6 +59,7 @@
 osThreadId Task_1msHandle;
 osThreadId Task_10msHandle;
 osThreadId Task_100msHandle;
+osThreadId taskSdHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -68,6 +69,7 @@ osThreadId Task_100msHandle;
 void fTask_1ms(void const * argument);
 void fTask_10ms(void const * argument);
 void fTask_100ms(void const * argument);
+void startTaskSd(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -115,16 +117,20 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of Task_1ms */
-  osThreadDef(Task_1ms, fTask_1ms, osPriorityNormal, 0, 128);
+  osThreadDef(Task_1ms, fTask_1ms, osPriorityNormal, 0, 256);
   Task_1msHandle = osThreadCreate(osThread(Task_1ms), NULL);
 
   /* definition and creation of Task_10ms */
-  osThreadDef(Task_10ms, fTask_10ms, osPriorityNormal, 0, 128);
+  osThreadDef(Task_10ms, fTask_10ms, osPriorityNormal, 0, 256);
   Task_10msHandle = osThreadCreate(osThread(Task_10ms), NULL);
 
   /* definition and creation of Task_100ms */
-  osThreadDef(Task_100ms, fTask_100ms, osPriorityNormal, 0, 128);
+  osThreadDef(Task_100ms, fTask_100ms, osPriorityNormal, 0, 256);
   Task_100msHandle = osThreadCreate(osThread(Task_100ms), NULL);
+
+  /* definition and creation of taskSd */
+  osThreadDef(taskSd, startTaskSd, osPriorityHigh, 0, 512);
+  taskSdHandle = osThreadCreate(osThread(taskSd), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -175,7 +181,7 @@ void fTask_10ms(void const * argument)
 	FlightTaskAttitude();
 
 	PWM_Assign();
-	SD_blackbox_write();
+
     osDelay(10);
   }
   /* USER CODE END fTask_10ms */
@@ -198,6 +204,25 @@ void fTask_100ms(void const * argument)
     osDelay(100);
   }
   /* USER CODE END fTask_100ms */
+}
+
+/* USER CODE BEGIN Header_startTaskSd */
+/**
+* @brief Function implementing the taskSd thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_startTaskSd */
+void startTaskSd(void const * argument)
+{
+  /* USER CODE BEGIN startTaskSd */
+  /* Infinite loop */
+  for(;;)
+  {
+	SD_blackbox_write();
+    osDelay(1000);
+  }
+  /* USER CODE END startTaskSd */
 }
 
 /* Private application code --------------------------------------------------*/

@@ -6,7 +6,7 @@
  */
 
 #include "Flight_Management_Control/flight_management.h"
-
+#include "Flight_Management_Control/parameters_manager.h"
 
 Cmd_s Command_in;
 
