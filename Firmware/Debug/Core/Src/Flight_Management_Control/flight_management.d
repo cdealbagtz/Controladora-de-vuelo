@@ -47,8 +47,12 @@ Core/Src/Flight_Management_Control/flight_management.o: \
  ../Core/Inc/Libraries/BNO050.h \
  ../Core/Inc/Flight_Management_Control/rates_mode.h \
  ../Core/Inc/Flight_Management_Control/attitude_hold_control.h \
+<<<<<<< HEAD
  ../Core/Inc/Flight_Management_Control/pid.h \
  ../Core/Inc/Flight_Management_Control/parameters_manager.h
+=======
+ ../Core/Inc/Flight_Management_Control/pid.h
+>>>>>>> main
 ../Core/Inc/Flight_Management_Control/flight_management.h:
 ../Core/Inc/Flight_Management_Control/flight_parameters.h:
 ../Core/Inc/Flight_Management_Control/modes_management.h:
@@ -100,4 +104,7 @@ Core/Src/Flight_Management_Control/flight_management.o: \
 ../Core/Inc/Flight_Management_Control/rates_mode.h:
 ../Core/Inc/Flight_Management_Control/attitude_hold_control.h:
 ../Core/Inc/Flight_Management_Control/pid.h:
+<<<<<<< HEAD
 ../Core/Inc/Flight_Management_Control/parameters_manager.h:
+=======
+>>>>>>> main
