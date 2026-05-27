@@ -59,7 +59,6 @@ static BYTE SD_ReadyWait(void) {
 }
 
 static void SD_PowerOn(void) {
-    BYTE args[10];
     SELECT();
     for(int i = 0; i < 10; i++) {
         SPI_TxByte(0xFF);
@@ -73,10 +72,6 @@ static void SD_PowerOff(void) {
     SD_ReadyWait();
     DESELECT();
     SPI_TxByte(0xFF);
-}
-
-static BYTE SD_CheckPower(void) {
-    return 0; // Dummy implementation
 }
 
 static bool SD_RxDataBlock(BYTE *buff, UINT btr) {
@@ -281,7 +276,7 @@ DRESULT SD_disk_write(BYTE pdrv, const BYTE* buff, DWORD sector, UINT count) {
 DRESULT SD_disk_ioctl(BYTE pdrv, BYTE cmd, void* buff) {
     DRESULT res;
     BYTE n, csd[16];
-    DWORD *dp, st, ed, csize;
+    DWORD csize;
 
     if(pdrv) return RES_PARERR; // Check parameter
     if(Stat & STA_NOINIT) return RES_NOTRDY; // Check if drive is ready

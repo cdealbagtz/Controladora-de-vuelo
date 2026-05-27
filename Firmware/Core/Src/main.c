@@ -136,7 +136,6 @@ int main(void)
   SBUS_init();
   HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
   HAL_UART_Receive_IT(&huart6, &LR03_RxByte,1);
-  NMEA_init(&huart4, &hdma_uart4_rx);
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in cmsis_os2.c) */
