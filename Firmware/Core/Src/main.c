@@ -37,7 +37,9 @@
 #include "Libraries/BNO050.h"
 #include "Libraries/PWM.h"
 #include "Libraries/Lora_LR03.h"
+#include "Libraries/MTI7.h"
 #include "libNMEA.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -134,8 +136,8 @@ int main(void)
   BMP280_init();
   SD_init();
   SBUS_init();
-  HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
-  HAL_UART_Receive_IT(&huart6, &LR03_RxByte,1);
+  MTI7_init();
+
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in cmsis_os2.c) */
@@ -229,12 +231,10 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		SBUS_Receive(SBUS_RxBuffer);
 		HAL_UART_Receive_DMA(&huart1, &SBUS_RxBuffer, 1);
 	}
-    else if (huart -> Instance == USART3){
-
+    else if (huart -> Instance == UART4){
+    	MTI7_RxIRQ();
     }
-    else if(huart -> Instance == USART6){
 
-    }
 }
 
 /* USER CODE END 4 */

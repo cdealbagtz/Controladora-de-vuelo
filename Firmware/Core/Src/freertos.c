@@ -32,10 +32,10 @@
 #include "Libraries/BNO050.h"
 #include "Libraries/PWM.h"
 #include "Libraries/Lora_LR03.h"
+#include "Libraries/MTI7.h"
+#include "Flight_Management_Control/flight_management.h"
 #include "libNMEA.h"
 /* USER CODE END Includes */
-#include "Flight_Management_Control/flight_management.h"
-
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
@@ -155,6 +155,7 @@ void fTask_1ms(void const * argument)
 	TimeOn_Counter++;
 	LED_Tasks();
 	SBUS_IntegrityVerification();
+	MTI7_Tasks();
     osDelay(1);
   }
   /* USER CODE END fTask_1ms */
@@ -198,7 +199,6 @@ void fTask_100ms(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-	LR03_StateMachine();
     osDelay(100);
   }
   /* USER CODE END fTask_100ms */

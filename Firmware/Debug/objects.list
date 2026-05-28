@@ -16,7 +16,6 @@
 "./Core/Src/i2c.o"
 "./Core/Src/libNMEA.o"
 "./Core/Src/main.o"
-"./Core/Src/memorymap.o"
 "./Core/Src/signal_gen.o"
 "./Core/Src/spi.o"
 "./Core/Src/stm32h7xx_hal_msp.o"
