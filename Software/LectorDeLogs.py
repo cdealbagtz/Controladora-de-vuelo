@@ -9,7 +9,7 @@ import numpy as np
 import pandas as pd
 
 # === Parámetros del log ===
-filename = 'C:/Users/cdealba/Desktop/FD000.bin'
+filename = 'E:/Flight001/FD000.bin'
 package_size = 128
 
 # === Cargar datos binarios ===

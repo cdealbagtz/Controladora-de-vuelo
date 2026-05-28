@@ -31,6 +31,7 @@
 "./Core/Src/Libraries/BNO050.o"
 "./Core/Src/Libraries/LED.o"
 "./Core/Src/Libraries/Lora_LR03.o"
+"./Core/Src/Libraries/MTI7.o"
 "./Core/Src/Libraries/PWM.o"
 "./Core/Src/Libraries/SBUS.o"
 "./Core/Src/Libraries/SD.o"

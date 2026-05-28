@@ -155,7 +155,6 @@ void fTask_1ms(void const * argument)
 	TimeOn_Counter++;
 	LED_Tasks();
 	SBUS_IntegrityVerification();
-	NMEA_process_task();
     osDelay(1);
   }
   /* USER CODE END fTask_1ms */
@@ -175,7 +174,6 @@ void fTask_10ms(void const * argument)
   /* Infinite loop */
   for(;;)
   {
-	BNO_Tasks();
 	BMP280_calculate();
 
 	FlightTaskAttitude();
@@ -220,7 +218,7 @@ void startTaskSd(void const * argument)
   for(;;)
   {
 	SD_blackbox_write();
-    osDelay(1000);
+    osDelay(10);
   }
   /* USER CODE END startTaskSd */
 }

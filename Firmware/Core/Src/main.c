@@ -230,12 +230,10 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		HAL_UART_Receive_DMA(&huart1, &SBUS_RxBuffer, 1);
 	}
     else if (huart -> Instance == USART3){
-        BNO_Receive(BNO_BufferByte);
-        HAL_UART_Receive_DMA(&huart3, &BNO_BufferByte,1);
+
     }
     else if(huart -> Instance == USART6){
-    	LR03_Receive(LR03_RxByte);
-    	HAL_UART_Receive_IT(&huart6, &LR03_RxByte,1);
+
     }
 }
 

@@ -9,6 +9,7 @@ C_SRCS += \
 ../Core/Src/Libraries/BNO050.c \
 ../Core/Src/Libraries/LED.c \
 ../Core/Src/Libraries/Lora_LR03.c \
+../Core/Src/Libraries/MTI7.c \
 ../Core/Src/Libraries/PWM.c \
 ../Core/Src/Libraries/SBUS.c \
 ../Core/Src/Libraries/SD.c 
@@ -18,6 +19,7 @@ OBJS += \
 ./Core/Src/Libraries/BNO050.o \
 ./Core/Src/Libraries/LED.o \
 ./Core/Src/Libraries/Lora_LR03.o \
+./Core/Src/Libraries/MTI7.o \
 ./Core/Src/Libraries/PWM.o \
 ./Core/Src/Libraries/SBUS.o \
 ./Core/Src/Libraries/SD.o 
@@ -27,6 +29,7 @@ C_DEPS += \
 ./Core/Src/Libraries/BNO050.d \
 ./Core/Src/Libraries/LED.d \
 ./Core/Src/Libraries/Lora_LR03.d \
+./Core/Src/Libraries/MTI7.d \
 ./Core/Src/Libraries/PWM.d \
 ./Core/Src/Libraries/SBUS.d \
 ./Core/Src/Libraries/SD.d 
@@ -39,7 +42,7 @@ Core/Src/Libraries/%.o Core/Src/Libraries/%.su Core/Src/Libraries/%.cyclo: ../Co
 clean: clean-Core-2f-Src-2f-Libraries
 
 clean-Core-2f-Src-2f-Libraries:
-	-$(RM) ./Core/Src/Libraries/BMP280.cyclo ./Core/Src/Libraries/BMP280.d ./Core/Src/Libraries/BMP280.o ./Core/Src/Libraries/BMP280.su ./Core/Src/Libraries/BNO050.cyclo ./Core/Src/Libraries/BNO050.d ./Core/Src/Libraries/BNO050.o ./Core/Src/Libraries/BNO050.su ./Core/Src/Libraries/LED.cyclo ./Core/Src/Libraries/LED.d ./Core/Src/Libraries/LED.o ./Core/Src/Libraries/LED.su ./Core/Src/Libraries/Lora_LR03.cyclo ./Core/Src/Libraries/Lora_LR03.d ./Core/Src/Libraries/Lora_LR03.o ./Core/Src/Libraries/Lora_LR03.su ./Core/Src/Libraries/PWM.cyclo ./Core/Src/Libraries/PWM.d ./Core/Src/Libraries/PWM.o ./Core/Src/Libraries/PWM.su ./Core/Src/Libraries/SBUS.cyclo ./Core/Src/Libraries/SBUS.d ./Core/Src/Libraries/SBUS.o ./Core/Src/Libraries/SBUS.su ./Core/Src/Libraries/SD.cyclo ./Core/Src/Libraries/SD.d ./Core/Src/Libraries/SD.o ./Core/Src/Libraries/SD.su
+	-$(RM) ./Core/Src/Libraries/BMP280.cyclo ./Core/Src/Libraries/BMP280.d ./Core/Src/Libraries/BMP280.o ./Core/Src/Libraries/BMP280.su ./Core/Src/Libraries/BNO050.cyclo ./Core/Src/Libraries/BNO050.d ./Core/Src/Libraries/BNO050.o ./Core/Src/Libraries/BNO050.su ./Core/Src/Libraries/LED.cyclo ./Core/Src/Libraries/LED.d ./Core/Src/Libraries/LED.o ./Core/Src/Libraries/LED.su ./Core/Src/Libraries/Lora_LR03.cyclo ./Core/Src/Libraries/Lora_LR03.d ./Core/Src/Libraries/Lora_LR03.o ./Core/Src/Libraries/Lora_LR03.su ./Core/Src/Libraries/MTI7.cyclo ./Core/Src/Libraries/MTI7.d ./Core/Src/Libraries/MTI7.o ./Core/Src/Libraries/MTI7.su ./Core/Src/Libraries/PWM.cyclo ./Core/Src/Libraries/PWM.d ./Core/Src/Libraries/PWM.o ./Core/Src/Libraries/PWM.su ./Core/Src/Libraries/SBUS.cyclo ./Core/Src/Libraries/SBUS.d ./Core/Src/Libraries/SBUS.o ./Core/Src/Libraries/SBUS.su ./Core/Src/Libraries/SD.cyclo ./Core/Src/Libraries/SD.d ./Core/Src/Libraries/SD.o ./Core/Src/Libraries/SD.su
 
 .PHONY: clean-Core-2f-Src-2f-Libraries
 
