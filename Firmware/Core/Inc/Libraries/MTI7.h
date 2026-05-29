@@ -12,7 +12,12 @@
 #include "usart.h"
 
 #define MTI7_RxBuffer_Size 	50
-#define MTI7_msgMaxSize		512
+#define MTI7_msgMaxSize		256
+
+typedef union{
+	float value;
+	uint8_t bytes[4];
+}float_u;
 
 typedef enum{
 	MTI7_Preamble,
@@ -26,11 +31,22 @@ typedef enum{
 }MTI7_RXEnum_e;
 
 typedef struct{
+	float p;
+	float q;
+	float r;
+	float pitch;
+	float roll;
+	float yaw;
+}MTI7_INS_t;
+
+typedef struct{
 	UART_HandleTypeDef *Port;
 	MTI7_RXEnum_e 	MTI7_RXEnum;
 
 	uint8_t			Buffer0[MTI7_RxBuffer_Size];
 	uint8_t			Buffer1[MTI7_RxBuffer_Size];
+
+	uint16_t		UartErrorCount;
 
 	uint8_t			msg[MTI7_msgMaxSize];
 	uint8_t			ActualBuffer:1;
@@ -40,6 +56,8 @@ typedef struct{
 
 	uint8_t 		Buffer0_DataReady:1;
 	uint8_t 		Buffer1_DataReady:1;
+
+	MTI7_INS_t 		INS;
 }MTI7_t;
 
 extern MTI7_t MTI7;

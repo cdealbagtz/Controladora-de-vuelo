@@ -231,7 +231,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 		SBUS_Receive(SBUS_RxBuffer);
 		HAL_UART_Receive_DMA(&huart1, &SBUS_RxBuffer, 1);
 	}
-    else if (huart -> Instance == UART4){
+    else if (huart -> Instance == USART6){
     	MTI7_RxIRQ();
     }
 

@@ -148,6 +148,7 @@ void MX_FREERTOS_Init(void) {
 void fTask_1ms(void const * argument)
 {
   /* USER CODE BEGIN fTask_1ms */
+
   /* Infinite loop */
 
   for(;;)
