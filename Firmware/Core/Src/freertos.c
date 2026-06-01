@@ -34,6 +34,7 @@
 #include "Libraries/Lora_LR03.h"
 #include "Libraries/MTI7.h"
 #include "Flight_Management_Control/flight_management.h"
+#include "Flight_Management_Control/INS.h"
 #include "libNMEA.h"
 /* USER CODE END Includes */
 
@@ -156,6 +157,7 @@ void fTask_1ms(void const * argument)
 	TimeOn_Counter++;
 	LED_Tasks();
 	SBUS_IntegrityVerification();
+	SBUS_task();
 	MTI7_Tasks();
     osDelay(1);
   }
@@ -176,6 +178,8 @@ void fTask_10ms(void const * argument)
   /* Infinite loop */
   for(;;)
   {
+	INS_RefreshData();
+
 	BMP280_calculate();
 
 	FlightTaskAttitude();
@@ -218,6 +222,7 @@ void startTaskSd(void const * argument)
   /* Infinite loop */
   for(;;)
   {
+
 	SD_blackbox_write();
     osDelay(10);
   }

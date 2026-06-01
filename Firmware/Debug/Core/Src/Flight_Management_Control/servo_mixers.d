@@ -40,7 +40,8 @@ Core/Src/Flight_Management_Control/servo_mixers.o: \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h \
  ../Core/Inc/tim.h ../Core/Inc/main.h ../Core/Inc/Libraries/SBUS.h \
- ../Core/Inc/usart.h ../Core/Inc/filter.h \
+ ../Core/Inc/usart.h ../Core/Inc/Libraries/LED.h ../Core/Inc/main.h \
+ ../Core/Inc/filter.h \
  ../Core/Inc/Flight_Management_Control/flight_parameters.h
 ../Core/Inc/Flight_Management_Control/servo_mixers.h:
 ../Core/Inc/Flight_Management_Control/control_allocator.h:
@@ -85,5 +86,7 @@ Core/Src/Flight_Management_Control/servo_mixers.o: \
 ../Core/Inc/main.h:
 ../Core/Inc/Libraries/SBUS.h:
 ../Core/Inc/usart.h:
+../Core/Inc/Libraries/LED.h:
+../Core/Inc/main.h:
 ../Core/Inc/filter.h:
 ../Core/Inc/Flight_Management_Control/flight_parameters.h:

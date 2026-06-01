@@ -10,6 +10,8 @@
 
 #include "main.h"
 #include "usart.h"
+#include "Libraries/BNO050.h"
+
 
 #define MTI7_RxBuffer_Size 	50
 #define MTI7_msgMaxSize		256
@@ -34,9 +36,23 @@ typedef struct{
 	float p;
 	float q;
 	float r;
+
+	float Ax;
+	float Ay;
+	float Az;
+
 	float pitch;
 	float roll;
 	float yaw;
+
+	float Lat;
+	float Lon;
+
+	float GPSAlt;
+
+	float velx;
+	float vely;
+	float velz;
 }MTI7_INS_t;
 
 typedef struct{
@@ -61,6 +77,7 @@ typedef struct{
 }MTI7_t;
 
 extern MTI7_t MTI7;
+
 
 void MTI7_init(void);
 void MTI7_Tasks(void);

@@ -228,8 +228,7 @@ void SystemClock_Config(void)
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
 	if (huart -> Instance == USART1){
-		SBUS_Receive(SBUS_RxBuffer);
-		HAL_UART_Receive_DMA(&huart1, &SBUS_RxBuffer, 1);
+		SBUS_RxIRQ();
 	}
     else if (huart -> Instance == USART6){
     	MTI7_RxIRQ();

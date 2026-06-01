@@ -37,7 +37,8 @@ Core/Src/Flight_Management_Control/modes_management.o: \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h \
- ../Core/Inc/usart.h ../Core/Inc/main.h
+ ../Core/Inc/usart.h ../Core/Inc/main.h ../Core/Inc/Libraries/LED.h \
+ ../Core/Inc/main.h
 ../Core/Inc/Flight_Management_Control/modes_management.h:
 ../Core/Inc/Libraries/SBUS.h:
 ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h:
@@ -76,4 +77,6 @@ Core/Src/Flight_Management_Control/modes_management.o: \
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h:
 ../Core/Inc/usart.h:
+../Core/Inc/main.h:
+../Core/Inc/Libraries/LED.h:
 ../Core/Inc/main.h:

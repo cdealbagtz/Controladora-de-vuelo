@@ -7,7 +7,8 @@
 
 #ifndef INC_FLIGHT_MANAGEMENT_CONTROL_SENSORS_H_
 #define INC_FLIGHT_MANAGEMENT_CONTROL_SENSORS_H_
-#include "Libraries/BNO050.h"
+
+#include "INS.h"
 #include "filter.h"
 
 
@@ -21,6 +22,7 @@ typedef struct{
 typedef struct{
     float roll;
     float pitch;
+    float yaw;
 }Att_s;
 
 

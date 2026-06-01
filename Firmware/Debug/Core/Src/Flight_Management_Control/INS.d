@@ -1,9 +1,10 @@
-Core/Src/Flight_Management_Control/flight_management.o: \
- ../Core/Src/Flight_Management_Control/flight_management.c \
- ../Core/Inc/Flight_Management_Control/flight_management.h \
- ../Core/Inc/Flight_Management_Control/flight_parameters.h \
- ../Core/Inc/Flight_Management_Control/modes_management.h \
- ../Core/Inc/Libraries/SBUS.h \
+Core/Src/Flight_Management_Control/INS.o: \
+ ../Core/Src/Flight_Management_Control/INS.c \
+ ../Core/Inc/Flight_Management_Control/INS.h ../Core/Inc/main.h \
+ ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
+ ../Core/Inc/stm32h7xx_hal_conf.h \
+ ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h \
+ ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h \
  ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h \
  ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h \
  ../Drivers/CMSIS/Include/core_cm7.h \
@@ -12,10 +13,6 @@ Core/Src/Flight_Management_Control/flight_management.o: \
  ../Drivers/CMSIS/Include/cmsis_gcc.h \
  ../Drivers/CMSIS/Include/mpu_armv7.h \
  ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/system_stm32h7xx.h \
- ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
- ../Core/Inc/stm32h7xx_hal_conf.h \
- ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h \
- ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc_ex.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio.h \
@@ -39,22 +36,15 @@ Core/Src/Flight_Management_Control/flight_management.o: \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h \
- ../Core/Inc/usart.h ../Core/Inc/main.h ../Core/Inc/Libraries/LED.h \
- ../Core/Inc/main.h \
- ../Core/Inc/Flight_Management_Control/control_allocator.h \
- ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h \
- ../Core/Inc/Libraries/PWM.h ../Core/Inc/tim.h ../Core/Inc/filter.h \
- ../Core/Inc/Flight_Management_Control/sensors.h \
- ../Core/Inc/Flight_Management_Control/INS.h ../Core/Inc/Libraries/MTI7.h \
+ ../Core/Inc/Libraries/MTI7.h ../Core/Inc/usart.h ../Core/Inc/main.h \
  ../Core/Inc/Libraries/BNO050.h ../Core/Inc/Libraries/BMP280.h \
- ../Core/Inc/spi.h ../Core/Inc/Flight_Management_Control/rates_mode.h \
- ../Core/Inc/Flight_Management_Control/attitude_hold_control.h \
- ../Core/Inc/Flight_Management_Control/pid.h \
- ../Core/Inc/Flight_Management_Control/parameters_manager.h
-../Core/Inc/Flight_Management_Control/flight_management.h:
-../Core/Inc/Flight_Management_Control/flight_parameters.h:
-../Core/Inc/Flight_Management_Control/modes_management.h:
-../Core/Inc/Libraries/SBUS.h:
+ ../Core/Inc/spi.h
+../Core/Inc/Flight_Management_Control/INS.h:
+../Core/Inc/main.h:
+../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
+../Core/Inc/stm32h7xx_hal_conf.h:
+../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h:
+../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h:
 ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h:
 ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h:
 ../Drivers/CMSIS/Include/core_cm7.h:
@@ -63,10 +53,6 @@ Core/Src/Flight_Management_Control/flight_management.o: \
 ../Drivers/CMSIS/Include/cmsis_gcc.h:
 ../Drivers/CMSIS/Include/mpu_armv7.h:
 ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/system_stm32h7xx.h:
-../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
-../Core/Inc/stm32h7xx_hal_conf.h:
-../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h:
-../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc_ex.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio.h:
@@ -90,22 +76,9 @@ Core/Src/Flight_Management_Control/flight_management.o: \
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h:
+../Core/Inc/Libraries/MTI7.h:
 ../Core/Inc/usart.h:
 ../Core/Inc/main.h:
-../Core/Inc/Libraries/LED.h:
-../Core/Inc/main.h:
-../Core/Inc/Flight_Management_Control/control_allocator.h:
-../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h:
-../Core/Inc/Libraries/PWM.h:
-../Core/Inc/tim.h:
-../Core/Inc/filter.h:
-../Core/Inc/Flight_Management_Control/sensors.h:
-../Core/Inc/Flight_Management_Control/INS.h:
-../Core/Inc/Libraries/MTI7.h:
 ../Core/Inc/Libraries/BNO050.h:
 ../Core/Inc/Libraries/BMP280.h:
 ../Core/Inc/spi.h:
-../Core/Inc/Flight_Management_Control/rates_mode.h:
-../Core/Inc/Flight_Management_Control/attitude_hold_control.h:
-../Core/Inc/Flight_Management_Control/pid.h:
-../Core/Inc/Flight_Management_Control/parameters_manager.h:

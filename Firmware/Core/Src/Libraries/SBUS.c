@@ -10,7 +10,10 @@
 #include "Libraries/PWM.h"
 
 uint8_t SBUS_UART_Rx[25];
-uint8_t SBUS_RxBuffer = 0x00;
+uint8_t SBUS_RxBuffer1[25];
+uint8_t SBUS_RxBuffer2[25];
+uint8_t SBUS_Buffer1Ready = 0;
+uint8_t SBUS_Buffer2Ready = 0;
 
 Radio_input_t Radio_input = {
 		.Canal_1  = 1500,
@@ -32,6 +35,7 @@ Radio_input_t Radio_input = {
 
 		.Interruptor_1 = OFF,
 		.Interruptor_2 = OFF,
+		.Armed		   = OFF,
 
 		.pkg_lost = Pkg_Lost,
 		.fail_safe = FailSafe,
@@ -45,8 +49,39 @@ extern UART_HandleTypeDef huart1;
 
 
 void SBUS_init(void){
-	HAL_UART_Receive_DMA(SBUS_UART_handler, &SBUS_RxBuffer, 1);
+	HAL_UART_Receive_DMA(SBUS_UART_handler, SBUS_RxBuffer1, 25);
 
+}
+
+void SBUS_RxIRQ(void){
+	static uint8_t actualBuffer = 0;
+	switch (actualBuffer) {
+		case 0:
+			HAL_UART_Receive_DMA(SBUS_UART_handler, SBUS_RxBuffer2, 25);
+			SBUS_Buffer1Ready = 1;
+			actualBuffer = 1;
+			break;
+		case 1:
+			HAL_UART_Receive_DMA(SBUS_UART_handler, SBUS_RxBuffer1, 25);
+			SBUS_Buffer2Ready = 1;
+			actualBuffer = 0;
+			break;
+	}
+}
+
+void SBUS_task(void){
+	if(SBUS_Buffer1Ready){
+		for(uint8_t n = 0; n<25;n++){
+			SBUS_Receive(SBUS_RxBuffer1[n]);
+		}
+		SBUS_Buffer1Ready = 0;
+	}
+	if(SBUS_Buffer2Ready){
+		for(uint8_t n = 0; n<25;n++){
+			SBUS_Receive(SBUS_RxBuffer2[n]);
+		}
+		SBUS_Buffer1Ready = 0;
+	}
 }
 
 void SBUS_Receive(uint8_t SBUS_RxBuffer){
@@ -122,6 +157,52 @@ void SBUS_getData(void){
 	//En el caso del byte 24, el primer bit menos significativo corresponde al canal 17, el segundo al canal 18, el tercero a el fail safe y
 	//el cuarto a la perdida de paquetes. Los 4 restantes no se utilizan.
 
+	if(Radio_input.Canal_1 > 2000){
+		Radio_input.Canal_1 = 2000;
+	}
+	if(Radio_input.Canal_2 > 2000){
+		Radio_input.Canal_2 = 2000;
+	}
+	if(Radio_input.Canal_3 > 2000){
+		Radio_input.Canal_3 = 2000;
+	}
+	if(Radio_input.Canal_4 > 2000){
+		Radio_input.Canal_4 = 2000;
+	}
+	if(Radio_input.Canal_5 > 2000){
+		Radio_input.Canal_5 = 2000;
+	}
+	if(Radio_input.Canal_6 > 2000){
+		Radio_input.Canal_6 = 2000;
+	}
+	if(Radio_input.Canal_7 > 2000){
+		Radio_input.Canal_7 = 2000;
+	}
+	if(Radio_input.Canal_8 > 2000){
+		Radio_input.Canal_8 = 2000;
+	}
+	if(Radio_input.Canal_9 > 2000){
+		Radio_input.Canal_9 = 2000;
+	}
+	if(Radio_input.Canal_10 > 2000){
+		Radio_input.Canal_11 = 2000;
+	}
+	if(Radio_input.Canal_12 > 2000){
+		Radio_input.Canal_12 = 2000;
+	}
+	if(Radio_input.Canal_13 > 2000){
+		Radio_input.Canal_13 = 2000;
+	}
+	if(Radio_input.Canal_14 > 2000){
+		Radio_input.Canal_14 = 2000;
+	}
+	if(Radio_input.Canal_15 > 2000){
+		Radio_input.Canal_15 = 2000;
+	}
+	if(Radio_input.Canal_16 > 2000){
+		Radio_input.Canal_16 = 2000;
+	}
+
 	Radio_input.Banderas = SBUS_UART_Rx[23];
 	if(SBUS_UART_Rx[23]>=8){
 		SBUS_UART_Rx[23]-=8;
@@ -142,6 +223,11 @@ void SBUS_getData(void){
 		Radio_input.Interruptor_1=ON;
 	}else Radio_input.Interruptor_1=OFF;
 
+	if(Radio_input.Canal_12 > 1800){
+		Radio_input.Armed = ON;
+	}else{
+		Radio_input.Armed = OFF;
+	}
 
 	Radio_input.Uart_Counter = 0;
 
@@ -154,6 +240,7 @@ void SBUS_IntegrityVerification(void){
 		Radio_input.uart_error = Ok;
 	}
 	else{
+		SBUS_init();
 		Radio_input.uart_error = Uart_Error;
 		Radio_input.fail_safe = FailSafe;
 	}

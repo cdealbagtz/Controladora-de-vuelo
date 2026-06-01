@@ -69,9 +69,11 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
  ../Core/Inc/Flight_Management_Control/modes_management.h \
  ../Core/Inc/Flight_Management_Control/control_allocator.h \
  ../Core/Inc/filter.h ../Core/Inc/Flight_Management_Control/sensors.h \
+ ../Core/Inc/Flight_Management_Control/INS.h \
  ../Core/Inc/Flight_Management_Control/rates_mode.h \
  ../Core/Inc/Flight_Management_Control/attitude_hold_control.h \
- ../Core/Inc/Flight_Management_Control/pid.h ../Core/Inc/libNMEA.h
+ ../Core/Inc/Flight_Management_Control/pid.h \
+ ../Core/Inc/Flight_Management_Control/INS.h ../Core/Inc/libNMEA.h
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
 ../Core/Inc/FreeRTOSConfig.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h:
@@ -152,7 +154,9 @@ Core/Src/freertos.o: ../Core/Src/freertos.c \
 ../Core/Inc/Flight_Management_Control/control_allocator.h:
 ../Core/Inc/filter.h:
 ../Core/Inc/Flight_Management_Control/sensors.h:
+../Core/Inc/Flight_Management_Control/INS.h:
 ../Core/Inc/Flight_Management_Control/rates_mode.h:
 ../Core/Inc/Flight_Management_Control/attitude_hold_control.h:
 ../Core/Inc/Flight_Management_Control/pid.h:
+../Core/Inc/Flight_Management_Control/INS.h:
 ../Core/Inc/libNMEA.h:

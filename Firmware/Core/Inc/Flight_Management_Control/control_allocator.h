@@ -15,6 +15,7 @@
 #include "stdbool.h"
 #include "Libraries/PWM.h"
 #include "Libraries/SBUS.h"
+#include "Libraries/LED.h"
 
 #include "filter.h"
 
@@ -32,6 +33,7 @@ typedef enum
     FIX_WING = 0,
 	FLYING_WING,
 	TANDEM_WING,
+	VTAIL,
 	CUSTOM_FRAME,
 	TOTAL_FRAMES
 }FRAMES_e;

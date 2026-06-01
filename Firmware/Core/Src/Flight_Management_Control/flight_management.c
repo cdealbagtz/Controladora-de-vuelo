@@ -21,7 +21,7 @@ void FlightControl_inits(void)
 void FlightTaskAttitude(void)
 {
 	//
-	attitude_parameters_refresh();
+
 	refresh_actual_rates();
 	get_actual_attitude();
 	get_flight_mode();
@@ -37,7 +37,7 @@ void FlightTaskAttitude(void)
 
 		break;
 	case RATE_MODE:
-		//
+		attitude_parameters_refresh();
 		Command_out = rates_control_law(Command_in , actual_rates, rates_Gains) ;
 
 		break;
@@ -54,7 +54,7 @@ void FlightTaskAttitude(void)
 	command_filtering();
 	get_actual_trims();
 	init_Reverse_Servos(&Reverse);
-	control_allocator(Commands , Trims );
+	control_allocator(Command_out , Trims );
 }
 
 void FlightTaskARSP(void)

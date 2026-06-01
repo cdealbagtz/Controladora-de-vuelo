@@ -57,47 +57,124 @@ void MTI7_RxIRQ(void){
 void MTI7_DataBuild(uint8_t *Buffer){
 	float_u Processing_Buffer;
 
-	Processing_Buffer.bytes[3] = Buffer[7];
-	Processing_Buffer.bytes[2] = Buffer[8];
-	Processing_Buffer.bytes[1] = Buffer[9];
-	Processing_Buffer.bytes[0] = Buffer[10];
+	if((Buffer[4]==0x20)&&(Buffer[5]==0x30)){
+		Processing_Buffer.bytes[3] = Buffer[7];
+		Processing_Buffer.bytes[2] = Buffer[8];
+		Processing_Buffer.bytes[1] = Buffer[9];
+		Processing_Buffer.bytes[0] = Buffer[10];
 
-	MTI7.INS.roll = Processing_Buffer.value;
+		MTI7.INS.roll = Processing_Buffer.value;
 
-	Processing_Buffer.bytes[3] = Buffer[11];
-	Processing_Buffer.bytes[2] = Buffer[12];
-	Processing_Buffer.bytes[1] = Buffer[13];
-	Processing_Buffer.bytes[0] = Buffer[14];
+		Processing_Buffer.bytes[3] = Buffer[11];
+		Processing_Buffer.bytes[2] = Buffer[12];
+		Processing_Buffer.bytes[1] = Buffer[13];
+		Processing_Buffer.bytes[0] = Buffer[14];
 
-	MTI7.INS.pitch = Processing_Buffer.value;
+		MTI7.INS.pitch = Processing_Buffer.value;
 
-	Processing_Buffer.bytes[3] = Buffer[15];
-	Processing_Buffer.bytes[2] = Buffer[16];
-	Processing_Buffer.bytes[1] = Buffer[17];
-	Processing_Buffer.bytes[0] = Buffer[18];
+		Processing_Buffer.bytes[3] = Buffer[15];
+		Processing_Buffer.bytes[2] = Buffer[16];
+		Processing_Buffer.bytes[1] = Buffer[17];
+		Processing_Buffer.bytes[0] = Buffer[18];
 
-	MTI7.INS.yaw = Processing_Buffer.value;
+		MTI7.INS.yaw = Processing_Buffer.value;
+	}
 
-	Processing_Buffer.bytes[3] = Buffer[22];
-	Processing_Buffer.bytes[2] = Buffer[23];
-	Processing_Buffer.bytes[1] = Buffer[24];
-	Processing_Buffer.bytes[0] = Buffer[25];
+	if((Buffer[19]==0x40)&&(Buffer[20]==0x20)){
+		Processing_Buffer.bytes[3] = Buffer[22];
+		Processing_Buffer.bytes[2] = Buffer[23];
+		Processing_Buffer.bytes[1] = Buffer[24];
+		Processing_Buffer.bytes[0] = Buffer[25];
 
-	MTI7.INS.p = Processing_Buffer.value;
+		MTI7.INS.Ax = Processing_Buffer.value;
 
-	Processing_Buffer.bytes[3] = Buffer[26];
-	Processing_Buffer.bytes[2] = Buffer[27];
-	Processing_Buffer.bytes[1] = Buffer[28];
-	Processing_Buffer.bytes[0] = Buffer[29];
+		Processing_Buffer.bytes[3] = Buffer[26];
+		Processing_Buffer.bytes[2] = Buffer[27];
+		Processing_Buffer.bytes[1] = Buffer[28];
+		Processing_Buffer.bytes[0] = Buffer[29];
 
-	MTI7.INS.q = Processing_Buffer.value;
+		MTI7.INS.Ay = Processing_Buffer.value;
 
-	Processing_Buffer.bytes[3] = Buffer[30];
-	Processing_Buffer.bytes[2] = Buffer[31];
-	Processing_Buffer.bytes[1] = Buffer[32];
-	Processing_Buffer.bytes[0] = Buffer[33];
+		Processing_Buffer.bytes[3] = Buffer[30];
+		Processing_Buffer.bytes[2] = Buffer[31];
+		Processing_Buffer.bytes[1] = Buffer[32];
+		Processing_Buffer.bytes[0] = Buffer[33];
 
-	MTI7.INS.r = Processing_Buffer.value;
+		MTI7.INS.Az = Processing_Buffer.value;
+	}
+
+	if((Buffer[34]==0x80)&&(Buffer[35]==0x20)){
+		Processing_Buffer.bytes[3] = Buffer[37];
+		Processing_Buffer.bytes[2] = Buffer[38];
+		Processing_Buffer.bytes[1] = Buffer[39];
+		Processing_Buffer.bytes[0] = Buffer[40];
+
+		MTI7.INS.p = Processing_Buffer.value;
+
+		Processing_Buffer.bytes[3] = Buffer[41];
+		Processing_Buffer.bytes[2] = Buffer[42];
+		Processing_Buffer.bytes[1] = Buffer[43];
+		Processing_Buffer.bytes[0] = Buffer[44];
+
+		MTI7.INS.q = Processing_Buffer.value;
+
+		Processing_Buffer.bytes[3] = Buffer[45];
+		Processing_Buffer.bytes[2] = Buffer[46];
+		Processing_Buffer.bytes[1] = Buffer[47];
+		Processing_Buffer.bytes[0] = Buffer[48];
+
+		MTI7.INS.r = Processing_Buffer.value;
+	}
+
+	if((Buffer[49]==0x50)&&(Buffer[50]==0x40)){
+		Processing_Buffer.bytes[3] = Buffer[52];
+		Processing_Buffer.bytes[2] = Buffer[53];
+		Processing_Buffer.bytes[1] = Buffer[54];
+		Processing_Buffer.bytes[0] = Buffer[55];
+
+		MTI7.INS.Lat = Processing_Buffer.value;
+
+		Processing_Buffer.bytes[3] = Buffer[56];
+		Processing_Buffer.bytes[2] = Buffer[57];
+		Processing_Buffer.bytes[1] = Buffer[58];
+		Processing_Buffer.bytes[0] = Buffer[59];
+
+		MTI7.INS.Lon = Processing_Buffer.value;
+	}
+
+	if((Buffer[60]==0x50)&&(Buffer[61]==0x20)){
+		Processing_Buffer.bytes[3] = Buffer[63];
+		Processing_Buffer.bytes[2] = Buffer[64];
+		Processing_Buffer.bytes[1] = Buffer[65];
+		Processing_Buffer.bytes[0] = Buffer[66];
+
+		MTI7.INS.GPSAlt = Processing_Buffer.value;
+	}
+
+	if((Buffer[67]==0xD0)&&(Buffer[68]==0x10)){
+		Processing_Buffer.bytes[3] = Buffer[70];
+		Processing_Buffer.bytes[2] = Buffer[71];
+		Processing_Buffer.bytes[1] = Buffer[72];
+		Processing_Buffer.bytes[0] = Buffer[73];
+
+		MTI7.INS.velx = Processing_Buffer.value;
+
+		Processing_Buffer.bytes[3] = Buffer[74];
+		Processing_Buffer.bytes[2] = Buffer[75];
+		Processing_Buffer.bytes[1] = Buffer[76];
+		Processing_Buffer.bytes[0] = Buffer[77];
+
+		MTI7.INS.vely = Processing_Buffer.value;
+
+		Processing_Buffer.bytes[3] = Buffer[78];
+		Processing_Buffer.bytes[2] = Buffer[79];
+		Processing_Buffer.bytes[1] = Buffer[80];
+		Processing_Buffer.bytes[0] = Buffer[81];
+
+		MTI7.INS.velz = Processing_Buffer.value;
+	}
+
+
 }
 
 void MTI7_msgProcessing(uint8_t byte, MTI7_t *MTI7){
