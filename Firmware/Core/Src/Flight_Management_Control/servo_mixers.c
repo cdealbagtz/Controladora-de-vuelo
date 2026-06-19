@@ -65,6 +65,25 @@ Servo_mgmt_s TANDEM_WING_MIXER(Cmd_s control_cmd, Cmd_s trims)
 	return mixer_output;
 }
 
+Servo_mgmt_s VTail_MIXER(Cmd_s control_cmd, Cmd_s trims)
+{
+	//
+	Servo_mgmt_s mixer_output;
+
+	mixer_output.S[0]  = (uint16_t)(1500.0f - 250.f * control_cmd.roll  + trims.roll ) ;
+	mixer_output.S[1]  = (uint16_t)(1500.0f - 250.f * control_cmd.roll  + trims.roll ) ;
+	mixer_output.S[2]  = (uint16_t)(1000.0f + 1000.f * control_cmd.thrust+ (trims.thrust));
+	mixer_output.S[3]  = (uint16_t)(1500.0f + (350.f * control_cmd.pitch + trims.pitch) + (500.f * control_cmd.yaw   + trims.yaw)) ;
+	mixer_output.S[4]  = (uint16_t)(1500.0f - (350.f * control_cmd.pitch + trims.pitch) + (500.f * control_cmd.yaw   + trims.yaw)) ;
+	mixer_output.S[5]  = (uint16_t)(1500.0f );
+	mixer_output.S[6]  = (uint16_t)(1500.0f );
+	mixer_output.S[7]  = (uint16_t)(1500.0f );
+	mixer_output.S[8]  = (uint16_t)(1500.0f );
+	mixer_output.S[9]  = (uint16_t)(1500.0f );
+
+	return mixer_output;
+}
+
 Servo_mgmt_s CUSTOM_FRAME_MIXER(Cmd_s control_cmd, Cmd_s trims)
 {
 	//

@@ -17,9 +17,9 @@ Gyro_s get_actual_rates(void)
 	//
 	Gyro_s gyros;
 
-	gyros.roll  = IMU.GYR.x ;
-	gyros.pitch = IMU.GYR.y ;
-	gyros.yaw   = IMU.GYR.z ;
+	gyros.roll  = INS.p ;
+	gyros.pitch = INS.q ;
+	gyros.yaw   = INS.r ;
 
 	return gyros;
 }
@@ -29,8 +29,9 @@ Att_s get_actual_attitude(void)
 	//
 	Att_s attitude;
 
-	attitude.roll  = IMU.Roll ;
-	attitude.pitch = IMU.Pitch;
+	attitude.roll  = INS.roll ;
+	attitude.pitch = INS.pitch;
+	attitude.yaw   = INS.yaw;
 
 	return attitude;
 }
@@ -50,14 +51,15 @@ Acc_s get_actual_acc(void)
 void refresh_actual_rates(void)
 {
 	//
-	imu_gyr[0] 			= IMU.GYR.x ;
-	imu_gyr[1] 			= IMU.GYR.y ;
-	imu_gyr[2] 			= IMU.GYR.z ;
+	imu_gyr[0] 			= INS.p ;
+	imu_gyr[1] 			= INS.q ;
+	imu_gyr[2] 			= INS.r ;
 
 	actual_rates.roll  	= imu_gyr[0] ;
 	actual_rates.pitch 	= imu_gyr[1] ;
 	actual_rates.yaw   	= imu_gyr[2] ;
 
-	actual_attitude.roll   	= IMU.Roll  ;
-	actual_attitude.pitch  	= IMU.Pitch ;
+	actual_attitude.roll   	= INS.roll  ;
+	actual_attitude.pitch  	= INS.pitch ;
+	actual_attitude.yaw		= INS.yaw;
 }

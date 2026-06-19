@@ -49,6 +49,8 @@ typedef struct Radio_input{
 	RC_Status_e fail_safe;
 	RC_Status_e uart_error;
 
+	RC_Status_e Armed;
+
 	uint8_t  Uart_Counter;
 }Radio_input_t;
 
@@ -58,6 +60,8 @@ void SBUS_IntegrityVerification(void);
 
 
 void SBUS_init(void);
+void SBUS_RxIRQ(void);
+void SBUS_task(void);
 void SBUS_Receive(uint8_t SBUS_RxBuffer);
 void SBUS_getData(void);
 

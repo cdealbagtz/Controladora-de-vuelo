@@ -8,6 +8,7 @@
 #include "Flight_Management_Control/control_allocator.h"
 #include "Flight_Management_Control/servo_mixers.h"
 
+
 FRAMES_e Frame ;
 Cmd_s Command_out ;
 Cmd_s Control_out ;
@@ -48,7 +49,13 @@ void control_allocator(Cmd_s control_cmd, Cmd_s trims )
 {
 	//
 	Frame = CONFIGURATION;
-
+	if(Radio_input.Armed){
+		LED_Info.G_LED.LED_status = 1;
+	}
+	else{
+		LED_Info.G_LED.LED_status = 0;
+		control_cmd.thrust = 0;
+	}
 
 	switch(Frame){
 		case FIX_WING:
@@ -59,6 +66,9 @@ void control_allocator(Cmd_s control_cmd, Cmd_s trims )
 			break;
 		case TANDEM_WING:
 			servo_outs = TANDEM_WING_MIXER(control_cmd, trims)  ;
+			break;
+		case VTAIL:
+			servo_outs = VTail_MIXER(control_cmd, trims)  ;
 			break;
 		case CUSTOM_FRAME:
 			servo_outs = CUSTOM_FRAME_MIXER(control_cmd, trims) ;
@@ -137,9 +147,9 @@ Cmd_s get_commands_rc(void)
 
 	out_norms.pitch 	= ((float)Radio_input.Canal_2 - 1500.0 ) / 500.0 ;
 
-	out_norms.yaw 		= ((float)Radio_input.Canal_3 - 1500.0 ) / 500.0 ;
+	out_norms.thrust 	= ((float)Radio_input.Canal_3 - 1000.0 ) / 1000.0 ;
 
-	out_norms.thrust 	= ((float)Radio_input.Canal_4 - 1000.0 ) / 1000.0 ;
+	out_norms.yaw 		= ((float)Radio_input.Canal_4 - 1500.0 ) / 500.0 ;
 
 	return out_norms;
 }
@@ -147,9 +157,9 @@ Cmd_s get_commands_rc(void)
 void get_actual_trims(void)
 {
 	//
-	Trims.roll 		=  (float)Radio_input.Canal_10 - 1500.0 ;
-	Trims.pitch 	=  (float)Radio_input.Canal_11 - 1500.0 ;
-	Trims.yaw 		=  (float)Radio_input.Canal_12 - 1500.0 ;
+	Trims.roll 		=  (float)Radio_input.Canal_5 - 1500.0 ;
+	Trims.pitch 	=  (float)Radio_input.Canal_6 - 1500.0 ;
+	Trims.yaw 		=  (float)Radio_input.Canal_7 - 1500.0 ;
 	Trims.thrust 	=  0.0f ;
 }
 

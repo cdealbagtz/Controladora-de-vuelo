@@ -1,5 +1,7 @@
-Core/Src/memorymap.o: ../Core/Src/memorymap.c ../Core/Inc/memorymap.h \
- ../Core/Inc/main.h ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
+Core/Src/Flight_Management_Control/INS.o: \
+ ../Core/Src/Flight_Management_Control/INS.c \
+ ../Core/Inc/Flight_Management_Control/INS.h ../Core/Inc/main.h \
+ ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../Core/Inc/stm32h7xx_hal_conf.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h \
@@ -33,8 +35,11 @@ Core/Src/memorymap.o: ../Core/Src/memorymap.c ../Core/Inc/memorymap.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h \
- ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h
-../Core/Inc/memorymap.h:
+ ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h \
+ ../Core/Inc/Libraries/MTI7.h ../Core/Inc/usart.h ../Core/Inc/main.h \
+ ../Core/Inc/Libraries/BNO050.h ../Core/Inc/Libraries/BMP280.h \
+ ../Core/Inc/spi.h
+../Core/Inc/Flight_Management_Control/INS.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
 ../Core/Inc/stm32h7xx_hal_conf.h:
@@ -71,3 +76,9 @@ Core/Src/memorymap.o: ../Core/Src/memorymap.c ../Core/Inc/memorymap.h \
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h:
+../Core/Inc/Libraries/MTI7.h:
+../Core/Inc/usart.h:
+../Core/Inc/main.h:
+../Core/Inc/Libraries/BNO050.h:
+../Core/Inc/Libraries/BMP280.h:
+../Core/Inc/spi.h:

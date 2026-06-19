@@ -25,13 +25,13 @@ typedef struct{
 	// === 4-byte aligned (32 bits) ===
 	float Ax, Ay, Az;
 	float Gx, Gy, Gz;
-	float Gfx, Gfy, Gfz;
+	float Vx, Vy, Vz;
 	float Roll, Pitch, Heading;
 
     uint32_t Nmsg;
     uint32_t Time;
-    int32_t Latitude;
-    int32_t Longitude;
+    float Latitude;
+    float Longitude;
     uint32_t Pressure;
 
     // === 2-byte aligned (16 bits) ===

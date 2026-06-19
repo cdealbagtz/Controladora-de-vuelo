@@ -12,6 +12,8 @@
 #include "Libraries/BMP280.h"
 #include "Libraries/SBUS.h"
 #include "Libraries/PWM.h"
+#include "Libraries/MTI7.h"
+#include "Libraries/LED.h"
 
 FATFS fs;  // file system
 
@@ -23,7 +25,7 @@ FILINFO fno;
 FRESULT fresult;  // result
 UINT br, bw;  // File read/write count
 
-char FlightPaht[9] = "Flight000";
+char FlightPaht[10] = "/Flight000";
 
 char BlackBoxFile[9] = "FD000.bin";
 char ConfigFile[10]  = "Config.txt";
@@ -128,9 +130,9 @@ void SD_GainsInit(void){
 }
 
 void SD_CreateFlightPath(void){
-	FlightPaht[6] = NResetChar[0];
-	FlightPaht[7] = NResetChar[1];
-	FlightPaht[8] = NResetChar[2];
+	FlightPaht[7] = NResetChar[0];
+	FlightPaht[8] = NResetChar[1];
+	FlightPaht[9] = NResetChar[2];
 
 	f_mkdir(FlightPaht);
 	f_chdir(FlightPaht);
@@ -145,25 +147,30 @@ void SD_blackbox_refresh(void){
 
 	blackbox_data.Time = TimeOn_Counter;
 
-	blackbox_data.Ax = IMU.ACC.x;
-	blackbox_data.Ay = IMU.ACC.y;
-	blackbox_data.Az = IMU.ACC.z;
+	blackbox_data.Ax = MTI7.INS.Ax;
+	blackbox_data.Ay = MTI7.INS.Ay;
+	blackbox_data.Az = MTI7.INS.Az;
 
-	blackbox_data.Gx = IMU.GYR.x;
-	blackbox_data.Gy = IMU.GYR.y;
-	blackbox_data.Gz = IMU.GYR.z;
+	blackbox_data.Gx = MTI7.INS.p;
+	blackbox_data.Gy = MTI7.INS.q;
+	blackbox_data.Gz = MTI7.INS.r;
 
-	blackbox_data.Gfx = 0;
-	blackbox_data.Gfy = 0;
-	blackbox_data.Gfz = 0;
+	blackbox_data.Vx = MTI7.INS.velx;
+	blackbox_data.Vy = MTI7.INS.vely;
+	blackbox_data.Vz = MTI7.INS.velz;
 
-	blackbox_data.Roll    = IMU.Roll;
-	blackbox_data.Pitch   = IMU.Pitch;
-	blackbox_data.Heading = IMU.Heading;
+	blackbox_data.Roll    = MTI7.INS.roll;
+	blackbox_data.Pitch   = MTI7.INS.pitch;
+	blackbox_data.Heading = MTI7.INS.yaw;
 
-	blackbox_data.Alt = BMP280.Barometric_Altitude;
-	blackbox_data.Latitude = 0;
-	blackbox_data.Longitude= 0;
+	if(MTI7.INS.GPSAlt == 0){
+		blackbox_data.Alt = BMP280.Barometric_Altitude;
+	}
+	else{
+		blackbox_data.Alt = (uint16_t)MTI7.INS.GPSAlt;
+	}
+	blackbox_data.Latitude = MTI7.INS.Lat;
+	blackbox_data.Longitude= MTI7.INS.Lon;
 
 	blackbox_data.ARSP = 0;
 
@@ -192,31 +199,33 @@ void SD_blackbox_refresh(void){
 	blackbox_data.Interruptor_1 = Radio_input.Interruptor_1;
 	blackbox_data.Interruptor_2 = Radio_input.Interruptor_2;
 
-//	blackbox_data.OUT1  = PWM_Output.Canal_1;
-//	blackbox_data.OUT2  = PWM_Output.Canal_2;
-//	blackbox_data.OUT3  = PWM_Output.Canal_3;
-//	blackbox_data.OUT4  = PWM_Output.Canal_4;
-//	blackbox_data.OUT5  = PWM_Output.Canal_5;
-//	blackbox_data.OUT6  = PWM_Output.Canal_6;
-//	blackbox_data.OUT7  = PWM_Output.Canal_7;
-//	blackbox_data.OUT8  = PWM_Output.Canal_8;
-//	blackbox_data.OUT9  = PWM_Output.Canal_9;
-//	blackbox_data.OUT10 = PWM_Output.Canal_10;
+	blackbox_data.OUT1  = PWM_Output.S[0];
+	blackbox_data.OUT2  = PWM_Output.S[1];
+	blackbox_data.OUT3  = PWM_Output.S[2];
+	blackbox_data.OUT4  = PWM_Output.S[3];
+	blackbox_data.OUT5  = PWM_Output.S[4];
+	blackbox_data.OUT6  = PWM_Output.S[5];
+	blackbox_data.OUT7  = PWM_Output.S[6];
+	blackbox_data.OUT8  = PWM_Output.S[7];
+	blackbox_data.OUT9  = PWM_Output.S[8];
+	blackbox_data.OUT10 = PWM_Output.S[9];
 }
 
 void SD_blackboxNewFile(void){
 	char ActualFile[5] = {0};
 	uint16_t FileCount;
-	f_close(&BlackBox);
+	fresult = f_close(&BlackBox);
 
-	FileCount = ASCII2uint16(&BlackBoxFile[2], 3) + 1;
-	uint162ASCII(FileCount, ActualFile);
+	if(fresult == FR_OK){
+		FileCount = ASCII2uint16(&BlackBoxFile[2], 3) + 1;
+		uint162ASCII(FileCount, ActualFile);
 
-	BlackBoxFile[2] = ActualFile[2];
-	BlackBoxFile[3] = ActualFile[3];
-	BlackBoxFile[4] = ActualFile[4];
+		BlackBoxFile[2] = ActualFile[2];
+		BlackBoxFile[3] = ActualFile[3];
+		BlackBoxFile[4] = ActualFile[4];
 
-	f_open(&BlackBox, BlackBoxFile, FA_OPEN_ALWAYS | FA_READ | FA_WRITE);
+		fresult = f_open(&BlackBox, BlackBoxFile, FA_OPEN_ALWAYS | FA_READ | FA_WRITE);
+	}
 }
 
 void SD_blackbox_write(void){
@@ -231,18 +240,34 @@ void SD_blackbox_write(void){
 
 	if(WriteCount == 15){
 		for (uint8_t n = 0; n < 16; ++n) {
-			f_write(&BlackBox, &BlackBoxBuffer[n], sizeof(blackbox_data), &bw);
+			fresult = f_write(&BlackBox, &BlackBoxBuffer[n], sizeof(blackbox_data), &bw);
 		}
-		fresult = f_sync(&BlackBox);
+		f_sync(&BlackBox);
 		WriteCount = 0;
 		++NewFileCount;
 		++DataCount;
+
+		if(fresult!= FR_OK){
+			LED_Info.R_LED.LED_status = 1;
+			LED_Info.R_LED.Sequence = 1;
+			LED_Info.R_LED.Time_Off = 500;
+			LED_Info.R_LED.Time_On  = 500;
+			if(LED_Info.R_LED.count>30){
+				SD_blackboxNewFile();
+			}
+
+		}
+		else{
+			LED_Info.R_LED.LED_status = 0;
+			LED_Info.R_LED.count = 0;
+		}
 		return;
 	}
+
+
 	++WriteCount;
 	++DataCount;
 }
-
 
 void SD_init(void){
 	  fresult = f_mount(&fs, "/", 1);

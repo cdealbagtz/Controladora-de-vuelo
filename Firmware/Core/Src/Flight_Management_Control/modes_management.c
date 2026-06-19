@@ -13,9 +13,13 @@ FlightMode_t mode ;
 uint8_t rc_three_steps_CurrentMode(void)
 {
 	//
-	uint16_t pwm_value = Radio_input.Canal_5;
+	uint16_t pwm_value = Radio_input.Canal_10;
+
+	if(Radio_input.fail_safe == FailSafe)  return MANUAL_MODE;
+
 
 	if (pwm_value < (PWM_MID - PWM_DEADZONE))
+
 	{
 	        return MANUAL_MODE;
 	 }
@@ -39,5 +43,25 @@ void get_flight_mode(void)
 {
 	//
 	mode = (FlightMode_t)rc_three_steps_CurrentMode();
+
+	switch (mode) {
+		case MANUAL_MODE:
+			LED_Info.B_LED1.LED_status = 1;
+			LED_Info.B_LED2.LED_status = 0;
+			LED_Info.B_LED3.LED_status = 0;
+			break;
+		case RATE_MODE:
+			LED_Info.B_LED1.LED_status = 0;
+			LED_Info.B_LED2.LED_status = 1;
+			LED_Info.B_LED3.LED_status = 0;
+			break;
+		case ATTITUDE_HOLD_MODE:
+			LED_Info.B_LED1.LED_status = 0;
+			LED_Info.B_LED2.LED_status = 0;
+			LED_Info.B_LED3.LED_status = 1;
+			break;
+		default:
+			break;
+	}
 }
 

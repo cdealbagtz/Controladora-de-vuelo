@@ -61,7 +61,8 @@ Core/Src/Libraries/SD.o: ../Core/Src/Libraries/SD.c ../Core/Inc/CONFIG.h \
  ../Core/Inc/Libraries/BNO050.h ../Core/Inc/usart.h ../Core/Inc/main.h \
  ../Core/Inc/Libraries/BMP280.h ../Core/Inc/spi.h \
  ../Core/Inc/Libraries/SBUS.h ../Core/Inc/Libraries/PWM.h \
- ../Core/Inc/tim.h
+ ../Core/Inc/tim.h ../Core/Inc/Libraries/MTI7.h \
+ ../Core/Inc/Libraries/LED.h
 ../Core/Inc/CONFIG.h:
 ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h:
 ../Drivers/CMSIS/Include/core_cm7.h:
@@ -134,3 +135,5 @@ Core/Src/Libraries/SD.o: ../Core/Src/Libraries/SD.c ../Core/Inc/CONFIG.h \
 ../Core/Inc/Libraries/SBUS.h:
 ../Core/Inc/Libraries/PWM.h:
 ../Core/Inc/tim.h:
+../Core/Inc/Libraries/MTI7.h:
+../Core/Inc/Libraries/LED.h:

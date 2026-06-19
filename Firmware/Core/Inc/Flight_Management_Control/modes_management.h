@@ -10,6 +10,7 @@
 
 #include "stdint.h"
 #include "Libraries/SBUS.h"
+#include "Libraries/LED.h"
 
 typedef enum {
     MANUAL_MODE = 0,

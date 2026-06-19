@@ -39,20 +39,18 @@ Core/Src/Flight_Management_Control/flight_management.o: \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart.h \
  ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h \
- ../Core/Inc/usart.h ../Core/Inc/main.h \
+ ../Core/Inc/usart.h ../Core/Inc/main.h ../Core/Inc/Libraries/LED.h \
+ ../Core/Inc/main.h \
  ../Core/Inc/Flight_Management_Control/control_allocator.h \
  ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h \
  ../Core/Inc/Libraries/PWM.h ../Core/Inc/tim.h ../Core/Inc/filter.h \
  ../Core/Inc/Flight_Management_Control/sensors.h \
- ../Core/Inc/Libraries/BNO050.h \
- ../Core/Inc/Flight_Management_Control/rates_mode.h \
+ ../Core/Inc/Flight_Management_Control/INS.h ../Core/Inc/Libraries/MTI7.h \
+ ../Core/Inc/Libraries/BNO050.h ../Core/Inc/Libraries/BMP280.h \
+ ../Core/Inc/spi.h ../Core/Inc/Flight_Management_Control/rates_mode.h \
  ../Core/Inc/Flight_Management_Control/attitude_hold_control.h \
-<<<<<<< HEAD
  ../Core/Inc/Flight_Management_Control/pid.h \
  ../Core/Inc/Flight_Management_Control/parameters_manager.h
-=======
- ../Core/Inc/Flight_Management_Control/pid.h
->>>>>>> main
 ../Core/Inc/Flight_Management_Control/flight_management.h:
 ../Core/Inc/Flight_Management_Control/flight_parameters.h:
 ../Core/Inc/Flight_Management_Control/modes_management.h:
@@ -94,17 +92,20 @@ Core/Src/Flight_Management_Control/flight_management.o: \
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_uart_ex.h:
 ../Core/Inc/usart.h:
 ../Core/Inc/main.h:
+../Core/Inc/Libraries/LED.h:
+../Core/Inc/main.h:
 ../Core/Inc/Flight_Management_Control/control_allocator.h:
 ../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7b0xx.h:
 ../Core/Inc/Libraries/PWM.h:
 ../Core/Inc/tim.h:
 ../Core/Inc/filter.h:
 ../Core/Inc/Flight_Management_Control/sensors.h:
+../Core/Inc/Flight_Management_Control/INS.h:
+../Core/Inc/Libraries/MTI7.h:
 ../Core/Inc/Libraries/BNO050.h:
+../Core/Inc/Libraries/BMP280.h:
+../Core/Inc/spi.h:
 ../Core/Inc/Flight_Management_Control/rates_mode.h:
 ../Core/Inc/Flight_Management_Control/attitude_hold_control.h:
 ../Core/Inc/Flight_Management_Control/pid.h:
-<<<<<<< HEAD
 ../Core/Inc/Flight_Management_Control/parameters_manager.h:
-=======
->>>>>>> main

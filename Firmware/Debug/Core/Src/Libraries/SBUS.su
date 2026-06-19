@@ -1,4 +1,6 @@
-../Core/Src/Libraries/SBUS.c:47:6:SBUS_init	8	static
-../Core/Src/Libraries/SBUS.c:52:6:SBUS_Receive	16	static
-../Core/Src/Libraries/SBUS.c:83:6:SBUS_getData	4	static
-../Core/Src/Libraries/SBUS.c:150:6:SBUS_IntegrityVerification	4	static
+../Core/Src/Libraries/SBUS.c:51:6:SBUS_init	8	static
+../Core/Src/Libraries/SBUS.c:56:6:SBUS_RxIRQ	8	static
+../Core/Src/Libraries/SBUS.c:72:6:SBUS_task	16	static
+../Core/Src/Libraries/SBUS.c:87:6:SBUS_Receive	16	static
+../Core/Src/Libraries/SBUS.c:118:6:SBUS_getData	4	static
+../Core/Src/Libraries/SBUS.c:236:6:SBUS_IntegrityVerification	8	static
