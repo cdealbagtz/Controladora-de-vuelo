@@ -8,41 +8,51 @@
 
 #include "Flight_Management_Control/modes_management.h"
 
-FlightMode_t mode ;
 
-uint8_t rc_three_steps_CurrentMode(void)
+FlightMode_t mode = MANUAL_MODE;
+
+
+FlightMode_t ModesManagement_ReadSwitch3Pos(void)
 {
 	//
-	uint16_t pwm_value = Radio_input.Canal_10;
+	uint16_t pwm_value = FLIGHT_MODE_PWM_INPUT();
 
-	if(Radio_input.fail_safe == FailSafe)  return MANUAL_MODE;
+	static FlightMode_t last_mode = MANUAL_MODE;
+
+	if (Radio_input.fail_safe == FailSafe)
+	    {
+	        last_mode = FLIGHT_MODE_FAILSAFE;
+	        return last_mode;
+	    }
 
 
 	if (pwm_value < (PWM_MID - PWM_DEADZONE))
 
 	{
-	        return MANUAL_MODE;
+		last_mode = FLIGHT_MODE_SW_LOW;
 	 }
-	else if (pwm_value < 1750 && pwm_value > 1350)
+	else if ((pwm_value >= (PWM_MID - PWM_DEADZONE))&&(pwm_value <= (PWM_MID + PWM_DEADZONE)))
 	 {
-	        return RATE_MODE;
+		last_mode = FLIGHT_MODE_SW_MID;
 	  }
-	else if (pwm_value >= (PWM_MAX - PWM_DEADZONE))
+	else if (pwm_value > (PWM_MID + PWM_DEADZONE))
 	 {
-	        return ATTITUDE_HOLD_MODE;
+		last_mode = FLIGHT_MODE_SW_HIGH;
 	  }
 	else
 	{
 	        // Zona muerta → mantener último modo (evita oscilaciones)
-	        static FlightMode_t last_mode = MANUAL_MODE;
-	        return last_mode;
+			// Se mantiene el ultimo modo valido
+
 	 }
+
+	return last_mode;
 }
 
 void get_flight_mode(void)
 {
 	//
-	mode = (FlightMode_t)rc_three_steps_CurrentMode();
+	mode = ModesManagement_ReadSwitch3Pos();
 
 	switch (mode) {
 		case MANUAL_MODE:
@@ -60,7 +70,21 @@ void get_flight_mode(void)
 			LED_Info.B_LED2.LED_status = 0;
 			LED_Info.B_LED3.LED_status = 1;
 			break;
+
+		case FBW_MODE:
+			LED_Info.B_LED1.LED_status = 1;
+			LED_Info.B_LED2.LED_status = 1;
+			LED_Info.B_LED3.LED_status = 0;
+			break;
+		case FAILSAFE_MODE:
+			LED_Info.B_LED1.LED_status = 1;
+			LED_Info.B_LED2.LED_status = 1;
+			LED_Info.B_LED3.LED_status = 1;
+			break;
 		default:
+			LED_Info.B_LED1.LED_status = 0;
+			LED_Info.B_LED2.LED_status = 0;
+			LED_Info.B_LED3.LED_status = 0;
 			break;
 	}
 }

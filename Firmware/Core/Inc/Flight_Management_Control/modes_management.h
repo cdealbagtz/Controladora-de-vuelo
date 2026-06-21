@@ -11,6 +11,7 @@
 #include "stdint.h"
 #include "Libraries/SBUS.h"
 #include "Libraries/LED.h"
+#include "Flight_Management_Control/flight_modes_config.h"
 
 typedef enum {
     MANUAL_MODE = 0,
@@ -24,16 +25,10 @@ typedef struct {
     uint16_t S[3]; // S[0] a S[2]
 } Switch_modes_s;
 
-// Configuración de los límites PWM (ajustar según tu radio)
-#define PWM_MIN 1000    // μs (posición baja)
-#define PWM_MID 1500    // μs (posición media)
-#define PWM_MAX 2000    // μs (posición alta)
-#define PWM_DEADZONE 250 // μs (zona muerta para evitar ruido)
-
 
 extern FlightMode_t mode ;
 
-uint8_t rc_three_steps_CurrentMode(void);
+FlightMode_t ModesManagement_ReadSwitch3Pos(void);
 
 void get_flight_mode(void);
 
