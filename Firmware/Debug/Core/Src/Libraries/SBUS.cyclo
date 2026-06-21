@@ -1,6 +1,0 @@
-../Core/Src/Libraries/SBUS.c:51:6:SBUS_init	1
-../Core/Src/Libraries/SBUS.c:56:6:SBUS_RxIRQ	3
-../Core/Src/Libraries/SBUS.c:72:6:SBUS_task	5
-../Core/Src/Libraries/SBUS.c:87:6:SBUS_Receive	5
-../Core/Src/Libraries/SBUS.c:118:6:SBUS_getData	21
-../Core/Src/Libraries/SBUS.c:236:6:SBUS_IntegrityVerification	2
