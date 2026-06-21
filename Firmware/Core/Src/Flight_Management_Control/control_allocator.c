@@ -13,36 +13,50 @@ FRAMES_e Frame ;
 Cmd_s Command_out ;
 Cmd_s Control_out ;
 Cmd_s Trims ;
-Cmd_s Commands ;
+Cmd_s Command ;
 float commands_noise[4] ;
 float ouput_fltr[4];
 float cmds_out[4];
-float COF_cmds[4];
 Servo_reverse_s Reverse ;
 Servo_mgmt_s servo_outs ;
 FilterState filters[4] = {{0.0f}, {0.0f}, {0.0f}, {0.0f}};
-
-
-void command_filtering(void)
+float COF_cmds[4] =
 {
-	//
-	commands_noise[0] = Command_out.roll   ;
-	commands_noise[1] = Command_out.pitch  ;
-	commands_noise[2] = Command_out.yaw    ;
-	commands_noise[3] = Command_out.thrust ;
+	CutOffFreq_cmd_ail,
+	CutOffFreq_cmd_ele,
+	CutOffFreq_cmd_rud,
+	CutOffFreq_cmd_thr
+};
 
-	for(int idx = 0; idx < 4; idx++)
+
+Cmd_s command_filtering(Cmd_s command_in, FilterSwitch_e filter_enable)
+{
+	Cmd_s command_out;
+
+	if(filter_enable == FILTER_ON)
 	{
-		//
-		ouput_fltr[idx] = filter_step(&filters[idx], commands_noise[idx],COF_cmds[idx],SAMPLE_ATT) ;
+		command_out.roll   = filter_step(&filters[0], command_in.roll,   COF_cmds[0], SAMPLE_ATT);
+		command_out.pitch  = filter_step(&filters[1], command_in.pitch,  COF_cmds[1], SAMPLE_ATT);
+		command_out.yaw    = filter_step(&filters[2], command_in.yaw,    COF_cmds[2], SAMPLE_ATT);
+		command_out.thrust = filter_step(&filters[3], command_in.thrust, COF_cmds[3], SAMPLE_ATT);
 	}
-	//
-	Commands.roll 		= 	ouput_fltr[0] ;
-	Commands.pitch 		= 	ouput_fltr[1] ;
-	Commands.yaw 		= 	ouput_fltr[2] ;
-	Commands.thrust 	= 	ouput_fltr[3] ;
+	else
+	{
+		/*
+		 * Bypass del filtro.
+		 * Además sincronizamos los estados internos para evitar saltos
+		 * si después se vuelve a activar FILTER_ON.
+		 */
+		command_out = command_in;
+
+		filters[0].x = command_in.roll;
+		filters[1].x = command_in.pitch;
+		filters[2].x = command_in.yaw;
+		filters[3].x = command_in.thrust;
+	}
 
 
+	return command_out;
 }
 
 void control_allocator(Cmd_s control_cmd, Cmd_s trims )

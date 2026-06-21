@@ -25,8 +25,8 @@ void FlightTaskAttitude(void)
 	refresh_actual_rates();
 	get_actual_attitude();
 	get_flight_mode();
-	Command_in = get_commands_rc();
 
+	Command_in = get_commands_rc();
 
 	switch(mode)
 	{
@@ -51,10 +51,10 @@ void FlightTaskAttitude(void)
 		break;
 	}
 
-	command_filtering();
+	Command = command_filtering(Command_out, FILTER_ON);
 	get_actual_trims();
 	init_Reverse_Servos(&Reverse);
-	control_allocator(Command_out , Trims );
+	control_allocator(Command, Trims );
 }
 
 void FlightTaskARSP(void)
