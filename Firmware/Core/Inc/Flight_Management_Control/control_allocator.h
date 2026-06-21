@@ -42,14 +42,20 @@ typedef struct {
     bool S[10]; // S[0] a S[9] para los 10 servos (equivalente a S_1 a S_10)
 } Servo_reverse_s;
 
+typedef enum
+{
+    FILTER_OFF = 0,
+    FILTER_ON  = 1
+} FilterSwitch_e;
+
 extern FRAMES_e Frame ;
 extern Cmd_s Command_out ;
 extern Cmd_s Control_out ;
 extern Cmd_s Trims;
-extern Cmd_s Commands ;
+extern Cmd_s Command ;
 extern Servo_reverse_s Reverse ;
 
-void command_filtering(void);
+Cmd_s command_filtering(Cmd_s command_in, FilterSwitch_e filter_enable);
 
 void control_allocator(Cmd_s control_cmd, Cmd_s Trims) ;
 
