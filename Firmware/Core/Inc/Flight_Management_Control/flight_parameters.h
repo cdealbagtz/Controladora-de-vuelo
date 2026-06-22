@@ -23,10 +23,10 @@
 #define LPF_gyro_y 	50.0f
 #define LPF_gyro_z	50.0f
 
-#define CutOffFreq_cmd_ail	4.0f //Frecuancia de conrte (Hertz) comando alerones.
-#define CutOffFreq_cmd_ele	4.0f //Frecuancia de conrte (Hertz) comando elevador.
-#define CutOffFreq_cmd_rud	4.0f //Frecuancia de conrte (Hertz) comando timon.
-#define CutOffFreq_cmd_thr	4.0f //Frecuancia de conrte (Hertz) comando acelerador.
+#define CutOffFreq_cmd_ail	10.0f //Frecuancia de conrte (Hertz) comando alerones.
+#define CutOffFreq_cmd_ele	10.0f //Frecuancia de conrte (Hertz) comando elevador.
+#define CutOffFreq_cmd_rud	10.0f //Frecuancia de conrte (Hertz) comando timon.
+#define CutOffFreq_cmd_thr	10.0f //Frecuancia de conrte (Hertz) comando acelerador.
 
 #define pitch_sat 30.0f
 #define roll_sat  40.0f
