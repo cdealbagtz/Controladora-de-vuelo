@@ -48,6 +48,12 @@ typedef enum
     FILTER_ON  = 1
 } FilterSwitch_e;
 
+typedef enum
+{
+	SYSIDE_OFF = 0,
+	SYSIDE_ON = 1
+}SysIdeSwitch_e;
+
 extern FRAMES_e Frame ;
 extern Cmd_s Command_out ;
 extern Cmd_s Control_out ;

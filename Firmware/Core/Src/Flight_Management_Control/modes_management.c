@@ -7,7 +7,7 @@
 
 
 #include "Flight_Management_Control/modes_management.h"
-
+#include "Flight_Management_Control/flight_parameters.h"
 
 FlightMode_t mode = MANUAL_MODE;
 

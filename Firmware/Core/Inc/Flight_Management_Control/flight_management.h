@@ -8,6 +8,8 @@
 #ifndef INC_FLIGHT_MANAGEMENT_CONTROL_FLIGHT_MANAGEMENT_H_
 #define INC_FLIGHT_MANAGEMENT_CONTROL_FLIGHT_MANAGEMENT_H_
 
+#include <stdbool.h>
+
 #include "Flight_Management_Control/flight_parameters.h"
 #include "Flight_Management_Control/modes_management.h"
 #include "Flight_Management_Control/control_allocator.h"
@@ -16,6 +18,7 @@
 
 #include "Flight_Management_Control/rates_mode.h"
 #include "Flight_Management_Control/attitude_hold_control.h"
+#include "Flight_Management_Control/syside_modes.h"
 
 extern Cmd_s rates_Gains;
 
