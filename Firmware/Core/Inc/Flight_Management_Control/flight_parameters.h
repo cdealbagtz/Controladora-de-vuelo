@@ -14,6 +14,12 @@
 
 #define CONFIGURATION 3 //
 
+
+
+#define FLIGHT_MODE_PWM_INPUT()     (Radio_input.Canal_5)
+#define FLIGHT_SYSIDE_ON()     		(Radio_input.Canal_11)
+
+
 #define K_P 	0.005f
 #define K_Q 	0.005f
 #define K_R 	0.005f
@@ -36,5 +42,19 @@
 #define KP_pitch 0.01f
 #define KI_pitch 0.0000010f
 
+#define IDX_syside 	0u
+#define AMP_syside 	0.4f
+#define Freq_0 		1.0f
+#define Time_start 	2.0f
+#define Time_test 	10.0f
+
+#define AMP_syside_wave 	0.4f
+#define Freq_wave_Hertz		1.0f
+
+
+#define Time_pulse_seg 		1.0f
+#define AMP_syside_pulse 	0.4f
+
+#define Time_doublet_seg 	2.0f
 
 #endif /* INC_FLIGHT_MANAGEMENT_CONTROL_FLIGHT_PARAMETERS_H_ */
