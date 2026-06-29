@@ -52,6 +52,12 @@ Cmd_s attitude_hold_control(Cmd_s inputs_norms, Att_s actual_atts , Gyro_s actua
 
 	//Yaw Damping
 	Outs.yaw    = inputs_norms.yaw   -  actual_gyro.yaw  * K.yaw ;
+	if(Outs.yaw > 1){
+		Outs.yaw = 1.00;
+	}
+	else if(Outs.yaw < -1){
+		Outs.yaw = -1.00;
+	}
 	//Feedforwa
 	Outs.thrust = inputs_norms.thrust ;
 

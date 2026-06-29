@@ -13,7 +13,7 @@ void PI_Init(PI_Controller *pi, float kp, float ki, float out_min, float out_max
 }
 
 float PI_Compute(PI_Controller *pi, float error, float dt) {
-    pi->integrator += 0.0f ; //error * pi->Ki * dt;
+    pi->integrator += error * pi->Ki * dt;
 
     // Anti-windup
     if (pi->integrator > pi->out_max) pi->integrator = pi->out_max;
