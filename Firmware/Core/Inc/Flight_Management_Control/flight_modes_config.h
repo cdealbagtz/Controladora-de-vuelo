@@ -20,7 +20,7 @@
  * * Canal 10 -> Radio_input.Canal_10
  */
 
-#define FLIGHT_MODE_PWM_INPUT()     (Radio_input.Canal_10)
+//#define FLIGHT_MODE_PWM_INPUT()     (Radio_input.Canal_10)
 
 /*
  * Rangos PWM para switch de 3 posiciones.
@@ -43,7 +43,7 @@
  */
 
 #define FLIGHT_MODE_SW_LOW      MANUAL_MODE
-#define FLIGHT_MODE_SW_MID      RATE_MODE
+#define FLIGHT_MODE_SW_MID      MANUAL_SYSIDE_MODE
 #define FLIGHT_MODE_SW_HIGH     ATTITUDE_HOLD_MODE
 
 
