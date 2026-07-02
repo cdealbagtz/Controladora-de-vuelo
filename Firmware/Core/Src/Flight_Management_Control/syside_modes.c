@@ -11,11 +11,38 @@
 
 // Variable estática para mantener el tiempo entre llamadas
 static float t = 0.0f;
-
+static SysideTest_t test ;
 // Función para reiniciar el timer externamente
 void reset_syside_timer(void)
 {
     t = 0.0f;
+}
+
+SysideTest_t Get_SystemIdentificationTest_Type(void)
+{
+	//
+	uint16_t pwm_value = FLIGHT_SYSIDE_TEST();
+	SysideTest_t  syside_test_type;
+
+	if (pwm_value < (PWM_MID - PWM_DEADZONE))
+	{
+		syside_test_type = SYSIDE_TEST_SW_LOW;
+	 }
+	else if ((pwm_value >= (PWM_MID - PWM_DEADZONE))&&(pwm_value <= (PWM_MID + PWM_DEADZONE)))
+	 {
+		syside_test_type = SYSIDE_TEST_SW_MID;
+	  }
+	else if (pwm_value > (PWM_MID + PWM_DEADZONE))
+	 {
+		syside_test_type = SYSIDE_TEST_SW_HIGH;
+	  }
+	else
+	{
+		//
+		syside_test_type = 0;
+	}
+
+	return syside_test_type;
 }
 
 Cmd_s sine_wave_axis(int8_t axis,float time_start, float time_test, Cmd_s inputs_norms, float freq_Hz, float Amplitude, float Period_t)
@@ -56,7 +83,7 @@ Cmd_s sine_wave_axis(int8_t axis,float time_start, float time_test, Cmd_s inputs
 	return commands_out;
 }
 
-Cmd_s System_Identification_Test(SysideTest_t test, int8_t axis, Cmd_s inputs_norms, float sample_time)
+Cmd_s System_Identification_Test(int8_t axis, Cmd_s inputs_norms, float sample_time)
 {
 	//
 	Cmd_s commands_out = {0.0f, 0.0f, 0.0f, 0.0f};
@@ -68,6 +95,8 @@ Cmd_s System_Identification_Test(SysideTest_t test, int8_t axis, Cmd_s inputs_no
 
 	float value = 0.0f;
 
+	test = Get_SystemIdentificationTest_Type();
+
 	switch(test)
 	{
 	case SINE_MODE:
@@ -78,13 +107,13 @@ Cmd_s System_Identification_Test(SysideTest_t test, int8_t axis, Cmd_s inputs_no
 		}
 		break;
 	case PULSE_MODE:
-		if(t >= Time_start && t < Time_pulse_seg)
+		if(t >= Time_start && t < (Time_start + Time_pulse_seg))
 		{
 			value = AMP_syside_pulse;
 		}
 		break;
 	case DOUBLET_MODE:
-		if(t >= Time_start && t < Time_doublet_seg)
+		if(t >= Time_start && t < (Time_start + Time_doublet_seg ) )
 		{
 			value = AMP_syside_pulse;
 		}

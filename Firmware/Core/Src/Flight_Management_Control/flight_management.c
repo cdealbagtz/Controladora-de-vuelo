@@ -52,7 +52,7 @@ void FlightTaskAttitude(void)
 		Command_out = rates_control_law(Command_in , actual_rates, rates_Gains) ;
 		break;
 	case MANUAL_SYSIDE_MODE:
-		Command_out = System_Identification_Test(SINE_MODE, IDX_syside, Command_in, SAMPLE_ATT);
+		Command_out = System_Identification_Test(IDX_syside, Command_in, SAMPLE_ATT);
 		break;
 	case MANUAL_MODE:
 		//

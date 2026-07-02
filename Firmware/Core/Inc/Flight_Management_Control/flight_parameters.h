@@ -15,9 +15,11 @@
 #define CONFIGURATION 3 //
 
 
-
-#define FLIGHT_MODE_PWM_INPUT()     (Radio_input.Canal_5)
+#define FLIGHT_ARM_SWITCH() 		(Radio_input.Canal_5)
+#define FLIGHT_MODE_PWM_INPUT()     (Radio_input.Canal_6)
 #define FLIGHT_SYSIDE_ON()     		(Radio_input.Canal_11)
+#define FLIGHT_SYSIDE_TEST() 		(Radio_input.Canal_7)
+#define FLIGHT_SYSIDE_AXIS()		(Radio_input.Canal_8)
 
 
 #define K_P 	0.005f
@@ -41,6 +43,14 @@
 #define KI_roll  0.00000000f
 #define KP_pitch 0.01f
 #define KI_pitch 0.0000010f
+
+/*
+* Configuracion del modo identificación de sistemas
+*/
+
+#define SYSIDE_TEST_SW_LOW 	0u
+#define SYSIDE_TEST_SW_MID 	1u
+#define SYSIDE_TEST_SW_HIGH 2u
 
 #define IDX_syside 	0u
 #define AMP_syside 	0.4f
